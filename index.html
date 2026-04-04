@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidel Perez Rubio — Senior Data Engineer</title>
+  <meta name="description" content="Senior Data Engineer with 11+ years experience. AI-first engineering, data platform architecture, and infrastructure automation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Theme Variables ─── */
+    :root {
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+      --font-sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59,130,246,0.15);
+      --green: #10b981;
+      --green-glow: rgba(16,185,129,0.15);
+      --orange: #f59e0b;
+      --orange-glow: rgba(245,158,11,0.15);
+      --purple: #8b5cf6;
+      --purple-glow: rgba(139,92,246,0.15);
+      --red: #ef4444;
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6,182,212,0.15);
+      --transition: 0.3s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0e17;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2332;
+      --border: #1e293b;
+      --border-active: #3b82f6;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --grid-color: rgba(30,41,59,0.13);
+      --table-alt: #111827;
+      --tag-bg-accent: rgba(59,130,246,0.12);
+      --tag-bg-green: rgba(16,185,129,0.12);
+      --tag-bg-purple: rgba(139,92,246,0.12);
+      --tag-bg-orange: rgba(245,158,11,0.12);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --border-active: #3b82f6;
+      --text: #1e293b;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --grid-color: rgba(226,232,240,0.5);
+      --table-alt: #f8fafc;
+      --tag-bg-accent: rgba(59,130,246,0.08);
+      --tag-bg-green: rgba(16,185,129,0.08);
+      --tag-bg-purple: rgba(139,92,246,0.08);
+      --tag-bg-orange: rgba(245,158,11,0.08);
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      transition: background var(--transition), color var(--transition);
+      line-height: 1.6;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* ─── Top Bar ─── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .top-bar-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .top-bar-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition);
+    }
+    .top-bar-links a:hover { color: var(--accent); }
+    .top-bar-links svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ─── Theme Toggle ─── */
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .theme-toggle .toggle-icon { font-size: 18px; }
+
+    /* ─── Header ─── */
+    header {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .label-upper {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      font-family: var(--font-sans);
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    /* ─── Stats ─── */
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .stat { animation: fadeInUp 0.5s ease-out both; }
+    .stat:nth-child(1) { animation-delay: 0.3s; }
+    .stat:nth-child(2) { animation-delay: 0.4s; }
+    .stat:nth-child(3) { animation-delay: 0.5s; }
+    .stat:nth-child(4) { animation-delay: 0.6s; }
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 32px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6px;
+    }
+
+    .tab {
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all var(--transition);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab:hover { background: var(--bg-card-hover); color: var(--text); }
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+    }
+    .tab .tab-icon { font-size: 15px; }
+
+    /* ─── Content Panel ─── */
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: background var(--transition), border-color var(--transition);
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .section { display: none; }
+    .section.active { display: block; animation: fadeInUp 0.5s ease-out; }
+
+    .section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .section-note {
+      color: var(--text-dim);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Tags ─── */
+    .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+    .tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      border: 1px solid transparent;
+    }
+    .tag-accent { background: var(--tag-bg-accent); color: var(--accent); border-color: rgba(59,130,246,0.25); }
+    .tag-green { background: var(--tag-bg-green); color: var(--green); border-color: rgba(16,185,129,0.25); }
+    .tag-purple { background: var(--tag-bg-purple); color: var(--purple); border-color: rgba(139,92,246,0.25); }
+    .tag-orange { background: var(--tag-bg-orange); color: var(--orange); border-color: rgba(245,158,11,0.25); }
+
+    /* ─── SVG Diagrams ─── */
+    svg text { transition: fill var(--transition); }
+    .diagram-wrap { overflow-x: auto; margin-top: 8px; }
+    .diagram-wrap svg { max-width: 100%; height: auto; }
+
+    /* ─── Parallels Table ─── */
+    .parallels-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+    .parallels-table thead tr {
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+    }
+    .parallels-table th { text-align: left; padding: 8px 16px; }
+    .parallels-table td { padding: 10px 16px; color: var(--text-muted); }
+    .parallels-table td:first-child { color: var(--text); font-weight: 600; border-radius: 8px 0 0 8px; }
+    .parallels-table td:last-child { border-radius: 0 8px 8px 0; }
+    .parallels-table tbody tr:nth-child(even) td { background: var(--table-alt); }
+    .parallels-table tbody tr { animation: fadeInUp 0.4s ease-out both; }
+    .parallels-table tbody tr:nth-child(1) { animation-delay: 0.3s; }
+    .parallels-table tbody tr:nth-child(2) { animation-delay: 0.35s; }
+    .parallels-table tbody tr:nth-child(3) { animation-delay: 0.4s; }
+    .parallels-table tbody tr:nth-child(4) { animation-delay: 0.45s; }
+    .parallels-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+    .parallels-table tbody tr:nth-child(6) { animation-delay: 0.55s; }
+    .parallels-table tbody tr:nth-child(7) { animation-delay: 0.6s; }
+    .parallels-table tbody tr:nth-child(8) { animation-delay: 0.65s; }
+    .parallels-table tbody tr:nth-child(9) { animation-delay: 0.7s; }
+    .parallels-table tbody tr:nth-child(10) { animation-delay: 0.75s; }
+
+    /* ─── Career Timeline ─── */
+    .timeline { margin-top: 16px; }
+    .timeline-item {
+      position: relative;
+      padding-left: 28px;
+      padding-bottom: 28px;
+      border-left: 2px solid var(--border);
+      animation: fadeInUp 0.5s ease-out both;
+    }
+    .timeline-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.35s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.65s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.8s; }
+    .timeline-role { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .timeline-company { color: var(--text-muted); font-size: 13px; font-family: var(--font-mono); }
+    .timeline-date { color: var(--text-dim); font-size: 12px; font-family: var(--font-mono); margin-bottom: 8px; }
+    .timeline-desc { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+    .timeline-desc ul { padding-left: 16px; margin-top: 6px; }
+    .timeline-desc li { margin-bottom: 4px; }
+
+    /* ─── About / Vision ─── */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .vision-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all var(--transition);
+      animation: fadeInUp 0.5s ease-out both;
+    }
+    .vision-card:nth-child(1) { animation-delay: 0.2s; }
+    .vision-card:nth-child(2) { animation-delay: 0.3s; }
+    .vision-card:nth-child(3) { animation-delay: 0.4s; }
+    .vision-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .vision-card h3 { font-size: 14px; margin-bottom: 8px; color: var(--accent); }
+    .vision-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── Footer ─── */
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+      font-family: var(--font-mono);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ─── Animations ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ─── Collapsible Details ─── */
+    .deep-dive {
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 4px;
+    }
+    .deep-dive summary {
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      padding: 12px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      transition: color var(--transition);
+    }
+    .deep-dive summary::-webkit-details-marker { display: none; }
+    .deep-dive summary::before {
+      content: '\25B6';
+      font-size: 10px;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    .deep-dive[open] summary::before { transform: rotate(90deg); }
+    .deep-dive summary:hover { color: var(--text); }
+    .deep-dive-content {
+      animation: fadeInUp 0.3s ease-out;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .detail-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      transition: border-color var(--transition);
+    }
+    .detail-card:hover { border-color: var(--accent); }
+    .detail-card h4 {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .detail-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-card li {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .detail-card li::before {
+      content: '\2022';
+      position: absolute;
+      left: 0;
+      color: var(--text-dim);
+    }
+    .kpi-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .kpi {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+    }
+    .kpi-value {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+    .kpi-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .panel { padding: 20px 16px; }
+      .stats { gap: 20px; }
+      .stat-number { font-size: 22px; }
+      header { padding-top: 20px; }
+      .parallels-table { font-size: 11px; }
+      .parallels-table th, .parallels-table td { padding: 8px 10px; }
+      nav { flex-wrap: wrap; }
+      .tab { padding: 8px 12px; font-size: 12px; }
+      .theme-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-links">
+      <a href="https://github.com/fidel-perez" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/fidel-perez/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark mode">
+      <span class="toggle-icon theme-icon">&#9790;</span>
+      <span class="theme-label">Dark</span>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="label-upper">Technical Architecture Portfolio</div>
+    <h1>Fidel Perez Rubio</h1>
+    <p class="subtitle">Senior Data Engineer &middot; AI-First Engineering &middot; 11+ Years</p>
+    <p class="tagline">
+      Same principles at every scale &mdash; infrastructure as code, containerize everything,
+      automate away toil, monitor proactively, and design for reliability so a small team
+      can manage a large surface area.
+    </p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">11+</div>
+        <div class="stat-label">Years Engineering</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Services (Home Lab)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Data Sources (Prof)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Nodes, Zero Touch</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <button class="tab active" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home Lab</button>
+    <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data Platform</button>
+    <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield Build</button>
+    <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
+    <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
+    <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI Vision</button>
+  </nav>
+
+  <!-- Content Panel -->
+  <div class="panel">
+
+    <!-- ═══ HOME LAB ═══ -->
+    <div class="section active" id="homelab">
+      <h2>Home Lab Infrastructure</h2>
+      <p class="section-desc">
+        Two-node setup (Raspberry Pi + Ubuntu server) running 30+ containerized services.
+        Self-healing, zero-touch operation with automatic DNS, backups, rebuilds, and wake-on-demand.
+      </p>
+      <div class="tags">
+        <span class="tag tag-green">Docker</span>
+        <span class="tag tag-green">Ansible</span>
+        <span class="tag tag-green">Caddy</span>
+        <span class="tag tag-green">Headscale</span>
+        <span class="tag tag-green">Playwright</span>
+        <span class="tag tag-green">Python</span>
+      </div>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 900 620" width="100%">
+          <!-- Section labels -->
+          <text x="20" y="30" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)" text-transform="uppercase" letter-spacing="2">Internet / External</text>
+          <line x1="20" y1="40" x2="880" y2="40" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 4" />
+
+          <text x="20" y="130" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">RASPBERRY PI &middot; Always-On Gateway</text>
+          <rect x="15" y="140" width="870" height="180" rx="12" fill="none" stroke="var(--green)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <text x="20" y="360" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">UBUNTU SERVER &middot; On-Demand (Wake-on-LAN)</text>
+          <rect x="15" y="370" width="870" height="220" rx="12" fill="none" stroke="var(--purple)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <!-- External nodes -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.1s both">
+            <rect x="30" y="60" width="120" height="45" rx="8" fill="var(--bg-card)" stroke="var(--cyan)" stroke-width="1.5" />
+            <text x="44" y="78" font-size="14" fill="var(--cyan)">&#128100;</text>
+            <text x="60" y="78" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Users</text>
+            <text x="60" y="93" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Tailscale mesh</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.15s both">
+            <rect x="180" y="60" width="120" height="45" rx="8" fill="var(--bg-card)" stroke="var(--text-dim)" stroke-width="1.5" />
+            <text x="194" y="80" font-size="14" fill="var(--text-dim)">&#9881;</text>
+            <text x="212" y="78" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">GitHub</text>
+            <text x="212" y="93" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Webhooks</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.2s both">
+            <rect x="370" y="60" width="130" height="45" rx="8" fill="var(--bg-card)" stroke="var(--cyan)" stroke-width="1.5" />
+            <text x="384" y="80" font-size="14" fill="var(--cyan)">&#128172;</text>
+            <text x="402" y="78" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Telegram</text>
+            <text x="402" y="93" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Bot Gateway</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.25s both">
+            <rect x="540" y="60" width="130" height="45" rx="8" fill="var(--bg-card)" stroke="var(--text-dim)" stroke-width="1.5" />
+            <text x="554" y="80" font-size="14" fill="var(--text-dim)">&#127760;</text>
+            <text x="572" y="78" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">FreeDNS</text>
+            <text x="572" y="93" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Dynamic DNS</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.3s both">
+            <rect x="710" y="60" width="150" height="45" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="724" y="80" font-size="14" fill="var(--green)">&#9829;</text>
+            <text x="742" y="78" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Healthcheck.io</text>
+            <text x="742" y="93" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Uptime Monitor</text>
+          </g>
+
+          <!-- Pi nodes row 1 -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.3s both">
+            <rect x="30" y="160" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="44" y="182" font-size="14" fill="var(--green)">&#128274;</text>
+            <text x="62" y="180" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Headscale</text>
+            <text x="62" y="195" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">VPN Control Plane</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.35s both">
+            <rect x="190" y="160" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="204" y="182" font-size="14" fill="var(--green)">&#128256;</text>
+            <text x="222" y="180" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Caddy</text>
+            <text x="222" y="195" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Proxy + Auto TLS</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.4s both">
+            <rect x="350" y="160" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="364" y="182" font-size="14" fill="var(--green)">&#129302;</text>
+            <text x="382" y="180" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Telegram Bot</text>
+            <text x="382" y="195" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Commands &amp; Alerts</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.45s both">
+            <rect x="520" y="160" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="534" y="182" font-size="14" fill="var(--green)">&#129693;</text>
+            <text x="552" y="180" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Webhook Listener</text>
+            <text x="552" y="195" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Rebuild on push</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="690" y="160" width="160" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="704" y="182" font-size="14" fill="var(--green)">&#128203;</text>
+            <text x="722" y="180" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Ansible Controller</text>
+            <text x="722" y="195" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">IaC for both nodes</text>
+          </g>
+
+          <!-- Pi nodes row 2 -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="30" y="235" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="44" y="257" font-size="14" fill="var(--green)">&#128190;</text>
+            <text x="62" y="255" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">JSON Store</text>
+            <text x="62" y="270" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Git-backed data</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.55s both">
+            <rect x="190" y="235" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="204" y="257" font-size="14" fill="var(--green)">&#128276;</text>
+            <text x="222" y="255" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">ntfy</text>
+            <text x="222" y="270" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Push notifications</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.6s both">
+            <rect x="350" y="235" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="364" y="257" font-size="14" fill="var(--green)">&#128065;</text>
+            <text x="382" y="255" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Changedetection</text>
+            <text x="382" y="270" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Web monitoring</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.65s both">
+            <rect x="520" y="235" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="534" y="257" font-size="14" fill="var(--green)">&#9729;</text>
+            <text x="552" y="255" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">rclone Backups</text>
+            <text x="552" y="270" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">pCloud + GDrive</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.7s both">
+            <rect x="690" y="235" width="160" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="704" y="257" font-size="14" fill="var(--orange)">&#9889;</text>
+            <text x="722" y="255" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">WoL Trigger</text>
+            <text x="722" y="270" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">UDP wake server</text>
+          </g>
+
+          <!-- Server nodes row 1 -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.6s both">
+            <rect x="30" y="390" width="165" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="44" y="415" font-size="14" fill="var(--purple)">&#129504;</text>
+            <text x="62" y="412" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Hermes Agent</text>
+            <text x="62" y="427" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Multi-agent + Browser</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.65s both">
+            <rect x="220" y="390" width="125" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="234" y="415" font-size="14" fill="var(--purple)">&#127897;</text>
+            <text x="252" y="412" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Whisper ASR</text>
+            <text x="252" y="427" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Speech-to-text</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.7s both">
+            <rect x="370" y="390" width="130" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="384" y="415" font-size="14" fill="var(--purple)">&#128269;</text>
+            <text x="402" y="412" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">SearXNG</text>
+            <text x="402" y="427" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Private search</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.75s both">
+            <rect x="530" y="390" width="130" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="544" y="415" font-size="14" fill="var(--purple)">&#10024;</text>
+            <text x="562" y="412" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">LLM Helper</text>
+            <text x="562" y="427" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Inference proxy</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.8s both">
+            <rect x="690" y="390" width="160" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="704" y="415" font-size="14" fill="var(--purple)">&#128051;</text>
+            <text x="722" y="412" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Docker Manager</text>
+            <text x="722" y="427" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Dashboard UI</text>
+          </g>
+
+          <!-- Server nodes row 2 -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.7s both">
+            <rect x="30" y="470" width="150" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="44" y="495" font-size="14" fill="var(--purple)">&#127916;</text>
+            <text x="62" y="492" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Plex / Jellyfin</text>
+            <text x="62" y="507" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Media streaming</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.75s both">
+            <rect x="210" y="470" width="130" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="224" y="495" font-size="14" fill="var(--purple)">&#128225;</text>
+            <text x="242" y="492" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">*arr Stack</text>
+            <text x="242" y="507" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Media automation</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.8s both">
+            <rect x="370" y="470" width="130" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="384" y="495" font-size="14" fill="var(--purple)">&#9999;</text>
+            <text x="402" y="492" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Excalidraw</text>
+            <text x="402" y="507" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Whiteboard</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.85s both">
+            <rect x="530" y="470" width="130" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="544" y="495" font-size="14" fill="var(--purple)">&#128196;</text>
+            <text x="562" y="492" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">OnlyOffice</text>
+            <text x="562" y="507" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Document editor</text>
+          </g>
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 0.9s both">
+            <rect x="690" y="470" width="160" height="55" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="704" y="495" font-size="14" fill="var(--purple)">&#128230;</text>
+            <text x="722" y="492" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">+ 15 more services</text>
+            <text x="722" y="507" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">FileBrowser, pyLoad...</text>
+          </g>
+
+          <!-- Footer bar -->
+          <g class="node" style="animation: fadeInUp 0.6s ease-out 1s both">
+            <rect x="30" y="555" width="840" height="40" rx="8" fill="var(--bg-card)" stroke="var(--text-dim)" stroke-width="1" />
+            <text x="450" y="579" font-size="11" font-family="var(--font-mono)" fill="var(--text-dim)" text-anchor="middle">All services containerized via Docker Compose &middot; Git-versioned &middot; Ansible-managed &middot; Auto-backed up nightly</text>
+          </g>
+
+          <!-- Connection lines -->
+          <line x1="90" y1="105" x2="90" y2="160" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="80" stroke-dashoffset="80" style="animation: drawLine 1.2s ease-out 0.4s forwards" />
+          <line x1="240" y1="105" x2="585" y2="160" stroke="var(--text-dim)" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="400" style="animation: drawLine 1.2s ease-out 0.5s forwards" />
+          <line x1="435" y1="105" x2="420" y2="160" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="60" stroke-dashoffset="60" style="animation: drawLine 1.2s ease-out 0.5s forwards" />
+          <line x1="830" y1="285" x2="830" y2="390" stroke="var(--orange)" stroke-width="2" stroke-dasharray="110" stroke-dashoffset="110" style="animation: drawLine 1.2s ease-out 0.8s forwards" />
+        </svg>
+      </div>
+
+      <details class="deep-dive">
+        <summary>Deep Dive &mdash; Full Architecture Details</summary>
+        <div class="deep-dive-content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-value">~30</div><div class="kpi-label">Containers</div></div>
+            <div class="kpi"><div class="kpi-value">2</div><div class="kpi-label">Nodes</div></div>
+            <div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">Manual Intervention</div></div>
+            <div class="kpi"><div class="kpi-value">1 min</div><div class="kpi-label">Backup Frequency</div></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4 style="color: var(--green);">Infrastructure &amp; Networking</h4>
+              <ul>
+                <li>Raspberry Pi as always-on gateway + Ubuntu server on-demand via Wake-on-LAN</li>
+                <li>Headscale (self-hosted Tailscale control plane) for secure mesh VPN across all devices</li>
+                <li>Caddy reverse proxy with automatic HTTPS, dynamic config generation, and a "lazy service" pattern &mdash; containers auto-wake on first HTTP request</li>
+                <li>FreeDNS dynamic DNS updates every 15 min for the public endpoint</li>
+                <li>IPC mechanism: file-based trigger + LAN broadcast (UDP) to wake and orchestrate the server from the Pi</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">CI/CD &amp; Configuration</h4>
+              <ul>
+                <li>Ansible playbooks managing both nodes with roles: common, pi_server, plex_server, ubuntu_desktop</li>
+                <li>Cron jobs, Docker setup, configs, SSH, and systemd units all templated via Jinja2</li>
+                <li>Git webhook listener (Flask) receives GitHub webhooks, triggers <code>docker compose build &amp;&amp; up</code></li>
+                <li>Everything version-controlled in one monorepo</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">Data &amp; Backups</h4>
+              <ul>
+                <li>Centralized JSON store (custom containerized service) with git-based auto-commit + push every minute</li>
+                <li>Nightly cloud backups to pCloud + Google Drive via rclone, with log aggregation and Telegram notifications</li>
+                <li>Docker system prune scheduled weekly for cleanup</li>
+                <li>Healthcheck.io integration for uptime monitoring of all critical services</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">Bots &amp; Automation</h4>
+              <ul>
+                <li>Telegram bot (serverbot): server start/stop, backup triggers, task reminders, Ring intercom integration, unified command system</li>
+                <li>ntfy for push notifications across devices</li>
+                <li>Changedetection.io for web page monitoring</li>
+                <li>Tampermonkey scripts served from static nginx for browser automation</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--purple);">AI / LLM Stack</h4>
+              <ul>
+                <li>Hermes Agent: multi-agent orchestration (Python), deployed for multiple real users via Telegram gateway</li>
+                <li>Plugin architecture with tool registries, interactive browser control via Playwright</li>
+                <li>YAML-driven config generation for per-domain scraper agents</li>
+                <li>LLM helper container (local inference or proxy), Whisper ASR for speech-to-text</li>
+                <li>SearXNG as private meta-search engine (also usable as tool by LLM agents)</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--purple);">Containerized Services</h4>
+              <ul>
+                <li><strong>Custom-built:</strong> webhook listener, Telegram bot, JSON store, document converter, LLM helper, Docker manager dashboard, Hermes agent</li>
+                <li><strong>Off-the-shelf:</strong> Plex, Jellyfin, *arr stack, SearXNG, Excalidraw, Flatnotes, OnlyOffice, Stirling PDF, FileBrowser, Audiobookshelf, pyLoad, ytptube, Romm, and more</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-card" style="margin-top: 0;">
+            <h4 style="color: var(--accent);">Key Talking Points</h4>
+            <ul>
+              <li><strong>Self-healing / zero-touch:</strong> lazy wake, auto-rebuild on push, auto-backup, auto-DNS &mdash; the system largely runs itself</li>
+              <li><strong>IaC discipline:</strong> everything is Ansible-managed, templated, and version-controlled in one monorepo</li>
+              <li><strong>Multi-user AI product:</strong> Hermes isn't just a toy &mdash; it's deployed for real users with a Telegram interface, plugin system, and browser automation</li>
+              <li><strong>Cost-conscious architecture:</strong> Pi as always-on gateway + WoL server = low power bill while running 30+ services</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ═══ PROFESSIONAL DATA PLATFORM ═══ -->
+    <div class="section" id="professional">
+      <h2>Production Data Platform</h2>
+      <p class="section-desc">
+        De facto tech lead of a 2&ndash;3 person team. Full ownership of infrastructure, ingestion, orchestration,
+        and warehouse. Transformed a platform with daily failures to near-zero incidents.
+      </p>
+      <p class="section-note">Company details anonymized &mdash; architecture patterns and technology choices are my own.</p>
+      <div class="tags">
+        <span class="tag tag-accent">Airflow</span>
+        <span class="tag tag-accent">Snowflake</span>
+        <span class="tag tag-accent">Terraform</span>
+        <span class="tag tag-accent">EKS</span>
+        <span class="tag tag-accent">DLT</span>
+        <span class="tag tag-accent">Airbyte</span>
+        <span class="tag tag-accent">ArgoCD</span>
+        <span class="tag tag-accent">dbt</span>
+      </div>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 900 520" width="100%">
+          <text x="20" y="30" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">DATA SOURCES &middot; 20+ Integrations</text>
+          <line x1="20" y1="40" x2="880" y2="40" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 4" />
+
+          <text x="20" y="185" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">INGESTION LAYER</text>
+          <rect x="15" y="195" width="870" height="80" rx="12" fill="none" stroke="var(--orange)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <text x="20" y="315" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">ORCHESTRATION &amp; COMPUTE &middot; AWS EKS</text>
+          <rect x="15" y="325" width="560" height="80" rx="12" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <text x="610" y="315" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">WAREHOUSE &amp; ANALYTICS</text>
+          <rect x="600" y="325" width="285" height="80" rx="12" fill="none" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <text x="20" y="445" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">INFRASTRUCTURE &amp; DEVOPS</text>
+          <rect x="15" y="455" width="870" height="55" rx="12" fill="none" stroke="var(--green)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <!-- Sources -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.1s both">
+            <rect x="30" y="55" width="150" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="46" y="77" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">SaaS APIs (20+)</text>
+            <text x="46" y="92" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">CRM, Analytics...</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.15s both">
+            <rect x="210" y="55" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="226" y="77" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Internal MongoDB</text>
+            <text x="226" y="92" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Production replica</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.2s both">
+            <rect x="380" y="55" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="396" y="77" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Government APIs</text>
+            <text x="396" y="92" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Public sector data</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.25s both">
+            <rect x="550" y="55" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="566" y="77" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Internal APIs</text>
+            <text x="566" y="92" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Microservices</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.3s both">
+            <rect x="720" y="55" width="150" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="736" y="77" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Google Sheets</text>
+            <text x="736" y="92" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Business-managed</text>
+          </g>
+
+          <!-- Real-time pipeline -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.3s both">
+            <rect x="30" y="120" width="120" height="40" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="46" y="144" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Cross-Acct SQS</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.35s both">
+            <rect x="175" y="120" width="100" height="40" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="195" y="144" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Lambda</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.4s both">
+            <rect x="300" y="120" width="120" height="40" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="320" y="144" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Firehose</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.45s both">
+            <rect x="445" y="120" width="80" height="40" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="471" y="144" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">S3</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="550" y="120" width="120" height="40" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="570" y="144" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Snowpipe</text>
+          </g>
+
+          <!-- Real-time arrows -->
+          <line x1="150" y1="140" x2="175" y2="140" stroke="var(--red)" stroke-width="2" stroke-dasharray="30" stroke-dashoffset="30" style="animation: drawLine 0.8s ease-out 0.5s forwards" />
+          <line x1="275" y1="140" x2="300" y2="140" stroke="var(--red)" stroke-width="2" stroke-dasharray="30" stroke-dashoffset="30" style="animation: drawLine 0.8s ease-out 0.55s forwards" />
+          <line x1="420" y1="140" x2="445" y2="140" stroke="var(--red)" stroke-width="2" stroke-dasharray="30" stroke-dashoffset="30" style="animation: drawLine 0.8s ease-out 0.6s forwards" />
+          <line x1="525" y1="140" x2="550" y2="140" stroke="var(--red)" stroke-width="2" stroke-dasharray="30" stroke-dashoffset="30" style="animation: drawLine 0.8s ease-out 0.65s forwards" />
+
+          <!-- Ingestion -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.4s both">
+            <rect x="30" y="210" width="160" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="46" y="232" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">DLT</text>
+            <text x="46" y="247" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Primary ELT framework</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.45s both">
+            <rect x="220" y="210" width="160" height="50" rx="8" fill="var(--bg-card)" stroke="var(--text-dim)" stroke-width="1.5" />
+            <text x="236" y="232" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Singer (Legacy)</text>
+            <text x="236" y="247" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Migrating away</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="420" y="210" width="170" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="436" y="232" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Self-hosted Airbyte</text>
+            <text x="436" y="247" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Helm on EKS</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.55s both">
+            <rect x="630" y="210" width="230" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="646" y="232" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Custom SQS Pipeline</text>
+            <text x="646" y="247" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Real-time event ingestion</text>
+          </g>
+
+          <!-- Orchestration -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="30" y="340" width="170" height="50" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="46" y="362" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Apache Airflow</text>
+            <text x="46" y="377" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Central orchestrator</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.55s both">
+            <rect x="230" y="340" width="170" height="50" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="246" y="362" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">K8s Pod Operator</text>
+            <text x="246" y="377" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Isolated containers</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.6s both">
+            <rect x="430" y="340" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="446" y="362" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Karpenter</text>
+            <text x="446" y="377" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Auto-scaling</text>
+          </g>
+
+          <!-- Warehouse -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.6s both">
+            <rect x="615" y="340" width="130" height="50" rx="8" fill="var(--bg-card)" stroke="var(--cyan)" stroke-width="1.5" />
+            <text x="631" y="362" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Snowflake</text>
+            <text x="631" y="377" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">RBAC + cost mgmt</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.65s both">
+            <rect x="760" y="340" width="110" height="50" rx="8" fill="var(--bg-card)" stroke="var(--cyan)" stroke-width="1.5" />
+            <text x="776" y="362" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">dbt</text>
+            <text x="776" y="377" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Transforms</text>
+          </g>
+
+          <!-- Infra -->
+          <g style="animation: fadeInUp 0.6s ease-out 0.7s both">
+            <rect x="30" y="462" width="130" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="46" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Terraform</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.75s both">
+            <rect x="180" y="462" width="110" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="196" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">ArgoCD</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.8s both">
+            <rect x="310" y="462" width="120" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="326" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Helm Charts</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.85s both">
+            <rect x="450" y="462" width="110" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="466" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">GitHub CI</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.9s both">
+            <rect x="580" y="462" width="130" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="596" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">AI Code Review</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.95s both">
+            <rect x="730" y="462" width="140" height="38" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="746" y="485" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Datadog + Slack</text>
+          </g>
+
+          <!-- Flow arrows -->
+          <line x1="105" y1="105" x2="105" y2="210" stroke="var(--orange)" stroke-width="2" stroke-dasharray="110" stroke-dashoffset="110" style="animation: drawLine 1.2s ease-out 0.5s forwards" />
+          <line x1="300" y1="260" x2="115" y2="340" stroke="var(--accent)" stroke-width="2" stroke-dasharray="200" stroke-dashoffset="200" style="animation: drawLine 1.2s ease-out 0.7s forwards" />
+          <line x1="560" y1="365" x2="615" y2="365" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="60" stroke-dashoffset="60" style="animation: drawLine 1.2s ease-out 0.8s forwards" />
+        </svg>
+      </div>
+
+      <details class="deep-dive">
+        <summary>Deep Dive &mdash; Full Platform Details</summary>
+        <div class="deep-dive-content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-value">20+</div><div class="kpi-label">Source Integrations</div></div>
+            <div class="kpi"><div class="kpi-value">~0</div><div class="kpi-label">Unforced Errors</div></div>
+            <div class="kpi"><div class="kpi-value">2-3</div><div class="kpi-label">Team Size</div></div>
+            <div class="kpi"><div class="kpi-value">100%</div><div class="kpi-label">IaC Coverage</div></div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4 style="color: var(--accent);">Role &amp; Scope</h4>
+              <ul>
+                <li>De facto tech lead of a small data engineering team (2&ndash;3 people), currently mentoring 1 junior</li>
+                <li>End-to-end ownership: infrastructure, ingestion, orchestration, warehouse management, and developer tooling</li>
+                <li>Led the full Redshift-to-Snowflake migration &mdash; architecture design, execution, and cutover</li>
+                <li><strong>Reliability transformation:</strong> inherited a platform with daily pipeline failures; stabilized to near-zero incidents &mdash; failures now are almost exclusively third-party source issues</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--accent);">Infrastructure &amp; Deployment</h4>
+              <ul>
+                <li>Terraform for all infrastructure-as-code (AWS resources, Snowflake configuration)</li>
+                <li>Kubernetes (AWS EKS) as the compute layer &mdash; all workloads run as isolated pods</li>
+                <li>Karpenter for dynamic node provisioning and autoscaling</li>
+                <li>ArgoCD for GitOps-based continuous deployment &mdash; syncs desired state from git to EKS cluster</li>
+                <li>Helm charts maintained by the team for self-hosted Airbyte and Airflow</li>
+                <li>AWS: Secrets Manager, S3 (data lake/staging), SQS (cross-account), ECR (container registry)</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--orange);">Data Ingestion (20+ sources)</h4>
+              <ul>
+                <li>DLT (data load tool) as the primary ELT framework &mdash; migrating from Singer due to Python dependency deprecation</li>
+                <li>Self-hosted Airbyte (Helm-managed on EKS) for managed connectors</li>
+                <li>Custom real-time pipeline: cross-account SQS &rarr; Lambda &rarr; Kinesis Firehose &rarr; S3 &rarr; Snowpipe auto-ingestion</li>
+                <li>Source diversity: SaaS APIs (20+), internal MongoDB, government APIs, internal APIs, Google Sheets via gspread</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--cyan);">Warehouse &amp; Analytics</h4>
+              <ul>
+                <li>Snowflake: warehouse sizing, role-based access control (RBAC), resource and cost management</li>
+                <li>dbt enablement for Data Analytics Engineers &mdash; maintain the environment, review models, support self-service transformation</li>
+                <li>Streamlit apps self-hosted on EKS &mdash; business users write Python to build interactive dashboards on top of the warehouse</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">Observability &amp; Reliability</h4>
+              <ul>
+                <li>Slack alerts on pipeline failures and anomalies</li>
+                <li>Datadog for logging and infrastructure monitoring on top of native tool dashboards</li>
+                <li>Proactive reliability focus: from daily failures to near-zero unforced errors &mdash; this reliability is what enables a 2-person team to maintain 20+ source integrations</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">Developer Experience &amp; CI/CD</h4>
+              <ul>
+                <li>GitHub: repository management, branch protection, PR workflows</li>
+                <li>Pre-commit hooks for linting and code format enforcement</li>
+                <li>Automated test suites running in CI</li>
+                <li>AI-powered code review (CodeRabbit) on pull requests</li>
+                <li>Containerized dev environments matching production (EKS parity)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ═══ GREENFIELD BUILD ═══ -->
+    <div class="section" id="greenfield">
+      <h2>Greenfield Data Platform &mdash; European E-commerce Retailer</h2>
+      <p class="section-desc">
+        Designed and built the company-wide big data infrastructure from scratch. Decoupled analytics
+        from a 20-year-old production Oracle database, eliminating availability risk and slashing costs.
+      </p>
+      <p class="section-note">Company details anonymized &mdash; major European online retailer with large-scale e-commerce data.</p>
+      <div class="tags">
+        <span class="tag tag-purple">Python</span>
+        <span class="tag tag-purple">AWS</span>
+        <span class="tag tag-purple">Docker</span>
+        <span class="tag tag-purple">Kubernetes</span>
+        <span class="tag tag-purple">FluxCD</span>
+        <span class="tag tag-purple">Argo</span>
+        <span class="tag tag-purple">Vue.js</span>
+      </div>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 900 280" width="100%">
+          <text x="20" y="25" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">BEFORE: Legacy Bottleneck</text>
+          <rect x="15" y="35" width="420" height="80" rx="12" fill="none" stroke="var(--red)" stroke-width="1" stroke-dasharray="6 4" opacity="0.4" />
+          <g style="animation: fadeInUp 0.6s ease-out 0.1s both">
+            <rect x="30" y="48" width="180" height="50" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="46" y="70" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Oracle DB (20yr old)</text>
+            <text x="46" y="85" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Single source of truth</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.2s both">
+            <rect x="240" y="48" width="180" height="50" rx="8" fill="var(--bg-card)" stroke="var(--red)" stroke-width="1.5" />
+            <text x="256" y="70" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Analytics Queries</text>
+            <text x="256" y="85" font-size="9" font-family="var(--font-mono)" fill="var(--red)">Killed prod pages</text>
+          </g>
+          <line x1="210" y1="73" x2="240" y2="73" stroke="var(--red)" stroke-width="2" stroke-dasharray="35" stroke-dashoffset="35" style="animation: drawLine 0.8s ease-out 0.3s forwards" />
+
+          <text x="470" y="25" font-size="11" fill="var(--text-dim)" font-family="var(--font-mono)">AFTER: Decoupled Platform (Built from scratch)</text>
+          <rect x="460" y="35" width="425" height="230" rx="12" fill="none" stroke="var(--green)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+          <g style="animation: fadeInUp 0.6s ease-out 0.3s both">
+            <rect x="475" y="48" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="491" y="70" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Oracle (Prod)</text>
+            <text x="491" y="83" font-size="9" font-family="var(--font-mono)" fill="var(--green)">Untouched</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.4s both">
+            <rect x="650" y="48" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="666" y="70" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Python Pipelines</text>
+            <text x="666" y="83" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Data mirroring</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.5s both">
+            <rect x="475" y="115" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="491" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">AWS Data Lake</text>
+            <text x="491" y="150" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">S3 + compute</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.55s both">
+            <rect x="650" y="115" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5" />
+            <text x="666" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Docker + K8s</text>
+            <text x="666" y="150" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">FluxCD GitOps</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.6s both">
+            <rect x="475" y="185" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--purple)" stroke-width="1.5" />
+            <text x="491" y="207" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Vue.js Dashboards</text>
+            <text x="491" y="220" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Internal tooling</text>
+          </g>
+          <g style="animation: fadeInUp 0.6s ease-out 0.65s both">
+            <rect x="650" y="185" width="140" height="45" rx="8" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" />
+            <text x="666" y="207" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Self-Service</text>
+            <text x="666" y="220" font-size="9" font-family="var(--font-mono)" fill="var(--green)">Company-wide analytics</text>
+          </g>
+
+          <line x1="615" y1="70" x2="650" y2="70" stroke="var(--accent)" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="40" style="animation: drawLine 0.8s ease-out 0.5s forwards" />
+          <line x1="545" y1="93" x2="545" y2="115" stroke="var(--accent)" stroke-width="2" stroke-dasharray="25" stroke-dashoffset="25" style="animation: drawLine 0.8s ease-out 0.55s forwards" />
+          <line x1="720" y1="93" x2="720" y2="115" stroke="var(--accent)" stroke-width="2" stroke-dasharray="25" stroke-dashoffset="25" style="animation: drawLine 0.8s ease-out 0.6s forwards" />
+          <line x1="545" y1="160" x2="545" y2="185" stroke="var(--purple)" stroke-width="2" stroke-dasharray="30" stroke-dashoffset="30" style="animation: drawLine 0.8s ease-out 0.7s forwards" />
+
+          <!-- Impact box -->
+          <rect x="30" y="150" width="400" height="100" rx="10" fill="var(--bg-card)" stroke="var(--green)" stroke-width="1.5" opacity="0.95" />
+          <text x="50" y="178" font-size="12" fill="var(--green)" font-family="var(--font-mono)" font-weight="700">IMPACT</text>
+          <text x="50" y="200" font-size="11" fill="var(--text-muted)" font-family="var(--font-sans)">&#8226; Zero prod degradation from analytics</text>
+          <text x="50" y="218" font-size="11" fill="var(--text-muted)" font-family="var(--font-sans)">&#8226; Fraction of Oracle licensing cost</text>
+          <text x="50" y="236" font-size="11" fill="var(--text-muted)" font-family="var(--font-sans)">&#8226; Company-wide self-service analytics</text>
+        </svg>
+      </div>
+
+      <details class="deep-dive">
+        <summary>Deep Dive &mdash; Context &amp; Impact</summary>
+        <div class="deep-dive-content">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4 style="color: var(--red);">The Problem</h4>
+              <ul>
+                <li>Legacy 20-year-old Oracle database was the single source of truth for the entire company</li>
+                <li>Any non-trivial analytical query against Oracle would degrade or take down production pages</li>
+                <li>The business needed to query data freely without impacting customers</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--green);">The Solution</h4>
+              <ul>
+                <li>Built a data mirroring pipeline from Oracle into the AWS big data ecosystem</li>
+                <li>Enabled the entire company to query data at will &mdash; at a fraction of the Oracle licensing and operational cost</li>
+                <li>Decoupled analytics from production, eliminating the availability risk entirely</li>
+                <li>Stack: Python, AWS, Docker, Kubernetes, FluxCD (GitOps), Argo Workflows, Vue.js for internal tooling</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--accent);">Key Talking Points</h4>
+              <ul>
+                <li><strong>Greenfield ownership:</strong> not inheriting &mdash; designing and building from zero for a company-wide audience</li>
+                <li><strong>Business impact:</strong> directly solved a production stability issue while unlocking self-service analytics</li>
+                <li><strong>Cost optimization:</strong> replaced expensive Oracle query load with cloud-native architecture at lower cost</li>
+                <li><strong>Career arc:</strong> built from scratch at this role &rarr; stabilized/scaled existing platform at current role &rarr; runs 30-service home lab solo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ═══ ENGINEERING DNA / PARALLELS ═══ -->
+    <div class="section" id="parallels">
+      <h2>Engineering DNA &mdash; Same Instincts at Every Scale</h2>
+      <p class="section-desc">
+        Whether it's a production data platform on AWS or a Raspberry Pi at home,
+        the same principles apply. This table maps the consistent engineering behaviors
+        across professional and personal infrastructure.
+      </p>
+      <div style="overflow-x: auto;">
+        <table class="parallels-table">
+          <thead>
+            <tr>
+              <th style="width: 28%">Pattern</th>
+              <th style="width: 36%"><span style="color: var(--accent)">&#9679; </span>Professional</th>
+              <th style="width: 36%"><span style="color: var(--green)">&#9679; </span>Home Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>IaC Everything</td><td>Terraform + Helm</td><td>Ansible + Jinja2</td></tr>
+            <tr><td>GitOps Auto-Deploy</td><td>ArgoCD + GitHub CI</td><td>Webhook + auto-rebuild</td></tr>
+            <tr><td>Containerized Workloads</td><td>K8s Pod Operator on EKS</td><td>Docker Compose on Pi</td></tr>
+            <tr><td>Reverse Proxy</td><td>EKS Ingress / Karpenter</td><td>Caddy + lazy wake</td></tr>
+            <tr><td>Secrets Management</td><td>AWS Secrets Manager</td><td>Ansible vault + env</td></tr>
+            <tr><td>Auto Backups</td><td>S3 lifecycle policies</td><td>rclone nightly to cloud</td></tr>
+            <tr><td>Monitoring</td><td>Datadog + Slack alerts</td><td>Healthcheck.io + ntfy</td></tr>
+            <tr><td>Multi-Source Ingestion</td><td>DLT / Airbyte / SQS</td><td>Hermes agent scrapers</td></tr>
+            <tr><td>Enabling Non-Tech Users</td><td>Streamlit + dbt</td><td>Telegram bot for family</td></tr>
+            <tr><td>AI-First Engineering</td><td>AI Code Review + Claude/GPT</td><td>Hermes multi-agent system</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ CAREER TIMELINE ═══ -->
+    <div class="section" id="career">
+      <h2>Career Timeline</h2>
+      <p class="section-desc">
+        From civil engineering to self-taught developer to senior data engineer &mdash;
+        a consistent pattern of owning large infrastructure scope and making systems run themselves.
+      </p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-role">Senior Data Engineer &middot; De Facto Tech Lead</div>
+          <div class="timeline-company">Fintech SaaS Company (Remote)</div>
+          <div class="timeline-date">Nov 2022 &ndash; Present</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Led Redshift-to-Snowflake migration end-to-end &mdash; architecture, execution, and cutover</li>
+              <li>Transformed reliability: daily pipeline failures to near-zero unforced errors</li>
+              <li>Architected real-time ingestion pipeline (SQS &rarr; Lambda &rarr; Firehose &rarr; S3 &rarr; Snowpipe)</li>
+              <li>Full IaC with Terraform, GitOps via ArgoCD, all workloads on EKS</li>
+              <li>Enabled self-service analytics with dbt and self-hosted Streamlit</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Big Data Engineer</div>
+          <div class="timeline-company">European E-commerce Retailer (Madrid)</div>
+          <div class="timeline-date">Jun 2019 &ndash; Nov 2022</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Greenfield build: designed company-wide big data infrastructure from scratch</li>
+              <li>Decoupled analytics from legacy Oracle DB, eliminating prod degradation</li>
+              <li>Cloud-native architecture at a fraction of Oracle licensing cost</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Big Data Engineer</div>
+          <div class="timeline-company">IT Consultancy (Madrid)</div>
+          <div class="timeline-date">Aug 2018 &ndash; Jun 2019</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Spark + Scala + Kafka streaming pipelines for financial clients</li>
+              <li>MongoDB performance benchmarking for infrastructure companies</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Big Data Engineer</div>
+          <div class="timeline-company">Engineering Consultancy (Madrid)</div>
+          <div class="timeline-date">Sep 2017 &ndash; Aug 2018</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Migrated streaming solution to Flink/Kafka/OpenShift for a major telecom</li>
+              <li>Developed prediction and anomaly detection algorithms in Scala and Python</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Big Data Engineer</div>
+          <div class="timeline-company">Tech Consultancy (Madrid)</div>
+          <div class="timeline-date">Dec 2016 &ndash; Aug 2017</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Developed and maintained a data platform on Cloudera infrastructure for a major banking group</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <details class="deep-dive">
+        <summary>Education, Skills &amp; Languages</summary>
+        <div class="deep-dive-content">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4 style="color: var(--accent);">Education</h4>
+              <ul>
+                <li><strong>Universidad Polit&eacute;cnica de Madrid (UPM)</strong></li>
+                <li>Civil Engineering (Ingenier&iacute;a de Caminos, Canales y Puertos) &mdash; 2000&ndash;2009</li>
+                <li>One of Spain's most demanding technical programs &mdash; self-taught from there into a professional software engineering career</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4 style="color: var(--accent);">Core Skills</h4>
+              <ul>
+                <li><strong>Languages:</strong> Python, Scala, Java, SQL</li>
+                <li><strong>Data:</strong> Spark, Kafka, Flink, Airflow, Snowflake, dbt</li>
+                <li><strong>Cloud &amp; Infra:</strong> AWS (EKS, S3, Lambda, SQS, Kinesis, Secrets Manager), Terraform, Docker, Kubernetes, Helm</li>
+                <li><strong>DevOps:</strong> ArgoCD, FluxCD, Git, CI/CD, Ansible</li>
+                <li><strong>AI-Assisted Dev:</strong> Claude, GPT, Gemini &mdash; daily workflow integration</li>
+                <li><strong>Spoken:</strong> Spanish (native), English (professional)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ═══ AI VISION ═══ -->
+    <div class="section" id="vision">
+      <h2>AI-First Engineering Vision</h2>
+      <p class="section-desc">
+        The bottleneck in engineering has shifted. It's no longer writing code &mdash; it's the criteria behind
+        what gets built, how it's architected, and whether the output is sound. The speed at which work can be done
+        with the help of AI is transformative when paired with experienced judgment.
+      </p>
+      <div class="vision-grid">
+        <div class="vision-card">
+          <h3>The Shift</h3>
+          <p>
+            Current processes are built around practices where humans wrote every line.
+            With frontier models writing 90%+ of code, the value moves to architectural judgment,
+            quality criteria, and knowing what to build &mdash; not how to type it.
+          </p>
+        </div>
+        <div class="vision-card">
+          <h3>The Opportunity</h3>
+          <p>
+            Companies that restructure workflows around AI-assisted development &mdash; not just "giving AI to workers"
+            &mdash; can become dramatically more dynamic. Direct communication between stakeholders and technical
+            people who translate requests to working systems.
+          </p>
+        </div>
+        <div class="vision-card">
+          <h3>What I Bring</h3>
+          <p>
+            11+ years of data platform engineering, self-taught from civil engineering, with a proven track record
+            of applying strong judgment to AI-assisted workflows. I've restructured my own development around
+            AI-first practices &mdash; professionally and personally &mdash; and I'm looking for teams already operating this way.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px;">
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0;">
+          <strong style="color: var(--text)">The narrative:</strong>
+          &ldquo;At every role I've taken messy or nonexistent systems and applied solid engineering fundamentals
+          to make them run themselves. Now I'm applying that same instinct to how engineering work itself is done &mdash;
+          building AI-infrastructure-ready workflows instead of layering AI on top of legacy processes.&rdquo;
+        </p>
+      </div>
+    </div>
+
+  </div><!-- .panel -->
+
+  <!-- Footer -->
+  <footer>
+    <p>Madrid, Spain &middot; Remote &middot; Built with the same AI-first approach this portfolio demonstrates &middot; 2026</p>
+  </footer>
+
+</div><!-- .container -->
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateThemeIcon(next);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    const label = document.querySelector('.theme-label');
+    icon.innerHTML = theme === 'dark' ? '&#9790;' : '&#9728;&#65039;';
+    if (label) label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+  }
+
+  // Restore saved theme
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+  }
+
+  // Tab switching
+  function switchTab(btn) {
+    // Update tabs
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Update sections
+    const target = btn.getAttribute('data-target');
+    document.querySelectorAll('.section').forEach(s => {
+      s.classList.remove('active');
+      if (s.id === target) {
+        s.classList.add('active');
+        // Re-trigger animations by briefly removing and re-adding the section
+        s.style.animation = 'none';
+        s.offsetHeight; // force reflow
+        s.style.animation = '';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
