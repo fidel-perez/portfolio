@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -667,29 +667,29 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text);
-      font-size: 16px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
       transition: all var(--transition);
-      opacity: 0.85;
     }
     .showcase-gallery-wrap .gallery-btn:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-      opacity: 1;
+      background: var(--accent-hover, var(--accent));
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      transform: translateY(-50%) scale(1.08);
     }
-    .showcase-gallery-wrap .gallery-prev { left: 6px; }
-    .showcase-gallery-wrap .gallery-next { right: 6px; }
+    .showcase-gallery-wrap .gallery-prev { left: 8px; }
+    .showcase-gallery-wrap .gallery-next { right: 8px; }
     .gallery-dots {
       display: flex;
       justify-content: center;
@@ -698,13 +698,15 @@
       background: var(--bg-card);
     }
     .gallery-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--border);
-      transition: background var(--transition);
+      background: var(--text-dim);
+      opacity: 0.4;
+      transition: all var(--transition);
+      cursor: pointer;
     }
-    .gallery-dot.active { background: var(--accent); }
+    .gallery-dot.active { background: var(--accent); opacity: 1; transform: scale(1.25); }
     .showcase-info {
       padding: 16px;
     }
@@ -1907,12 +1909,10 @@
     if (label) label.textContent = theme === 'dark' ? 'Dark' : 'Light';
   }
 
-  // Restore saved theme
-  const saved = localStorage.getItem('theme');
-  if (saved) {
-    document.documentElement.setAttribute('data-theme', saved);
-    updateThemeIcon(saved);
-  }
+  // Restore saved theme (default: light)
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
 
   // Gallery navigation
   function galleryNav(btn, dir) {
