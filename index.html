@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fidel Perez Rubio — Senior Data Engineer</title>
-  <meta name="description" content="Senior Data Engineer with 11+ years experience. AI-first engineering, data platform architecture, and infrastructure automation.">
+  <title>Fidel Perez Rubio — Senior Data Engineer · Portfolio</title>
+  <meta name="description" content="Senior Data Engineer with 11+ years experience. AI-first engineering, workflow automation, data platform architecture, and infrastructure automation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -626,6 +626,67 @@
       font-family: var(--font-mono);
     }
 
+    /* ─── Showcase Gallery ─── */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .showcase-app {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+      animation: fadeInUp 0.5s ease-out both;
+    }
+    .showcase-app:nth-child(1) { animation-delay: 0.1s; }
+    .showcase-app:nth-child(2) { animation-delay: 0.2s; }
+    .showcase-app:nth-child(3) { animation-delay: 0.3s; }
+    .showcase-app:nth-child(4) { animation-delay: 0.4s; }
+    .showcase-app:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .showcase-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg-card);
+    }
+    .showcase-gallery img {
+      width: 100%;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: block;
+      object-fit: contain;
+      max-height: 260px;
+      background: var(--bg-card);
+    }
+    .showcase-gallery-hint {
+      text-align: center;
+      font-size: 10px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      padding: 4px 0;
+      background: var(--bg-card);
+    }
+    .showcase-info {
+      padding: 16px;
+    }
+    .showcase-info h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .showcase-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0 0 10px;
+    }
+    .showcase-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .showcase-tags .tag { font-size: 10px; padding: 3px 10px; }
+
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
       .panel { padding: 20px 16px; }
@@ -666,7 +727,7 @@
   <header>
     <div class="label-upper">Technical architecture portfolio</div>
     <h1>Fidel Perez Rubio</h1>
-    <p class="subtitle">Senior Data Engineer &middot; AI-First Engineering &middot; 11+ Years</p>
+    <p class="subtitle">Senior Data Engineer &middot; AI-First Engineering &middot; Workflow Automation &middot; 11+ Years</p>
     <p class="tagline">
       Same principles at every scale &mdash; infrastructure as code, containerize everything,
       automate away toil, monitor proactively, and design for reliability so a small team
@@ -698,6 +759,7 @@
     <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
     <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield build</button>
     <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
+    <button class="tab" data-target="showcase" onclick="switchTab(this)"><span class="tab-icon">&#128248;</span> Apps showcase</button>
     <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
     <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
   </nav>
@@ -1374,6 +1436,100 @@
             <tr><td>AI-first engineering</td><td>AI Code Review + Claude/GPT</td><td>Hermes multi-agent system</td></tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- ═══ APPS SHOWCASE ═══ -->
+    <div class="section" id="showcase">
+      <h2>Apps showcase</h2>
+      <p class="section-desc">
+        Full-stack applications built end-to-end with AI-assisted workflow automation. Each app was designed, built,
+        and iterated using AI under experienced supervision &mdash; from architecture decisions to deployment.
+      </p>
+
+      <div class="showcase-grid">
+        <div class="showcase-app">
+          <div class="showcase-gallery">
+            <img src="custom_apps_showcase/foodmacro-global view.png" alt="Food macro tracker - global view" loading="lazy">
+            <img src="custom_apps_showcase/foodmacro-proteindeglosed.png" alt="Food macro tracker - protein detail" loading="lazy">
+          </div>
+          <div class="showcase-gallery-hint">scroll for more &rarr;</div>
+          <div class="showcase-info">
+            <h3>Food macro tracker</h3>
+            <p>
+              Nutrition tracking app with daily macro targets, food database, per-item nutritional breakdown,
+              and total composition tracking. Keto-friendly with net carbs and liquid oil for ketones targets.
+            </p>
+            <div class="showcase-tags">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-accent">Full-stack</span>
+              <span class="tag tag-green">Self-hosted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-app">
+          <div class="showcase-gallery">
+            <img src="custom_apps_showcase/todo-main view.png" alt="Todo app - main view" loading="lazy">
+            <img src="custom_apps_showcase/todo-edit task.png" alt="Todo app - edit task" loading="lazy">
+            <img src="custom_apps_showcase/tod-task edition modal.png" alt="Todo app - task edition modal" loading="lazy">
+          </div>
+          <div class="showcase-gallery-hint">scroll for more &rarr;</div>
+          <div class="showcase-info">
+            <h3>Todo app</h3>
+            <p>
+              Task management application with nested categories, drag-and-drop organization,
+              rich task editing modal, and priority management. Designed to replace off-the-shelf solutions
+              with a tailored workflow.
+            </p>
+            <div class="showcase-tags">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-accent">Full-stack</span>
+              <span class="tag tag-green">Self-hosted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-app">
+          <div class="showcase-gallery">
+            <img src="custom_apps_showcase/taskreminder-mainpage.png" alt="Task reminder - main page" loading="lazy">
+          </div>
+          <div class="showcase-info">
+            <h3>Reminder manager</h3>
+            <p>
+              Recurring task reminder system with configurable intervals (hourly, daily, custom),
+              Telegram notification integration, countdown display, and snooze controls.
+              Tracks everything from medication to vehicle inspections.
+            </p>
+            <div class="showcase-tags">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-orange">Telegram</span>
+              <span class="tag tag-green">Self-hosted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-app">
+          <div class="showcase-gallery">
+            <img src="custom_apps_showcase/raspihub-mainone.png" alt="RaspiHub - system metrics" loading="lazy">
+            <img src="custom_apps_showcase/raspihub-mainsecond.png" alt="RaspiHub - services dashboard" loading="lazy">
+            <img src="custom_apps_showcase/raspihub-containers.png" alt="RaspiHub - container overview" loading="lazy">
+          </div>
+          <div class="showcase-gallery-hint">scroll for more &rarr;</div>
+          <div class="showcase-info">
+            <h3>RaspiHub &mdash; Docker manager dashboard</h3>
+            <p>
+              Custom dashboard for managing the home lab infrastructure. Real-time system metrics
+              (CPU, memory, load, uptime), Docker container status with start/stop controls,
+              static app launcher, and media server management.
+            </p>
+            <div class="showcase-tags">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-purple">Docker API</span>
+              <span class="tag tag-green">Self-hosted</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
