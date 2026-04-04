@@ -550,7 +550,7 @@
 
   <!-- Header -->
   <header>
-    <div class="label-upper">Technical Architecture Portfolio</div>
+    <div class="label-upper">Technical architecture portfolio</div>
     <h1>Fidel Perez Rubio</h1>
     <p class="subtitle">Senior Data Engineer &middot; AI-First Engineering &middot; 11+ Years</p>
     <p class="tagline">
@@ -561,31 +561,31 @@
     <div class="stats">
       <div class="stat">
         <div class="stat-number">11+</div>
-        <div class="stat-label">Years Engineering</div>
+        <div class="stat-label">Years engineering</div>
       </div>
       <div class="stat">
         <div class="stat-number">30+</div>
-        <div class="stat-label">Services (Home Lab)</div>
+        <div class="stat-label">Services (home lab)</div>
       </div>
       <div class="stat">
         <div class="stat-number">20+</div>
-        <div class="stat-label">Data Sources (Prof)</div>
+        <div class="stat-label">Data sources (prof)</div>
       </div>
       <div class="stat">
         <div class="stat-number">2</div>
-        <div class="stat-label">Nodes, Zero Touch</div>
+        <div class="stat-label">Nodes, zero touch</div>
       </div>
     </div>
   </header>
 
   <!-- Navigation -->
   <nav>
-    <button class="tab active" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home Lab</button>
-    <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data Platform</button>
-    <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield Build</button>
+    <button class="tab active" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home lab</button>
+    <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
+    <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield build</button>
     <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
     <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
-    <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI Vision</button>
+    <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
   </nav>
 
   <!-- Content Panel -->
@@ -593,7 +593,7 @@
 
     <!-- ═══ HOME LAB ═══ -->
     <div class="section active" id="homelab">
-      <h2>Home Lab Infrastructure</h2>
+      <h2>Home lab infrastructure</h2>
       <p class="section-desc">
         Two-node setup (Raspberry Pi + Ubuntu server) running 30+ containerized services.
         Self-healing, zero-touch operation with automatic DNS, backups, rebuilds, and wake-on-demand.
@@ -793,17 +793,17 @@
       </div>
 
       <details class="deep-dive">
-        <summary>Deep Dive &mdash; Full Architecture Details</summary>
+        <summary>Deep dive &mdash; Full architecture details</summary>
         <div class="deep-dive-content">
           <div class="kpi-row">
             <div class="kpi"><div class="kpi-value">~30</div><div class="kpi-label">Containers</div></div>
             <div class="kpi"><div class="kpi-value">2</div><div class="kpi-label">Nodes</div></div>
-            <div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">Manual Intervention</div></div>
-            <div class="kpi"><div class="kpi-value">1 min</div><div class="kpi-label">Backup Frequency</div></div>
+            <div class="kpi"><div class="kpi-value">0</div><div class="kpi-label">Manual intervention</div></div>
+            <div class="kpi"><div class="kpi-value">1 min</div><div class="kpi-label">Backup frequency</div></div>
           </div>
           <div class="detail-grid">
             <div class="detail-card">
-              <h4 style="color: var(--green);">Infrastructure &amp; Networking</h4>
+              <h4 style="color: var(--green);">Infrastructure &amp; networking</h4>
               <ul>
                 <li>Raspberry Pi as always-on gateway + Ubuntu server on-demand via Wake-on-LAN</li>
                 <li>Headscale (self-hosted Tailscale control plane) for secure mesh VPN across all devices</li>
@@ -813,7 +813,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">CI/CD &amp; Configuration</h4>
+              <h4 style="color: var(--green);">CI/CD &amp; configuration</h4>
               <ul>
                 <li>Ansible playbooks managing both nodes with roles: common, pi_server, plex_server, ubuntu_desktop</li>
                 <li>Cron jobs, Docker setup, configs, SSH, and systemd units all templated via Jinja2</li>
@@ -822,7 +822,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">Data &amp; Backups</h4>
+              <h4 style="color: var(--green);">Data &amp; backups</h4>
               <ul>
                 <li>Centralized JSON store (custom containerized service) with git-based auto-commit + push every minute</li>
                 <li>Nightly cloud backups to pCloud + Google Drive via rclone, with log aggregation and Telegram notifications</li>
@@ -831,7 +831,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">Bots &amp; Automation</h4>
+              <h4 style="color: var(--green);">Bots &amp; automation</h4>
               <ul>
                 <li>Telegram bot (serverbot): server start/stop, backup triggers, task reminders, Ring intercom integration, unified command system</li>
                 <li>ntfy for push notifications across devices</li>
@@ -840,7 +840,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--purple);">AI / LLM Stack</h4>
+              <h4 style="color: var(--purple);">AI / LLM stack</h4>
               <ul>
                 <li>Hermes Agent: multi-agent orchestration (Python), deployed for multiple real users via Telegram gateway</li>
                 <li>Plugin architecture with tool registries, interactive browser control via Playwright</li>
@@ -850,7 +850,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--purple);">Containerized Services</h4>
+              <h4 style="color: var(--purple);">Containerized services</h4>
               <ul>
                 <li><strong>Custom-built:</strong> webhook listener, Telegram bot, JSON store, document converter, LLM helper, Docker manager dashboard, Hermes agent</li>
                 <li><strong>Off-the-shelf:</strong> Plex, Jellyfin, *arr stack, SearXNG, Excalidraw, Flatnotes, OnlyOffice, Stirling PDF, FileBrowser, Audiobookshelf, pyLoad, ytptube, Romm, and more</li>
@@ -858,7 +858,7 @@
             </div>
           </div>
           <div class="detail-card" style="margin-top: 0;">
-            <h4 style="color: var(--accent);">Key Talking Points</h4>
+            <h4 style="color: var(--accent);">Key points</h4>
             <ul>
               <li><strong>Self-healing / zero-touch:</strong> lazy wake, auto-rebuild on push, auto-backup, auto-DNS &mdash; the system largely runs itself</li>
               <li><strong>IaC discipline:</strong> everything is Ansible-managed, templated, and version-controlled in one monorepo</li>
@@ -872,7 +872,7 @@
 
     <!-- ═══ PROFESSIONAL DATA PLATFORM ═══ -->
     <div class="section" id="professional">
-      <h2>Production Data Platform</h2>
+      <h2>Production data platform</h2>
       <p class="section-desc">
         De facto tech lead of a 2&ndash;3 person team. Full ownership of infrastructure, ingestion, orchestration,
         and warehouse. Transformed a platform with daily failures to near-zero incidents.
@@ -1045,17 +1045,17 @@
       </div>
 
       <details class="deep-dive">
-        <summary>Deep Dive &mdash; Full Platform Details</summary>
+        <summary>Deep dive &mdash; Full platform details</summary>
         <div class="deep-dive-content">
           <div class="kpi-row">
-            <div class="kpi"><div class="kpi-value">20+</div><div class="kpi-label">Source Integrations</div></div>
-            <div class="kpi"><div class="kpi-value">~0</div><div class="kpi-label">Unforced Errors</div></div>
-            <div class="kpi"><div class="kpi-value">2-3</div><div class="kpi-label">Team Size</div></div>
-            <div class="kpi"><div class="kpi-value">100%</div><div class="kpi-label">IaC Coverage</div></div>
+            <div class="kpi"><div class="kpi-value">20+</div><div class="kpi-label">Source integrations</div></div>
+            <div class="kpi"><div class="kpi-value">~0</div><div class="kpi-label">Unforced errors</div></div>
+            <div class="kpi"><div class="kpi-value">2-3</div><div class="kpi-label">Team size</div></div>
+            <div class="kpi"><div class="kpi-value">100%</div><div class="kpi-label">IaC coverage</div></div>
           </div>
           <div class="detail-grid">
             <div class="detail-card">
-              <h4 style="color: var(--accent);">Role &amp; Scope</h4>
+              <h4 style="color: var(--accent);">Role &amp; scope</h4>
               <ul>
                 <li>De facto tech lead of a small data engineering team (2&ndash;3 people), currently mentoring 1 junior</li>
                 <li>End-to-end ownership: infrastructure, ingestion, orchestration, warehouse management, and developer tooling</li>
@@ -1064,7 +1064,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--accent);">Infrastructure &amp; Deployment</h4>
+              <h4 style="color: var(--accent);">Infrastructure &amp; deployment</h4>
               <ul>
                 <li>Terraform for all infrastructure-as-code (AWS resources, Snowflake configuration)</li>
                 <li>Kubernetes (AWS EKS) as the compute layer &mdash; all workloads run as isolated pods</li>
@@ -1075,7 +1075,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--orange);">Data Ingestion (20+ sources)</h4>
+              <h4 style="color: var(--orange);">Data ingestion (20+ sources)</h4>
               <ul>
                 <li>DLT (data load tool) as the primary ELT framework &mdash; migrating from Singer due to Python dependency deprecation</li>
                 <li>Self-hosted Airbyte (Helm-managed on EKS) for managed connectors</li>
@@ -1084,7 +1084,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--cyan);">Warehouse &amp; Analytics</h4>
+              <h4 style="color: var(--cyan);">Warehouse &amp; analytics</h4>
               <ul>
                 <li>Snowflake: warehouse sizing, role-based access control (RBAC), resource and cost management</li>
                 <li>dbt enablement for Data Analytics Engineers &mdash; maintain the environment, review models, support self-service transformation</li>
@@ -1092,7 +1092,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">Observability &amp; Reliability</h4>
+              <h4 style="color: var(--green);">Observability &amp; reliability</h4>
               <ul>
                 <li>Slack alerts on pipeline failures and anomalies</li>
                 <li>Datadog for logging and infrastructure monitoring on top of native tool dashboards</li>
@@ -1100,7 +1100,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">Developer Experience &amp; CI/CD</h4>
+              <h4 style="color: var(--green);">Developer experience &amp; CI/CD</h4>
               <ul>
                 <li>GitHub: repository management, branch protection, PR workflows</li>
                 <li>Pre-commit hooks for linting and code format enforcement</li>
@@ -1116,7 +1116,7 @@
 
     <!-- ═══ GREENFIELD BUILD ═══ -->
     <div class="section" id="greenfield">
-      <h2>Greenfield Data Platform &mdash; European E-commerce Retailer</h2>
+      <h2>Greenfield data platform &mdash; European e-commerce retailer</h2>
       <p class="section-desc">
         Designed and built the company-wide big data infrastructure from scratch. Decoupled analytics
         from a 20-year-old production Oracle database, eliminating availability risk and slashing costs.
@@ -1196,11 +1196,11 @@
       </div>
 
       <details class="deep-dive">
-        <summary>Deep Dive &mdash; Context &amp; Impact</summary>
+        <summary>Deep dive &mdash; Context &amp; impact</summary>
         <div class="deep-dive-content">
           <div class="detail-grid">
             <div class="detail-card">
-              <h4 style="color: var(--red);">The Problem</h4>
+              <h4 style="color: var(--red);">The problem</h4>
               <ul>
                 <li>Legacy 20-year-old Oracle database was the single source of truth for the entire company</li>
                 <li>Any non-trivial analytical query against Oracle would degrade or take down production pages</li>
@@ -1208,7 +1208,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--green);">The Solution</h4>
+              <h4 style="color: var(--green);">The solution</h4>
               <ul>
                 <li>Built a data mirroring pipeline from Oracle into the AWS big data ecosystem</li>
                 <li>Enabled the entire company to query data at will &mdash; at a fraction of the Oracle licensing and operational cost</li>
@@ -1217,7 +1217,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--accent);">Key Talking Points</h4>
+              <h4 style="color: var(--accent);">Key points</h4>
               <ul>
                 <li><strong>Greenfield ownership:</strong> not inheriting &mdash; designing and building from zero for a company-wide audience</li>
                 <li><strong>Business impact:</strong> directly solved a production stability issue while unlocking self-service analytics</li>
@@ -1232,7 +1232,7 @@
 
     <!-- ═══ ENGINEERING DNA / PARALLELS ═══ -->
     <div class="section" id="parallels">
-      <h2>Engineering DNA &mdash; Same Instincts at Every Scale</h2>
+      <h2>Engineering DNA &mdash; Same instincts at every scale</h2>
       <p class="section-desc">
         Whether it's a production data platform on AWS or a Raspberry Pi at home,
         the same principles apply. This table maps the consistent engineering behaviors
@@ -1244,20 +1244,20 @@
             <tr>
               <th style="width: 28%">Pattern</th>
               <th style="width: 36%"><span style="color: var(--accent)">&#9679; </span>Professional</th>
-              <th style="width: 36%"><span style="color: var(--green)">&#9679; </span>Home Lab</th>
+              <th style="width: 36%"><span style="color: var(--green)">&#9679; </span>Home lab</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>IaC Everything</td><td>Terraform + Helm</td><td>Ansible + Jinja2</td></tr>
-            <tr><td>GitOps Auto-Deploy</td><td>ArgoCD + GitHub CI</td><td>Webhook + auto-rebuild</td></tr>
-            <tr><td>Containerized Workloads</td><td>K8s Pod Operator on EKS</td><td>Docker Compose on Pi</td></tr>
-            <tr><td>Reverse Proxy</td><td>EKS Ingress / Karpenter</td><td>Caddy + lazy wake</td></tr>
-            <tr><td>Secrets Management</td><td>AWS Secrets Manager</td><td>Ansible vault + env</td></tr>
-            <tr><td>Auto Backups</td><td>S3 lifecycle policies</td><td>rclone nightly to cloud</td></tr>
+            <tr><td>IaC everything</td><td>Terraform + Helm</td><td>Ansible + Jinja2</td></tr>
+            <tr><td>GitOps auto-deploy</td><td>ArgoCD + GitHub CI</td><td>Webhook + auto-rebuild</td></tr>
+            <tr><td>Containerized workloads</td><td>K8s Pod Operator on EKS</td><td>Docker Compose on Pi</td></tr>
+            <tr><td>Reverse proxy</td><td>EKS Ingress / Karpenter</td><td>Caddy + lazy wake</td></tr>
+            <tr><td>Secrets management</td><td>AWS Secrets Manager</td><td>Ansible vault + env</td></tr>
+            <tr><td>Auto backups</td><td>S3 lifecycle policies</td><td>rclone nightly to cloud</td></tr>
             <tr><td>Monitoring</td><td>Datadog + Slack alerts</td><td>Healthcheck.io + ntfy</td></tr>
-            <tr><td>Multi-Source Ingestion</td><td>DLT / Airbyte / SQS</td><td>Hermes agent scrapers</td></tr>
-            <tr><td>Enabling Non-Tech Users</td><td>Streamlit + dbt</td><td>Telegram bot for family</td></tr>
-            <tr><td>AI-First Engineering</td><td>AI Code Review + Claude/GPT</td><td>Hermes multi-agent system</td></tr>
+            <tr><td>Multi-source ingestion</td><td>DLT / Airbyte / SQS</td><td>Hermes agent scrapers</td></tr>
+            <tr><td>Enabling non-tech users</td><td>Streamlit + dbt</td><td>Telegram bot for family</td></tr>
+            <tr><td>AI-first engineering</td><td>AI Code Review + Claude/GPT</td><td>Hermes multi-agent system</td></tr>
           </tbody>
         </table>
       </div>
@@ -1265,14 +1265,14 @@
 
     <!-- ═══ CAREER TIMELINE ═══ -->
     <div class="section" id="career">
-      <h2>Career Timeline</h2>
+      <h2>Career timeline</h2>
       <p class="section-desc">
         From civil engineering to self-taught developer to senior data engineer &mdash;
         a consistent pattern of owning large infrastructure scope and making systems run themselves.
       </p>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-role">Senior Data Engineer &middot; De Facto Tech Lead</div>
+          <div class="timeline-role">Senior Data Engineer &middot; De facto tech lead</div>
           <div class="timeline-company">Fintech SaaS Company (Remote)</div>
           <div class="timeline-date">Nov 2022 &ndash; Present</div>
           <div class="timeline-desc">
@@ -1332,7 +1332,7 @@
       </div>
 
       <details class="deep-dive">
-        <summary>Education, Skills &amp; Languages</summary>
+        <summary>Education, skills &amp; languages</summary>
         <div class="deep-dive-content">
           <div class="detail-grid">
             <div class="detail-card">
@@ -1344,7 +1344,7 @@
               </ul>
             </div>
             <div class="detail-card">
-              <h4 style="color: var(--accent);">Core Skills</h4>
+              <h4 style="color: var(--accent);">Core skills</h4>
               <ul>
                 <li><strong>Languages:</strong> Python, Scala, Java, SQL</li>
                 <li><strong>Data:</strong> Spark, Kafka, Flink, Airflow, Snowflake, dbt</li>
@@ -1361,7 +1361,7 @@
 
     <!-- ═══ AI VISION ═══ -->
     <div class="section" id="vision">
-      <h2>AI-First Engineering Vision</h2>
+      <h2>AI-first engineering vision</h2>
       <p class="section-desc">
         The bottleneck in engineering has shifted. It's no longer writing code &mdash; it's the criteria behind
         what gets built, how it's architected, and whether the output is sound. The speed at which work can be done
@@ -1369,7 +1369,7 @@
       </p>
       <div class="vision-grid">
         <div class="vision-card">
-          <h3>The Shift</h3>
+          <h3>The shift</h3>
           <p>
             Current processes are built around practices where humans wrote every line.
             With frontier models writing 90%+ of code, the value moves to architectural judgment,
@@ -1377,7 +1377,7 @@
           </p>
         </div>
         <div class="vision-card">
-          <h3>The Opportunity</h3>
+          <h3>The opportunity</h3>
           <p>
             Companies that restructure workflows around AI-assisted development &mdash; not just "giving AI to workers"
             &mdash; can become dramatically more dynamic. Direct communication between stakeholders and technical
@@ -1385,7 +1385,7 @@
           </p>
         </div>
         <div class="vision-card">
-          <h3>What I Bring</h3>
+          <h3>What I bring</h3>
           <p>
             11+ years of data platform engineering, self-taught from civil engineering, with a proven track record
             of applying strong judgment to AI-assisted workflows. I've restructured my own development around
