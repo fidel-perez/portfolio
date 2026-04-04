@@ -422,6 +422,114 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
+    /* ─── Thesis Steps ─── */
+    .thesis-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 20px 0 0;
+      position: relative;
+    }
+    .thesis-step {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      animation: fadeInUp 0.5s ease-out both;
+    }
+    .thesis-step:last-child { border-bottom: none; }
+    .thesis-step:nth-child(1) { animation-delay: 0.15s; }
+    .thesis-step:nth-child(2) { animation-delay: 0.25s; }
+    .thesis-step:nth-child(3) { animation-delay: 0.35s; }
+    .thesis-step:nth-child(4) { animation-delay: 0.45s; }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .step-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ─── FAQ Accordion ─── */
+    .faq { margin-top: 28px; }
+    .faq-title {
+      font-size: 14px;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      background: var(--bg);
+      transition: border-color var(--transition);
+    }
+    .faq-item:hover { border-color: var(--accent); }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::before {
+      content: '+';
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .faq-item[open] summary::before {
+      content: '\2212';
+      background: var(--accent);
+      color: #fff;
+    }
+    .faq-answer {
+      padding: 0 18px 16px 50px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      animation: fadeInUp 0.25s ease-out;
+    }
+
     /* ─── Collapsible Details ─── */
     .deep-dive {
       margin-top: 24px;
@@ -1370,36 +1478,95 @@
       <h2>AI-first engineering vision</h2>
       <p class="section-desc">
         The bottleneck in engineering has shifted. It's no longer writing code &mdash; it's the criteria behind
-        what gets built, how it's architected, and whether the output is sound. The speed at which work can be done
-        with the help of AI is transformative when paired with experienced judgment.
+        what gets built, how it's architected, and whether the output is sound. This is where engineering is going,
+        and I've already been working this way for over a year.
       </p>
+
+      <!-- Three pillars -->
       <div class="vision-grid">
         <div class="vision-card">
           <h3>The shift</h3>
           <p>
-            Current processes are built around practices where humans wrote every line.
-            With frontier models writing 90%+ of code, the value moves to architectural judgment,
-            quality criteria, and knowing what to build &mdash; not how to type it.
+            Workflows, team structures, and communication layers were designed for a world where writing code
+            was the bottleneck. It's not anymore. The bottleneck is now <em>criteria</em>: knowing what to build,
+            recognizing when the AI's output is wrong, and translating stakeholder needs directly into technical direction.
           </p>
         </div>
         <div class="vision-card">
           <h3>The opportunity</h3>
           <p>
-            Companies that restructure workflows around AI-assisted development &mdash; not just "giving AI to workers"
-            &mdash; can become dramatically more dynamic. Direct communication between stakeholders and technical
-            people who translate requests to working systems.
+            Companies that restructure workflows around AI-assisted development &mdash; not just &ldquo;giving AI to workers&rdquo;
+            &mdash; can become dramatically more dynamic. When AI writes the code in minutes and the test suite alongside it,
+            you need fewer handoffs and more technically sharp people who understand the business need, guide the AI,
+            validate the output, and ship.
           </p>
         </div>
         <div class="vision-card">
           <h3>What I bring</h3>
           <p>
-            11+ years of data platform engineering, self-taught from civil engineering, with a proven track record
-            of applying strong judgment to AI-assisted workflows. I've restructured my own development around
-            AI-first practices &mdash; professionally and personally &mdash; and I'm looking for teams already operating this way.
+            11+ years of platform engineering, self-taught from civil engineering, with a proven track record
+            of applying strong judgment to AI-assisted workflows. I generate multiple architectural options, evaluate tradeoffs,
+            and catch when solutions are heading in the wrong direction &mdash; that's the skill that matters now.
           </p>
         </div>
       </div>
 
+      <!-- The thesis -->
+      <div class="thesis-steps">
+        <div class="thesis-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>The observation</h4>
+            <p>
+              In my current role, I automated most of my engineering workflow with AI. The result?
+              My work gets done in a fraction of the time. But instead of the company capturing that speed,
+              I'm waiting &mdash; for reviews, for approvals, for processes designed around the old pace.
+              This is happening everywhere, not just at my company.
+            </p>
+          </div>
+        </div>
+        <div class="thesis-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>The diagnosis</h4>
+            <p>
+              The problem isn't that companies lack AI tools &mdash; it's that their workflows and team structures
+              were designed for a world where writing code was the bottleneck. Now the bottleneck is <em>criteria</em>:
+              knowing what to build, recognizing when the AI's output is wrong, and translating stakeholder needs
+              directly into technical direction. Traditional handoff chains &mdash; PM to developer to QA to DevOps &mdash;
+              become overhead when one person with strong judgment can guide AI through the full cycle.
+            </p>
+          </div>
+        </div>
+        <div class="thesis-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>The proof</h4>
+            <p>
+              I come from civil engineering &mdash; one of the hardest technical degrees in Spain &mdash;
+              and taught myself to code well enough to work professionally for 11 years across Scala, Python, Spark,
+              Kafka, Flink, AWS, Terraform, Snowflake. That path proves I can understand systems deeply.
+              But what I've learned recently is that my real value was never the typing &mdash; it was the judgment.
+              When I build something with AI, I generate multiple architectural options, evaluate tradeoffs,
+              and catch when the solution is heading in the wrong direction. I've built complete applications this way:
+              multi-container Docker systems, full-stack apps, AI agent platforms, and self-hosted tooling.
+            </p>
+          </div>
+        </div>
+        <div class="thesis-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>What I'm looking for</h4>
+            <p>
+              A team that already operates this way, or is committed to getting there &mdash; where the role is to
+              apply technical criteria, guide AI-driven development, and interface directly with stakeholders.
+              Full remote, and a company that sees this shift as urgent, not optional.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrative quote -->
       <div style="margin-top: 28px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px;">
         <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0;">
           <strong style="color: var(--text)">The narrative:</strong>
@@ -1407,6 +1574,87 @@
           to make them run themselves. Now I'm applying that same instinct to how engineering work itself is done &mdash;
           building AI-infrastructure-ready workflows instead of layering AI on top of legacy processes.&rdquo;
         </p>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq">
+        <div class="faq-title">Hard questions, honest answers</div>
+
+        <details class="faq-item">
+          <summary>If we put you in front of a whiteboard, what happens?</summary>
+          <div class="faq-answer">
+            I'd do exactly what I'd do on the job &mdash; ask clarifying questions to understand the constraints,
+            then use AI to generate two or three architectural options, and walk you through why I'd pick one
+            over the others. If you want to test whether I can evaluate architecture, that's a great test.
+            If you want to test whether I can draw boxes from memory without tools, that tests something
+            I don't think matters anymore. I'm happy to do a live exercise with AI access &mdash;
+            that's how the actual work gets done.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do we know you actually understand the systems and aren't just parroting AI?</summary>
+          <div class="faq-answer">
+            My 11 years of hands-on engineering are what let me catch when AI is wrong.
+            I can read Scala, Python, SQL, Terraform &mdash; I've written all of them professionally.
+            The difference is I don't insist on writing them by hand when a tool can do it faster under my supervision.
+            Give me a broken pipeline or a flawed architecture and I'll tell you what's wrong with it &mdash;
+            that's the skill that matters.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Every candidate says they use AI. What makes you different?</summary>
+          <div class="faq-answer">
+            Most engineers use AI to autocomplete code or ask questions. I use it to generate entire solutions,
+            evaluate multiple approaches, build test suites, and deploy. The difference is that I've restructured
+            my entire workflow around it &mdash; not bolted it onto the old one. I reach my Claude and Gemini
+            subscription limits almost daily. I've built my own self-hosted AI communication tools.
+            This isn't a feature I use, it's how I work.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>You're asking us to change our interview process. Why should we?</summary>
+          <div class="faq-answer">
+            I'm not asking you to lower the bar &mdash; I'm asking you to test the right thing.
+            If your engineers will be working with AI daily, testing them without AI is like testing
+            a pilot without a cockpit. I'm happy to be evaluated rigorously, but on criteria, judgment,
+            and results &mdash; not on memorization.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What if the AI hallucinates something critical in production?</summary>
+          <div class="faq-answer">
+            That's exactly why this role needs an experienced engineer, not just a prompt writer.
+            I enforce automated test suites, I review critical commits manually, I always ask the AI
+            to summarize what it did and why &mdash; which gives me early warnings.
+            And I apply a fail-fast-fix-quick methodology. The risk of AI errors exists, but it's manageable
+            with discipline. The risk of ignoring this shift entirely is much bigger.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>You say departments don't make sense anymore. Can you be specific?</summary>
+          <div class="faq-answer">
+            In a traditional setup you have product managers translating for developers, QA teams testing
+            what developers wrote, DevOps teams deploying what QA approved. When AI writes the code in minutes
+            and the test suite alongside it, you don't need all those handoffs. You need a technically sharp person
+            who understands the business need, guides the AI, validates the output, and ships.
+            That's fewer layers, faster delivery, and fewer people doing busywork disguised as process.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Aren't you just describing a staff engineer role?</summary>
+          <div class="faq-answer">
+            Partially, but staff engineers in most companies still operate within the traditional framework &mdash;
+            they design, others implement. What I'm describing collapses that. The person with the criteria also
+            directs the implementation through AI, reviews it, and ships it. It's closer to a technical lead
+            in a very flat, very fast team.
+          </div>
+        </details>
       </div>
     </div>
 
