@@ -721,11 +721,12 @@
     }
     .showcase-tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .showcase-tags .tag { font-size: 10px; padding: 3px 10px; }
+    .showcase-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
     .showcase-demo-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 10px; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
       background: var(--accent); color: #fff; text-decoration: none;
-      transition: opacity 0.15s;
+      white-space: nowrap; transition: opacity 0.15s;
     }
     .showcase-demo-btn:hover { opacity: 0.85; }
 
@@ -1154,13 +1155,13 @@
           <!-- Sources -->
           <g style="animation: fadeInUp 0.6s ease-out 0.2s both">
             <rect x="30" y="115" width="150" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
-            <text x="46" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">SaaS APIs (20+)</text>
-            <text x="46" y="152" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">CRM, Analytics...</text>
+            <text x="46" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Internal MongoDB</text>
+            <text x="46" y="152" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Production replica</text>
           </g>
           <g style="animation: fadeInUp 0.6s ease-out 0.25s both">
-            <rect x="210" y="115" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
-            <text x="226" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">Internal MongoDB</text>
-            <text x="226" y="152" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">Production replica</text>
+            <rect x="220" y="115" width="160" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
+            <text x="236" y="137" font-size="11" font-family="var(--font-mono)" fill="var(--text)" font-weight="600">SaaS APIs (20+)</text>
+            <text x="236" y="152" font-size="9" font-family="var(--font-mono)" fill="var(--text-dim)">CRM, Analytics...</text>
           </g>
           <g style="animation: fadeInUp 0.6s ease-out 0.3s both">
             <rect x="380" y="115" width="140" height="50" rx="8" fill="var(--bg-card)" stroke="var(--orange)" stroke-width="1.5" />
@@ -1256,8 +1257,8 @@
           </g>
 
           <!-- Flow arrows -->
-          <!-- Sources down to ingestion (SaaS APIs → DLT) -->
-          <line x1="105" y1="165" x2="300" y2="210" stroke="var(--orange)" stroke-width="2" stroke-dasharray="110" stroke-dashoffset="110" style="animation: drawLine 1.2s ease-out 0.5s forwards" />
+          <!-- Sources down to ingestion (SaaS APIs → DLT, vertical) -->
+          <line x1="300" y1="165" x2="300" y2="210" stroke="var(--orange)" stroke-width="2" stroke-dasharray="45" stroke-dashoffset="45" style="animation: drawLine 1.2s ease-out 0.5s forwards" />
           <!-- Singer (Legacy) down to Airflow -->
           <line x1="110" y1="260" x2="110" y2="340" stroke="var(--accent)" stroke-width="2" stroke-dasharray="80" stroke-dashoffset="80" style="animation: drawLine 1.2s ease-out 0.7s forwards" />
           <!-- Orchestration to Warehouse -->
@@ -1510,12 +1511,14 @@
               Nutrition tracking app with daily macro targets, food database, per-item nutritional breakdown,
               and total composition tracking. Keto-friendly with net carbs and liquid oil for ketones targets.
             </p>
-            <div class="showcase-tags">
-              <span class="tag tag-accent">Python</span>
-              <span class="tag tag-accent">Full-stack</span>
-              <span class="tag tag-green">Self-hosted</span>
+            <div class="showcase-footer">
+              <div class="showcase-tags">
+                <span class="tag tag-accent">Python</span>
+                <span class="tag tag-accent">Full-stack</span>
+                <span class="tag tag-green">Self-hosted</span>
+              </div>
+              <a class="showcase-demo-btn" href="https://fidel-perez.github.io/food-macro-tracker" target="_blank" rel="noopener">&#128279; Live demo</a>
             </div>
-            <a class="showcase-demo-btn" href="https://fidel-perez.github.io/food-macro-tracker" target="_blank" rel="noopener">&#128279; Live demo</a>
           </div>
         </div>
 
@@ -1537,12 +1540,14 @@
               rich task editing modal, and priority management. Designed to replace off-the-shelf solutions
               with a tailored workflow.
             </p>
-            <div class="showcase-tags">
-              <span class="tag tag-accent">Python</span>
-              <span class="tag tag-accent">Full-stack</span>
-              <span class="tag tag-green">Self-hosted</span>
+            <div class="showcase-footer">
+              <div class="showcase-tags">
+                <span class="tag tag-accent">Python</span>
+                <span class="tag tag-accent">Full-stack</span>
+                <span class="tag tag-green">Self-hosted</span>
+              </div>
+              <a class="showcase-demo-btn" href="https://fidel-perez.github.io/todo-app" target="_blank" rel="noopener">&#128279; Live demo</a>
             </div>
-            <a class="showcase-demo-btn" href="https://fidel-perez.github.io/todo-app" target="_blank" rel="noopener">&#128279; Live demo</a>
           </div>
         </div>
 
