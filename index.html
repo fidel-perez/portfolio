@@ -701,12 +701,13 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--text-dim);
-      opacity: 0.4;
+      background: var(--border);
+      border: 1.5px solid var(--text-dim);
+      opacity: 0.55;
       transition: all var(--transition);
       cursor: pointer;
     }
-    .gallery-dot.active { background: var(--accent); opacity: 1; transform: scale(1.25); }
+    .gallery-dot.active { background: var(--accent); border-color: var(--accent); opacity: 1; transform: scale(1.25); }
     .showcase-info {
       padding: 16px;
     }
