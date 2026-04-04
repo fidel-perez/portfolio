@@ -721,6 +721,13 @@
     }
     .showcase-tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .showcase-tags .tag { font-size: 10px; padding: 3px 10px; }
+    .showcase-demo-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      background: var(--accent); color: #fff; text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .showcase-demo-btn:hover { opacity: 0.85; }
 
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
@@ -1508,6 +1515,7 @@
               <span class="tag tag-accent">Full-stack</span>
               <span class="tag tag-green">Self-hosted</span>
             </div>
+            <a class="showcase-demo-btn" href="https://github.com/fidel-perez/food-macro-tracker" target="_blank" rel="noopener">&#128279; View on GitHub</a>
           </div>
         </div>
 
@@ -1534,6 +1542,7 @@
               <span class="tag tag-accent">Full-stack</span>
               <span class="tag tag-green">Self-hosted</span>
             </div>
+            <a class="showcase-demo-btn" href="https://github.com/fidel-perez/todo-app" target="_blank" rel="noopener">&#128279; View on GitHub</a>
           </div>
         </div>
 
