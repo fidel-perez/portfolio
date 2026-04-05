@@ -301,6 +301,353 @@ function ParallelsSection() {
   );
 }
 
+// ─── AI Strategy Section ───
+function AIStrategySection() {
+  const [expanded, setExpanded] = useState(null);
+
+  const tableRows = [
+    {
+      topic: 'AI adoption',
+      icon: '🔧',
+      assisted: 'Tools handed to engineers, same processes',
+      native: 'Workflows redesigned around AI capabilities',
+    },
+    {
+      topic: 'Code authorship',
+      icon: '💻',
+      assisted: 'Engineers prompt AI, submit PRs, wait in queue',
+      native: 'AI writes, tests, iterates — humans set criteria and supervise',
+    },
+    {
+      topic: 'Stakeholder → code',
+      icon: '🔗',
+      assisted: 'Request → PM → ticket → dev → QA → deploy',
+      native: 'Request → one technical human with judgment → deployed artifact',
+    },
+    {
+      topic: 'Business context',
+      icon: '🧠',
+      assisted: 'Trapped in wikis, heads, and tribal knowledge',
+      native: 'Structured, versioned, machine-readable — callable by agents via MCP',
+    },
+    {
+      topic: 'Evaluation',
+      icon: '✅',
+      assisted: 'Humans squinting at PRs',
+      native: 'Automated pipelines testing AI output against business criteria',
+    },
+    {
+      topic: 'Team structure',
+      icon: '👥',
+      assisted: 'Same departments, same handoffs, AI sprinkled in',
+      native: 'Flat, fast teams — criteria holders who ship directly',
+    },
+    {
+      topic: 'Model dependency',
+      icon: '🔄',
+      assisted: 'Workflows tied to one model or provider',
+      native: 'Model-agnostic orchestration — swap Claude for Gemini without breaking anything',
+    },
+    {
+      topic: 'What breaks next',
+      icon: '⚠',
+      assisted: 'Nothing yet — but speed gains evaporate into process',
+      native: 'Ready to absorb agents, multi-modal input, autonomous coordination',
+    },
+  ];
+
+  const phases = [
+    {
+      id: 'assisted',
+      label: 'AI-Assisted',
+      subtitle: 'Where most companies are',
+      color: COLORS.orange,
+      glow: COLORS.orangeGlow,
+      points: [
+        'AI tools in engineers\' hands. Same team structure. Same review chains. Same sprint cadence.',
+        'The work gets done faster — then waits. PMs still translate for developers. QA still reviews what AI already tested.',
+        'Documentation is written for human onboarding instead of structured for agent consumption.',
+        'The productivity gain evaporates into process bottleneck.',
+      ],
+      questions: [
+        'What does your company offer that GPT won\'t do autonomously in 18 months?',
+        'How many humans does a stakeholder request pass through before it becomes running code? Could that number be one?',
+        'What percentage of your engineering output is already AI-generated? If you don\'t know — that\'s the answer.',
+      ],
+    },
+    {
+      id: 'native',
+      label: 'AI-Native',
+      subtitle: 'Where forward companies are moving',
+      color: COLORS.green,
+      glow: COLORS.greenGlow,
+      points: [
+        'Context as infrastructure. Your competitive edge isn\'t code — models write code. Your edge is business context that models can\'t access without you.',
+        'MCP server layers exposing your proprietary domain knowledge as tool-callable endpoints. When a model can query your business rules in real time — that\'s a moat.',
+        'Evaluation frameworks that test AI outputs against business criteria before production, not after.',
+        'Model-agnostic orchestration. Your workflows can\'t break when you swap providers next quarter.',
+        'Stakeholder-to-deployment interfaces. One request becomes a deployed artifact with one technical human in the loop.',
+        'Cost-aware compute routing. Knowing when a task needs a $0.002 call, a $0.06 call, or a human.',
+      ],
+      questions: [],
+    },
+  ];
+
+  return (
+    <div>
+      {/* Hook */}
+      <div style={{
+        background: `linear-gradient(135deg, ${COLORS.accentGlow}, ${COLORS.purpleGlow})`,
+        border: `1px solid ${COLORS.accent}44`,
+        borderRadius: 12,
+        padding: '24px 28px',
+        marginBottom: 32,
+        animation: 'fadeInUp 0.5s ease-out 0.1s both',
+      }}>
+        <p style={{
+          fontSize: 18, fontWeight: 600, fontFamily: FONT_SANS, color: COLORS.text,
+          margin: '0 0 12px 0', lineHeight: 1.5,
+        }}>
+          If your best engineer automated 80% of their workflow tomorrow, would your organization capture that speed?
+        </p>
+        <p style={{
+          fontSize: 14, color: COLORS.textMuted, margin: 0, lineHeight: 1.7, fontFamily: FONT_SANS,
+        }}>
+          Or would the work sit in review queues, approval chains, and sprint ceremonies designed around the assumption that building takes weeks?
+        </p>
+      </div>
+
+      {/* Comparison table */}
+      <div style={{ marginBottom: 8, animation: 'fadeInUp 0.5s ease-out 0.2s both' }}>
+        <p style={{
+          fontSize: 11, fontFamily: FONT, color: COLORS.textDim, textTransform: 'uppercase',
+          letterSpacing: 3, margin: '0 0 16px 0',
+        }}>At a glance</p>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{
+            width: '100%', borderCollapse: 'separate', borderSpacing: '0 6px',
+            fontFamily: FONT_SANS, fontSize: 13,
+          }}>
+            <thead>
+              <tr style={{ fontSize: 11, letterSpacing: 1 }}>
+                <th style={{ textAlign: 'left', padding: '8px 16px', width: '22%', color: COLORS.textDim, fontFamily: FONT, textTransform: 'uppercase', letterSpacing: 2, fontWeight: 400 }}>
+                  Area
+                </th>
+                <th style={{ textAlign: 'left', padding: '8px 16px', width: '39%' }}>
+                  <span style={{ color: COLORS.orange }}>● </span>
+                  <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13 }}>AI-Assisted</span>
+                  <span style={{ color: COLORS.textDim, fontWeight: 400, fontSize: 11, marginLeft: 8 }}>most companies today</span>
+                </th>
+                <th style={{ textAlign: 'left', padding: '8px 16px', width: '39%' }}>
+                  <span style={{ color: COLORS.green }}>● </span>
+                  <span style={{ color: COLORS.green, fontWeight: 700, fontSize: 13 }}>AI-Native</span>
+                  <span style={{ color: COLORS.textDim, fontWeight: 400, fontSize: 11, marginLeft: 8 }}>where leaders are moving</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableRows.map((r, i) => (
+                <tr key={i} style={{
+                  background: i % 2 === 0 ? COLORS.bgCard : 'transparent',
+                  animation: `fadeInUp 0.4s ease-out ${0.25 + i * 0.05}s both`,
+                }}>
+                  <td style={{
+                    padding: '10px 16px', fontWeight: 600, color: COLORS.text,
+                    fontFamily: FONT, fontSize: 12, borderRadius: '8px 0 0 8px',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {r.icon} {r.topic}
+                  </td>
+                  <td style={{ padding: '10px 16px', color: COLORS.textMuted, lineHeight: 1.5 }}>
+                    {r.assisted}
+                  </td>
+                  <td style={{
+                    padding: '10px 16px', color: COLORS.text, lineHeight: 1.5,
+                    borderRadius: '0 8px 8px 0',
+                  }}>
+                    {r.native}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{
+          fontSize: 13, color: COLORS.textMuted, fontFamily: FONT_SANS, fontStyle: 'italic',
+          textAlign: 'center', margin: '16px 0 32px 0',
+        }}>
+          Most companies are in the first column. The window to move to the second is closing.
+        </p>
+      </div>
+
+      {/* Phase detail cards */}
+      <div style={{ marginBottom: 8, animation: 'fadeInUp 0.5s ease-out 0.3s both' }}>
+        <p style={{
+          fontSize: 11, fontFamily: FONT, color: COLORS.textDim, textTransform: 'uppercase',
+          letterSpacing: 3, margin: '0 0 16px 0',
+        }}>What each phase actually looks like</p>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          {phases.map((phase, pi) => (
+            <div key={phase.id} style={{
+              flex: '1 1 340px',
+              background: COLORS.bgCard,
+              border: `1px solid ${phase.color}44`,
+              borderRadius: 12,
+              overflow: 'hidden',
+              animation: `fadeInUp 0.5s ease-out ${0.35 + pi * 0.1}s both`,
+            }}>
+              {/* Card header */}
+              <div
+                onClick={() => setExpanded(expanded === phase.id ? null : phase.id)}
+                style={{
+                  padding: '16px 20px',
+                  background: `linear-gradient(135deg, ${phase.glow}, transparent)`,
+                  borderBottom: expanded === phase.id ? `1px solid ${phase.color}33` : 'none',
+                  cursor: 'pointer',
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                }}
+              >
+                <div>
+                  <div style={{
+                    fontSize: 16, fontWeight: 700, color: phase.color,
+                    fontFamily: FONT_SANS, marginBottom: 2,
+                  }}>
+                    {phase.label}
+                  </div>
+                  <div style={{ fontSize: 12, color: COLORS.textMuted, fontFamily: FONT_SANS }}>
+                    {phase.subtitle}
+                  </div>
+                </div>
+                <span style={{
+                  color: phase.color, fontSize: 18, lineHeight: 1,
+                  transform: expanded === phase.id ? 'rotate(180deg)' : 'none',
+                  transition: 'transform 0.2s',
+                }}>▾</span>
+              </div>
+
+              {/* Card body — always shown */}
+              <div style={{ padding: '16px 20px' }}>
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+                  {phase.points.map((pt, j) => (
+                    <li key={j} style={{
+                      fontSize: 13, color: COLORS.textMuted, lineHeight: 1.6,
+                      fontFamily: FONT_SANS, marginBottom: 10,
+                      paddingLeft: 16, position: 'relative',
+                    }}>
+                      <span style={{
+                        position: 'absolute', left: 0, top: 6,
+                        width: 5, height: 5, borderRadius: '50%',
+                        background: phase.color, display: 'block',
+                      }} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+
+                {expanded === phase.id && phase.questions.length > 0 && (
+                  <div style={{
+                    marginTop: 12, padding: '12px 16px',
+                    background: `${phase.glow}`,
+                    border: `1px solid ${phase.color}33`,
+                    borderRadius: 8,
+                  }}>
+                    <p style={{
+                      fontSize: 11, fontFamily: FONT, color: phase.color,
+                      textTransform: 'uppercase', letterSpacing: 2, margin: '0 0 10px 0',
+                    }}>Ask yourself</p>
+                    {phase.questions.map((q, j) => (
+                      <p key={j} style={{
+                        fontSize: 13, color: COLORS.text, fontFamily: FONT_SANS,
+                        lineHeight: 1.6, margin: j < phase.questions.length - 1 ? '0 0 8px 0' : 0,
+                      }}>
+                        — {q}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* What I bring */}
+      <div style={{
+        marginTop: 32,
+        background: COLORS.bgCard,
+        border: `1px solid ${COLORS.accent}44`,
+        borderRadius: 12,
+        padding: '24px 28px',
+        animation: 'fadeInUp 0.5s ease-out 0.5s both',
+      }}>
+        <p style={{
+          fontSize: 11, fontFamily: FONT, color: COLORS.accent,
+          textTransform: 'uppercase', letterSpacing: 3, margin: '0 0 12px 0',
+        }}>What I bring</p>
+        <p style={{
+          fontSize: 14, fontFamily: FONT_SANS, color: COLORS.text,
+          lineHeight: 1.7, margin: '0 0 12px 0', fontWeight: 600,
+        }}>
+          I don't build what you need today. I build what you'll wish you'd started six months ago.
+        </p>
+        <p style={{
+          fontSize: 13, fontFamily: FONT_SANS, color: COLORS.textMuted,
+          lineHeight: 1.7, margin: '0 0 12px 0',
+        }}>
+          11+ years of data engineering. Civil Engineering degree from one of Spain's hardest technical programs. Self-taught into a professional software career. I've built production platforms from scratch, stabilized failing infrastructure with 2-person teams, and run 30+ containerized services from my home lab with the same engineering discipline I apply at work.
+        </p>
+        <p style={{
+          fontSize: 13, fontFamily: FONT_SANS, color: COLORS.textMuted,
+          lineHeight: 1.7, margin: 0,
+        }}>
+          The differentiator: I've been working AI-first for over a year — not as an experiment, as my daily operating model. I generate architectural options with AI, evaluate tradeoffs, catch failures early, and ship. I've built multi-user AI agent systems, automated my entire development workflow, and learned firsthand what the infrastructure needs to look like.
+        </p>
+      </div>
+
+      {/* CTA */}
+      <div style={{
+        marginTop: 28, textAlign: 'center',
+        animation: 'fadeInUp 0.5s ease-out 0.6s both',
+      }}>
+        <p style={{
+          fontSize: 14, fontFamily: FONT_SANS, color: COLORS.textMuted,
+          margin: '0 0 6px 0',
+        }}>
+          <em>"We're already doing this"</em> — great, let's get into specifics.
+        </p>
+        <p style={{
+          fontSize: 14, fontFamily: FONT_SANS, color: COLORS.textMuted,
+          margin: '0 0 20px 0',
+        }}>
+          <em>"This sounds extreme"</em> — we should talk sooner.
+        </p>
+        <a
+          href="https://www.linkedin.com/in/YOUR_HANDLE"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            padding: '14px 36px',
+            background: `linear-gradient(135deg, ${COLORS.accent}, ${COLORS.purple})`,
+            color: '#fff',
+            borderRadius: 8,
+            fontFamily: FONT_SANS,
+            fontWeight: 700,
+            fontSize: 15,
+            textDecoration: 'none',
+            boxShadow: `0 4px 24px ${COLORS.accentGlow}`,
+            transition: 'opacity 0.2s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+          onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+        >
+          Let's talk →
+        </a>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main App ───
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('homelab');
@@ -339,6 +686,7 @@ export default function Portfolio() {
     { id: 'professional', label: 'Data Platform', icon: '☁' },
     { id: 'zooplus', label: 'Greenfield Build', icon: '🚀' },
     { id: 'parallels', label: 'Engineering DNA', icon: '🧬' },
+    { id: 'ai-strategy', label: 'AI Strategy', icon: '⚡' },
   ];
 
   const tabStyle = (id) => ({
@@ -538,6 +886,20 @@ export default function Portfolio() {
                 </p>
               </div>
               <ParallelsSection />
+            </>
+          )}
+
+          {activeSection === 'ai-strategy' && (
+            <>
+              <div style={{ marginBottom: 28 }}>
+                <h2 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 8px 0', fontFamily: FONT_SANS }}>
+                  ⚡ AI Strategy — The Transition Most Companies Are Missing
+                </h2>
+                <p style={{ color: COLORS.textMuted, fontSize: 14, margin: 0, lineHeight: 1.6 }}>
+                  The tools exist. The question is whether your operating model can capture the value.
+                </p>
+              </div>
+              <AIStrategySection />
             </>
           )}
         </div>
