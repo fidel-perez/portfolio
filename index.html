@@ -217,19 +217,50 @@
 
     /* ─── Navigation ─── */
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 0 -24px 32px;
+      padding: 8px 24px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+    .nav-group-label {
+      font-size: 9px;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 2px;
+    }
+    .nav-group-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 6px;
+      gap: 5px;
+    }
+    .nav-divider {
+      width: 1px;
+      background: var(--border);
+      margin: 0 12px;
+      align-self: stretch;
     }
 
     .tab {
       padding: 7px 11px;
-      background: var(--bg-card);
+      background: transparent;
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text-muted);
@@ -741,7 +772,9 @@
       header { padding-top: 20px; }
       .parallels-table { font-size: 11px; }
       .parallels-table th, .parallels-table td { padding: 8px 10px; }
-      .tab { padding: 6px 8px; font-size: 11px; flex: 1 1 auto; justify-content: center; }
+      .tab { padding: 5px 7px; font-size: 10px; }
+      .nav-group-label { font-size: 8px; }
+      .nav-divider { margin: 0 8px; }
       .theme-label { display: none; }
       .showcase-grid { grid-template-columns: 1fr; }
     }
@@ -801,21 +834,32 @@
 
   <!-- Navigation -->
   <nav>
-    <button class="tab active" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home lab</button>
-    <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
-    <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield build</button>
-    <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
-    <button class="tab" data-target="showcase" onclick="switchTab(this)"><span class="tab-icon">&#128248;</span> Apps showcase</button>
-    <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
-    <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
-    <button class="tab" data-target="ai-strategy" onclick="switchTab(this)"><span class="tab-icon">&#9889;</span> AI strategy</button>
+    <div class="nav-group">
+      <span class="nav-group-label">Applied experience</span>
+      <div class="nav-group-tabs">
+        <button class="tab active" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
+        <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield build</button>
+        <button class="tab" data-target="showcase" onclick="switchTab(this)"><span class="tab-icon">&#128248;</span> Apps showcase</button>
+        <button class="tab" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home lab</button>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-group">
+      <span class="nav-group-label">About me</span>
+      <div class="nav-group-tabs">
+        <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
+        <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
+        <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
+        <button class="tab" data-target="ai-strategy" onclick="switchTab(this)"><span class="tab-icon">&#9889;</span> AI strategy</button>
+      </div>
+    </div>
   </nav>
 
   <!-- Content Panel -->
   <div class="panel">
 
     <!-- ═══ HOME LAB ═══ -->
-    <div class="section active" id="homelab">
+    <div class="section" id="homelab">
       <h2>Home lab infrastructure</h2>
       <p class="section-desc">
         Two-node setup (Raspberry Pi + Ubuntu server) running 30+ containerized services.
@@ -1094,7 +1138,7 @@
     </div>
 
     <!-- ═══ PROFESSIONAL DATA PLATFORM ═══ -->
-    <div class="section" id="professional">
+    <div class="section active" id="professional">
       <h2>Production data platform</h2>
       <p class="section-desc">
         De facto tech lead of a 2&ndash;3 person team. Full ownership of infrastructure, ingestion, orchestration,
