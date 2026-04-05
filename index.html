@@ -808,6 +808,7 @@
     <button class="tab" data-target="showcase" onclick="switchTab(this)"><span class="tab-icon">&#128248;</span> Apps showcase</button>
     <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
     <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
+    <button class="tab" data-target="ai-strategy" onclick="switchTab(this)"><span class="tab-icon">&#9889;</span> AI strategy</button>
   </nav>
 
   <!-- Content Panel -->
@@ -1880,6 +1881,159 @@
             in a very flat, very fast team.
           </div>
         </details>
+      </div>
+    </div>
+
+    <!-- ═══ AI STRATEGY ═══ -->
+    <div class="section" id="ai-strategy">
+      <h2>AI strategy — the transition most companies are missing</h2>
+      <p class="section-desc">
+        The tools exist. The question is whether your operating model can capture the value.
+      </p>
+
+      <!-- Hook -->
+      <div style="background: linear-gradient(135deg, var(--accent-glow), var(--purple-glow)); border: 1px solid rgba(59,130,246,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 32px; animation: fadeInUp 0.5s ease-out 0.1s both;">
+        <p style="font-size: 17px; font-weight: 600; font-family: var(--font-sans); color: var(--text); margin: 0 0 10px 0; line-height: 1.5;">
+          If your best engineer automated 80% of their workflow tomorrow, would your organization capture that speed?
+        </p>
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.7;">
+          Or would the work sit in review queues, approval chains, and sprint ceremonies designed around the assumption that building takes weeks?
+        </p>
+      </div>
+
+      <!-- Comparison table -->
+      <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 14px 0;">At a glance</p>
+      <div style="overflow-x: auto; margin-bottom: 8px; animation: fadeInUp 0.5s ease-out 0.2s both;">
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0 6px; font-family: var(--font-sans); font-size: 13px;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px 14px; width: 20%; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); font-weight: 400;">Area</th>
+              <th style="text-align: left; padding: 8px 14px; width: 40%;">
+                <span style="color: var(--orange);">● </span>
+                <span style="color: var(--orange); font-weight: 700;">AI-assisted</span>
+                <span style="color: var(--text-dim); font-weight: 400; font-size: 11px; margin-left: 8px;">where most companies are</span>
+              </th>
+              <th style="text-align: left; padding: 8px 14px; width: 40%;">
+                <span style="color: var(--green);">● </span>
+                <span style="color: var(--green); font-weight: 700;">AI-native</span>
+                <span style="color: var(--text-dim); font-weight: 400; font-size: 11px; margin-left: 8px;">where leaders are moving</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.25s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔧 AI adoption</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Tools handed to engineers, same processes</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Workflows redesigned around AI capabilities</td>
+            </tr>
+            <tr style="animation: fadeInUp 0.4s ease-out 0.3s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">💻 Code authorship</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Engineers prompt AI, submit PRs, wait in queue</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">AI writes, tests, iterates — humans set criteria and supervise</td>
+            </tr>
+            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.35s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔗 Stakeholder→code</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Request → PM → ticket → dev → QA → deploy</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Request → one technical human with judgment → deployed artifact</td>
+            </tr>
+            <tr style="animation: fadeInUp 0.4s ease-out 0.4s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🧠 Business context</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Trapped in wikis, heads, and tribal knowledge</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Structured, versioned, machine-readable — callable by agents via MCP</td>
+            </tr>
+            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.45s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">✅ Evaluation</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Humans squinting at PRs</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Automated pipelines testing AI output against business criteria pre-production</td>
+            </tr>
+            <tr style="animation: fadeInUp 0.4s ease-out 0.5s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">👥 Team structure</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Same departments, same handoffs, AI sprinkled in</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Flat, fast teams — criteria holders who ship directly</td>
+            </tr>
+            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.55s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔄 Model dependency</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Workflows tied to one model or provider</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Model-agnostic orchestration — swap Claude for Gemini without breaking anything</td>
+            </tr>
+            <tr style="animation: fadeInUp 0.4s ease-out 0.6s both;">
+              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">⚠ What breaks next</td>
+              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Nothing yet — but speed gains evaporate into process</td>
+              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Ready to absorb agents, multi-modal input, autonomous coordination</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); font-style: italic; text-align: center; margin: 12px 0 32px 0;">Most companies are in the first column. The window to move to the second is closing.</p>
+
+      <!-- Phase detail cards -->
+      <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 14px 0;">What each phase actually looks like</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px;">
+
+        <!-- AI-assisted card -->
+        <div style="flex: 1 1 340px; background: var(--bg-card); border: 1px solid rgba(245,158,11,0.3); border-radius: 12px; overflow: hidden; animation: fadeInUp 0.5s ease-out 0.35s both;">
+          <div style="padding: 16px 20px; background: linear-gradient(135deg, var(--orange-glow), transparent); border-bottom: 1px solid rgba(245,158,11,0.2);">
+            <div style="font-size: 15px; font-weight: 700; color: var(--orange); font-family: var(--font-sans); margin-bottom: 2px;">AI-assisted</div>
+            <div style="font-size: 12px; color: var(--text-muted);">where most companies are</div>
+          </div>
+          <div style="padding: 16px 20px;">
+            <ul style="margin: 0; padding: 0; list-style: none;">
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>AI tools in engineers' hands. Same team structure. Same review chains. Same sprint cadence.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>The work gets done faster — then waits. PMs still translate for developers. QA still reviews what AI already tested.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>Documentation written for human onboarding instead of structured for agent consumption.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>The productivity gain evaporates into process bottleneck.</li>
+            </ul>
+            <div style="margin-top: 14px; padding: 12px 14px; background: var(--orange-glow); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px;">
+              <p style="font-size: 11px; font-family: var(--font-mono); color: var(--orange); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px 0;">Ask yourself</p>
+              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0 0 6px 0;">— What does your company offer that GPT won't do autonomously in 18 months?</p>
+              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0 0 6px 0;">— How many humans does a stakeholder request pass through before it becomes running code? Could that number be one?</p>
+              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0;">— What percentage of your engineering output is already AI-generated? If you don't know — that's the answer.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI-native card -->
+        <div style="flex: 1 1 340px; background: var(--bg-card); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; overflow: hidden; animation: fadeInUp 0.5s ease-out 0.45s both;">
+          <div style="padding: 16px 20px; background: linear-gradient(135deg, var(--green-glow), transparent); border-bottom: 1px solid rgba(16,185,129,0.2);">
+            <div style="font-size: 15px; font-weight: 700; color: var(--green); font-family: var(--font-sans); margin-bottom: 2px;">AI-native</div>
+            <div style="font-size: 12px; color: var(--text-muted);">where forward companies are moving</div>
+          </div>
+          <div style="padding: 16px 20px;">
+            <ul style="margin: 0; padding: 0; list-style: none;">
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">Context as infrastructure.</strong> Your edge is business context models can't access without you — structured, versioned, machine-readable schemas for agents, not wikis for humans.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">MCP server layers</strong> exposing proprietary domain knowledge as tool-callable endpoints. When a model can query your business rules in real time — that's a moat.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">Evaluation frameworks</strong> testing AI output against business criteria before production, not after.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">Model-agnostic orchestration.</strong> Your criteria layer is yours. The model is replaceable.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">Stakeholder-to-deployment interfaces.</strong> One request becomes a deployed artifact with one technical human in the loop — not five.</li>
+              <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);display:block;"></span><strong style="color: var(--text);">Cost-aware compute routing.</strong> Knowing when a task needs a $0.002 call, a $0.06 call, or a human — an engineering problem most companies haven't framed yet.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- What I bring -->
+      <div style="background: var(--bg-card); border: 1px solid rgba(59,130,246,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; animation: fadeInUp 0.5s ease-out 0.5s both;">
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 10px 0;">What I bring</p>
+        <p style="font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.6; margin: 0 0 12px 0;">
+          I don't build what you need today. I build what you'll wish you'd started six months ago.
+        </p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin: 0 0 10px 0;">
+          11+ years of data engineering. Civil Engineering degree from one of Spain's hardest technical programs. Self-taught into a professional software career. Built production platforms from scratch, stabilized failing infrastructure with 2-person teams, and run 30+ containerized services from my home lab with the same engineering discipline I apply at work.
+        </p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin: 0;">
+          The differentiator: I've been working AI-first for over a year — not as an experiment, as my daily operating model. I generate architectural options with AI, evaluate tradeoffs, catch failures early, and ship. I've built multi-user AI agent systems, automated my entire development workflow, and learned firsthand what the infrastructure needs to look like. My value isn't writing code. It's the criteria behind what gets built, how it's evaluated, and whether it's sound.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align: center; animation: fadeInUp 0.5s ease-out 0.6s both;">
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0 0 4px 0; font-style: italic;">"We're already doing this" — great, let's get into specifics.</p>
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0 0 20px 0; font-style: italic;">"This sounds extreme" — we should talk sooner.</p>
+        <a href="https://www.linkedin.com/in/YOUR_HANDLE" target="_blank" rel="noopener noreferrer"
+           style="display: inline-block; padding: 14px 40px; background: linear-gradient(135deg, var(--accent), var(--purple)); color: #fff; border-radius: 8px; font-family: var(--font-sans); font-weight: 700; font-size: 15px; text-decoration: none; box-shadow: 0 4px 20px var(--accent-glow); transition: opacity 0.2s;"
+           onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          Let's talk →
+        </a>
       </div>
     </div>
 
