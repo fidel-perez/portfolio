@@ -498,6 +498,12 @@
       margin: 0;
     }
 
+    /* ─── Strategy Expandables ─── */
+    .strategy-q:hover { border-color: var(--accent) !important; }
+    .strategy-q[open] { border-color: var(--accent) !important; }
+    .strategy-q[open] .strategy-q-arrow { transform: rotate(180deg); }
+    .strategy-q summary::-webkit-details-marker { display: none; }
+
     /* ─── FAQ Accordion ─── */
     .faq { margin-top: 28px; }
     .faq-title {
@@ -1943,70 +1949,93 @@
         </p>
       </div>
 
-      <!-- Comparison table -->
-      <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 14px 0;">At a glance</p>
-      <div style="overflow-x: auto; margin-bottom: 8px; animation: fadeInUp 0.5s ease-out 0.2s both;">
-        <table style="width: 100%; border-collapse: separate; border-spacing: 0 6px; font-family: var(--font-sans); font-size: 13px;">
-          <thead>
-            <tr>
-              <th style="text-align: left; padding: 8px 14px; width: 20%; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); font-weight: 400;">Area</th>
-              <th style="text-align: left; padding: 8px 14px; width: 40%;">
-                <span style="color: var(--orange);">● </span>
-                <span style="color: var(--orange); font-weight: 700;">AI-assisted</span>
-                <span style="color: var(--text-dim); font-weight: 400; font-size: 11px; margin-left: 8px;">where most companies are</span>
-              </th>
-              <th style="text-align: left; padding: 8px 14px; width: 40%;">
-                <span style="color: var(--green);">● </span>
-                <span style="color: var(--green); font-weight: 700;">AI-native</span>
-                <span style="color: var(--text-dim); font-weight: 400; font-size: 11px; margin-left: 8px;">where leaders are moving</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.25s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔧 AI adoption</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Tools handed to engineers, same processes</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Workflows redesigned around AI capabilities</td>
-            </tr>
-            <tr style="animation: fadeInUp 0.4s ease-out 0.3s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">💻 Code authorship</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Engineers prompt AI, submit PRs, wait in queue</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">AI writes, tests, iterates — humans set criteria and supervise</td>
-            </tr>
-            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.35s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔗 Stakeholder→code</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Request → PM → ticket → dev → QA → deploy</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Request → one technical human with judgment → deployed artifact</td>
-            </tr>
-            <tr style="animation: fadeInUp 0.4s ease-out 0.4s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🧠 Business context</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Trapped in wikis, heads, and tribal knowledge</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Structured, versioned, machine-readable — callable by agents via MCP</td>
-            </tr>
-            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.45s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">✅ Evaluation</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Humans squinting at PRs</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Automated pipelines testing AI output against business criteria pre-production</td>
-            </tr>
-            <tr style="animation: fadeInUp 0.4s ease-out 0.5s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">👥 Team structure</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Same departments, same handoffs, AI sprinkled in</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Flat, fast teams — criteria holders who ship directly</td>
-            </tr>
-            <tr style="background: var(--table-alt); animation: fadeInUp 0.4s ease-out 0.55s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔄 Model dependency</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Workflows tied to one model or provider</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Model-agnostic orchestration — swap Claude for Gemini without breaking anything</td>
-            </tr>
-            <tr style="animation: fadeInUp 0.4s ease-out 0.6s both;">
-              <td style="padding: 10px 14px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">⚠ What breaks next</td>
-              <td style="padding: 10px 14px; color: var(--text-muted); line-height: 1.5;">Nothing yet — but speed gains evaporate into process</td>
-              <td style="padding: 10px 14px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Ready to absorb agents, multi-modal input, autonomous coordination</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Expandable questions -->
+      <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 14px 0;">When the frontier models evolve — ask yourself</p>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; animation: fadeInUp 0.5s ease-out 0.2s both;">
+
+        <!-- Q1 -->
+        <details class="strategy-q" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color var(--transition);">
+          <summary style="padding: 18px 20px; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 15px; font-weight: 600; font-family: var(--font-sans); color: var(--text); user-select: none;">
+            <span>What does your business offer that won't be covered by them?</span>
+            <span class="strategy-q-arrow" style="color: var(--accent); font-size: 18px; flex-shrink: 0; transition: transform var(--transition);">▾</span>
+          </summary>
+          <div style="padding: 0 16px 16px; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: separate; border-spacing: 0 5px; font-family: var(--font-sans); font-size: 13px;">
+              <thead>
+                <tr>
+                  <th style="text-align: left; padding: 6px 12px; width: 20%; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); font-weight: 400;">Area</th>
+                  <th style="text-align: left; padding: 6px 12px; width: 40%;"><span style="color: var(--orange);">● </span><span style="color: var(--orange); font-weight: 700;">AI-assisted</span></th>
+                  <th style="text-align: left; padding: 6px 12px; width: 40%;"><span style="color: var(--green);">● </span><span style="color: var(--green); font-weight: 700;">AI-native</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: var(--table-alt);">
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🧠 Business context</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Trapped in wikis, heads, and tribal knowledge</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Structured, versioned, machine-readable — callable by agents via MCP</td>
+                </tr>
+                <tr>
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">👥 Team structure</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Same departments, same handoffs, AI sprinkled in</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Flat, fast teams — criteria holders who ship directly</td>
+                </tr>
+                <tr style="background: var(--table-alt);">
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔄 Model dependency</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Workflows tied to one model or provider</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Model-agnostic orchestration — swap Claude for Gemini without breaking anything</td>
+                </tr>
+                <tr>
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">⚠ What breaks next</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Nothing yet — but speed gains evaporate into process</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Ready to absorb agents, multi-modal input, autonomous coordination</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="strategy-q" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color var(--transition);">
+          <summary style="padding: 18px 20px; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 15px; font-weight: 600; font-family: var(--font-sans); color: var(--text); user-select: none;">
+            <span>Which features, infrastructure and workflows will remain or even be empowered by better models?</span>
+            <span class="strategy-q-arrow" style="color: var(--accent); font-size: 18px; flex-shrink: 0; transition: transform var(--transition);">▾</span>
+          </summary>
+          <div style="padding: 0 16px 16px; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: separate; border-spacing: 0 5px; font-family: var(--font-sans); font-size: 13px;">
+              <thead>
+                <tr>
+                  <th style="text-align: left; padding: 6px 12px; width: 20%; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); font-weight: 400;">Area</th>
+                  <th style="text-align: left; padding: 6px 12px; width: 40%;"><span style="color: var(--orange);">● </span><span style="color: var(--orange); font-weight: 700;">AI-assisted</span></th>
+                  <th style="text-align: left; padding: 6px 12px; width: 40%;"><span style="color: var(--green);">● </span><span style="color: var(--green); font-weight: 700;">AI-native</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: var(--table-alt);">
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔧 AI adoption</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Tools handed to engineers, same processes</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Workflows redesigned around AI capabilities</td>
+                </tr>
+                <tr>
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">💻 Code authorship</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Engineers prompt AI, submit PRs, wait in queue</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">AI writes, tests, iterates — humans set criteria and supervise</td>
+                </tr>
+                <tr style="background: var(--table-alt);">
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">🔗 Stakeholder→code</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Request → PM → ticket → dev → QA → deploy</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Request → one technical human with judgment → deployed artifact</td>
+                </tr>
+                <tr>
+                  <td style="padding: 9px 12px; font-weight: 600; font-family: var(--font-mono); font-size: 11px; color: var(--text); border-radius: 8px 0 0 8px; white-space: nowrap;">✅ Evaluation</td>
+                  <td style="padding: 9px 12px; color: var(--text-muted); line-height: 1.5;">Humans squinting at PRs</td>
+                  <td style="padding: 9px 12px; color: var(--text); line-height: 1.5; border-radius: 0 8px 8px 0;">Automated pipelines testing AI output against business criteria pre-production</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
       </div>
-      <p style="font-size: 13px; color: var(--text-muted); font-style: italic; text-align: center; margin: 12px 0 32px 0;">Most companies are in the first column. The window to move to the second is closing.</p>
 
       <!-- Phase detail cards -->
       <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; margin: 0 0 14px 0;">What each phase actually looks like</p>
@@ -2025,12 +2054,6 @@
               <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>Documentation written for human onboarding instead of structured for agent consumption.</li>
               <li style="font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 14px; position: relative;"><span style="position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);display:block;"></span>The productivity gain evaporates into process bottleneck.</li>
             </ul>
-            <div style="margin-top: 14px; padding: 12px 14px; background: var(--orange-glow); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px;">
-              <p style="font-size: 11px; font-family: var(--font-mono); color: var(--orange); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px 0;">Ask yourself</p>
-              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0 0 6px 0;">— What does your company offer that GPT won't do autonomously in 18 months?</p>
-              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0 0 6px 0;">— How many humans does a stakeholder request pass through before it becomes running code? Could that number be one?</p>
-              <p style="font-size: 12px; color: var(--text); line-height: 1.6; margin: 0;">— What percentage of your engineering output is already AI-generated? If you don't know — that's the answer.</p>
-            </div>
           </div>
         </div>
 
