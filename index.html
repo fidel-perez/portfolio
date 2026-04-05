@@ -221,8 +221,8 @@
       top: 0;
       z-index: 100;
       display: flex;
-      align-items: stretch;
-      gap: 0;
+      flex-direction: column;
+      gap: 6px;
       margin: 0 -24px 32px;
       padding: 8px 24px;
       background: var(--bg-card);
@@ -233,10 +233,8 @@
 
     .nav-group {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      min-width: 0;
+      align-items: center;
+      gap: 10px;
     }
     .nav-group-label {
       font-size: 9px;
@@ -244,7 +242,9 @@
       color: var(--text-dim);
       text-transform: uppercase;
       letter-spacing: 2px;
-      padding: 0 2px;
+      white-space: nowrap;
+      width: 130px;
+      flex-shrink: 0;
     }
     .nav-group-tabs {
       display: flex;
@@ -252,10 +252,9 @@
       gap: 5px;
     }
     .nav-divider {
-      width: 1px;
+      height: 1px;
       background: var(--border);
-      margin: 0 12px;
-      align-self: stretch;
+      margin: 0;
     }
 
     .tab {
@@ -773,8 +772,7 @@
       .parallels-table { font-size: 11px; }
       .parallels-table th, .parallels-table td { padding: 8px 10px; }
       .tab { padding: 5px 7px; font-size: 10px; }
-      .nav-group-label { font-size: 8px; }
-      .nav-divider { margin: 0 8px; }
+      .nav-group-label { font-size: 8px; width: 100px; }
       .theme-label { display: none; }
       .showcase-grid { grid-template-columns: 1fr; }
     }
