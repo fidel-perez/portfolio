@@ -2144,6 +2144,11 @@
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 
+  // Hide header on load — default tab is 'professional', not career/parallels
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('header').style.display = 'none';
+  });
+
   // Gallery navigation
   function galleryNav(btn, dir) {
     var wrap = btn.closest('.showcase-gallery-wrap');
@@ -2168,8 +2173,12 @@
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
 
-    // Update sections
+    // Show header only on career / engineering DNA tabs
     const target = btn.getAttribute('data-target');
+    const headerEl = document.querySelector('header');
+    headerEl.style.display = (target === 'career' || target === 'parallels') ? '' : 'none';
+
+    // Update sections
     document.querySelectorAll('.section').forEach(s => {
       s.classList.remove('active');
       if (s.id === target) {
