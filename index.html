@@ -125,6 +125,26 @@
     }
     .top-bar-links a:hover { color: var(--accent); }
     .top-bar-links svg { width: 18px; height: 18px; fill: currentColor; }
+    .top-bar-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .top-bar-name {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .top-bar-role {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
     /* ─── Theme Toggle ─── */
     .theme-toggle {
@@ -810,6 +830,10 @@
         LinkedIn
       </a>
     </div>
+    <div class="top-bar-title">
+      <span class="top-bar-name">Fidel Perez Rubio</span>
+      <span class="top-bar-role">Portfolio</span>
+    </div>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark mode">
       <span class="toggle-icon theme-icon">&#9790;</span>
       <span class="theme-label">Dark</span>
@@ -821,7 +845,7 @@
     <div class="nav-group">
       <span class="nav-group-label">Applied experience</span>
       <div class="nav-group-tabs">
-        <button class="tab active" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
+        <button class="tab" data-target="professional" onclick="switchTab(this)"><span class="tab-icon">&#9729;&#65039;</span> Data platform</button>
         <button class="tab" data-target="greenfield" onclick="switchTab(this)"><span class="tab-icon">&#128640;</span> Greenfield build</button>
         <button class="tab" data-target="showcase" onclick="switchTab(this)"><span class="tab-icon">&#128248;</span> Apps showcase</button>
         <button class="tab" data-target="homelab" onclick="switchTab(this)"><span class="tab-icon">&#127968;</span> Home lab</button>
@@ -831,7 +855,7 @@
     <div class="nav-group">
       <span class="nav-group-label">About me</span>
       <div class="nav-group-tabs">
-        <button class="tab" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
+        <button class="tab active" data-target="parallels" onclick="switchTab(this)"><span class="tab-icon">&#129516;</span> Engineering DNA</button>
         <button class="tab" data-target="career" onclick="switchTab(this)"><span class="tab-icon">&#128188;</span> Career</button>
         <button class="tab" data-target="vision" onclick="switchTab(this)"><span class="tab-icon">&#129302;</span> AI vision</button>
         <button class="tab" data-target="ai-strategy" onclick="switchTab(this)"><span class="tab-icon">&#9889;</span> AI strategy</button>
@@ -841,8 +865,6 @@
 
   <!-- Header -->
   <header>
-    <div class="label-upper">Technical architecture portfolio</div>
-    <h1>Fidel Perez Rubio</h1>
     <p class="subtitle">Senior Data Engineer &middot; AI-First Engineering &middot; Workflow Automation &middot; 11+ Years</p>
     <p class="tagline">
       Same principles at every scale &mdash; infrastructure as code, containerize everything,
@@ -1152,7 +1174,7 @@
     </div>
 
     <!-- ═══ PROFESSIONAL DATA PLATFORM ═══ -->
-    <div class="section active" id="professional">
+    <div class="section" id="professional">
       <h2>Production data platform</h2>
       <p class="section-desc">
         De facto tech lead of a 2&ndash;3 person team. Full ownership of infrastructure, ingestion, orchestration,
@@ -1515,7 +1537,7 @@
     </div>
 
     <!-- ═══ ENGINEERING DNA / PARALLELS ═══ -->
-    <div class="section" id="parallels">
+    <div class="section active" id="parallels">
       <h2>Engineering DNA &mdash; Same instincts at every scale</h2>
       <p class="section-desc">
         Whether it's a production data platform on AWS or a Raspberry Pi at home,
@@ -2144,10 +2166,8 @@
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 
-  // Hide header on load — default tab is 'professional', not career/parallels
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('header').style.display = 'none';
-  });
+  // Header visible on load — default tab is 'parallels' which shows the header
+  // (no action needed; header is visible by default)
 
   // Gallery navigation
   function galleryNav(btn, dir) {
