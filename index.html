@@ -1912,81 +1912,106 @@
 
       <!-- FAQ -->
       <div class="faq">
-        <div class="faq-title">Hard questions, honest answers</div>
+        <div class="faq-title">Questions worth asking before your next AI investment</div>
+
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 18px 0; line-height: 1.6;">
+          If you're a technical leader, these are the questions I ask myself daily &mdash; and the ones I think more engineering orgs should be asking.
+        </p>
+
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px 0;">On the business itself</p>
 
         <details class="faq-item">
-          <summary>If we put you in front of a whiteboard, what happens?</summary>
+          <summary>When frontier models can do what your company does, what will you do?</summary>
           <div class="faq-answer">
-            I'd do exactly what I'd do on the job &mdash; ask clarifying questions to understand the constraints,
-            then use AI to generate two or three architectural options, and walk you through why I'd pick one
-            over the others. If you want to test whether I can evaluate architecture, that's a great test.
-            If you want to test whether I can draw boxes from memory without tools, that tests something
-            I don't think matters anymore. I'm happy to do a live exercise with AI access &mdash;
-            that's how the actual work gets done.
+            If you process payroll, two model generations from now an agent handles 100% of it end-to-end. Are you already pivoting toward what <em>only</em> exists once that's true &mdash; UBI administration, compliance arbitration, something else? Or are you optimizing a business with a visible expiration date?
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>How do we know you actually understand the systems and aren't just parroting AI?</summary>
+          <summary>Which parts of your product are a moat, and which parts are just "we got here first before AI did"?</summary>
           <div class="faq-answer">
-            My 11 years of hands-on engineering are what let me catch when AI is wrong.
-            I can read Scala, Python, SQL, Terraform &mdash; I've written all of them professionally.
-            The difference is I don't insist on writing them by hand when a tool can do it faster under my supervision.
-            Give me a broken pipeline or a flawed architecture and I'll tell you what's wrong with it &mdash;
-            that's the skill that matters.
+            Be honest about the difference.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>Every candidate says they use AI. What makes you different?</summary>
+          <summary>If a competitor launched tomorrow as an AI-native version of you, with 8 engineers instead of 800, what would they cut first?</summary>
           <div class="faq-answer">
-            Most engineers use AI to autocomplete code or ask questions. I use it to generate entire solutions,
-            evaluate multiple approaches, build test suites, and deploy. The difference is that I've restructured
-            my entire workflow around it &mdash; not bolted it onto the old one. I reach my Claude and Gemini
-            subscription limits almost daily. I've built my own self-hosted AI communication tools.
-            This isn't a feature I use, it's how I work.
+            Why haven't you cut it?
+          </div>
+        </details>
+
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 18px 0 8px 0;">On the infrastructure you're building</p>
+
+        <details class="faq-item">
+          <summary>Is the infra you're shipping this quarter useful for the models of today, or for the models of 18 months from now?</summary>
+          <div class="faq-answer">
+            Building for today's context windows, today's tool-calling limits, today's hallucination rates is building technical debt with a known expiration date.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>You're asking us to change our interview process. Why should we?</summary>
+          <summary>If you're investing in MCPs and tool layers &mdash; are those tools designed for an agent that needs hand-holding, or for one that doesn't?</summary>
           <div class="faq-answer">
-            I'm not asking you to lower the bar &mdash; I'm asking you to test the right thing.
-            If your engineers will be working with AI daily, testing them without AI is like testing
-            a pilot without a cockpit. I'm happy to be evaluated rigorously, but on criteria, judgment,
-            and results &mdash; not on memorization.
+            Most MCP tooling I see today is scaffolding that future models will route around. Cluttered tool registries actively hurt stronger models.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>What if the AI hallucinates something critical in production?</summary>
+          <summary>Where are your evaluation harnesses for agent behavior?</summary>
           <div class="faq-answer">
-            That's exactly why this role needs an experienced engineer, not just a prompt writer.
-            I enforce automated test suites, I review critical commits manually, I always ask the AI
-            to summarize what it did and why &mdash; which gives me early warnings.
-            And I apply a fail-fast-fix-quick methodology. The risk of AI errors exists, but it's manageable
-            with discipline. The risk of ignoring this shift entirely is much bigger.
+            Not unit tests. Eval suites that score whether an agent made the right <em>judgment call</em>. Without these, you can't tell whether a model upgrade helped or hurt &mdash; you're flying blind on the most important variable in your stack.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>You say departments don't make sense anymore. Can you be specific?</summary>
+          <summary>Is your data model legible to an agent that has never seen your company before?</summary>
           <div class="faq-answer">
-            In a traditional setup you have product managers translating for developers, QA teams testing
-            what developers wrote, DevOps teams deploying what QA approved. When AI writes the code in minutes
-            and the test suite alongside it, you don't need all those handoffs. You need a technically sharp person
-            who understands the business need, guides the AI, validates the output, and ships.
-            That's fewer layers, faster delivery, and fewer people doing busywork disguised as process.
+            If onboarding a new agent takes the same effort as onboarding a new engineer, your context layer is the bottleneck &mdash; not the model.
+          </div>
+        </details>
+
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 18px 0 8px 0;">On how your team actually works with AI</p>
+
+        <details class="faq-item">
+          <summary>Are your engineers using AI to autocomplete, or to generate, evaluate, and ship entire solutions?</summary>
+          <div class="faq-answer">
+            There is an order-of-magnitude difference between the two.
           </div>
         </details>
 
         <details class="faq-item">
-          <summary>Aren't you just describing a staff engineer role?</summary>
+          <summary>Are you capturing all the feedback the model can give you?</summary>
           <div class="faq-answer">
-            Partially, but staff engineers in most companies still operate within the traditional framework &mdash;
-            they design, others implement. What I'm describing collapses that. The person with the criteria also
-            directs the implementation through AI, reviews it, and ships it. It's closer to a technical lead
-            in a very flat, very fast team.
+            Every prompt in my workflow ends with <em>"summarize what you changed, what you'd improve, and what I might be missing."</em> That single addition surfaces more architectural insight than most code reviews. Standardizing prompts like this across an org is nearly free and consistently underused.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>When AI accelerates an engineer's output 5x, where does the saved time go?</summary>
+          <div class="faq-answer">
+            If the answer is "waiting for review, waiting for QA, waiting for the next sprint" &mdash; the bottleneck moved, and nobody redesigned around it. The speed gain gets absorbed by process instead of captured by the business.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Who on your team has actually restructured their workflow around AI, versus bolted AI onto the old one?</summary>
+          <div class="faq-answer">
+            These look identical on a resume and produce wildly different output.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Are your managers and processes designed for a world where code took days to write?</summary>
+          <div class="faq-answer">
+            Standups, sprint planning, ticket grooming, handoffs between PM &rarr; eng &rarr; QA &rarr; DevOps &mdash; most of this exists because writing code was slow. It isn't anymore.
+          </div>
+        </details>
+
+        <details class="faq-item" style="border-color: var(--accent); background: linear-gradient(135deg, var(--accent-glow), transparent);">
+          <summary style="font-weight: 700;">If the answer to most of these is "we're working on it" &mdash; who is working on it, and do they have the authority to actually change how the company operates?</summary>
+          <div class="faq-answer">
+            These are the questions driving how I want to work next. If they're the ones you're already asking, I'd like to talk.
           </div>
         </details>
       </div>
