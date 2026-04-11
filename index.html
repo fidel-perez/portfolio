@@ -1914,106 +1914,67 @@
       <div class="faq">
         <div class="faq-title">Questions worth asking before your next AI investment</div>
 
-        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 18px 0; line-height: 1.6;">
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 22px 0; line-height: 1.6;">
           If you're a technical leader, these are the questions I ask myself daily &mdash; and the ones I think more engineering orgs should be asking.
         </p>
 
-        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 8px 0;">On the business itself</p>
+        <!-- Section: business -->
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px 0;">On the business itself</p>
+        <ul style="list-style: none; padding: 0; margin: 0 0 22px 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">When frontier models can do what your company does, what will you do?</strong> If you process payroll, two model generations from now an agent handles 100% of it end-to-end. Are you already pivoting toward what <em>only</em> exists once that's true &mdash; UBI administration, compliance arbitration, something else? Or are you optimizing a business with a visible expiration date?
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Which parts of your product are a moat, and which parts are just "we got here first before AI did"?</strong>
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">If a competitor launched tomorrow as an AI-native version of you, with 8 engineers instead of 800, what would they cut first?</strong>
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Is your product ready for the agentic web?</strong> Humans will soon start interacting with the web via their AI tools only.
+          </li>
+        </ul>
 
-        <details class="faq-item">
-          <summary>When frontier models can do what your company does, what will you do?</summary>
-          <div class="faq-answer">
-            If you process payroll, two model generations from now an agent handles 100% of it end-to-end. Are you already pivoting toward what <em>only</em> exists once that's true &mdash; UBI administration, compliance arbitration, something else? Or are you optimizing a business with a visible expiration date?
-          </div>
-        </details>
+        <!-- Section: infrastructure -->
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px 0;">On the infrastructure you're building</p>
+        <ul style="list-style: none; padding: 0; margin: 0 0 22px 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Is the infra you're shipping this quarter useful for the models of today, or for the models of 6 months from now?</strong> Building for today's context windows, today's tool-calling limits, today's hallucination rates is building technical debt with a known expiration date.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">If you're investing in MCPs and tool layers &mdash; are those tools designed for an agent that needs hand-holding, or for one that doesn't?</strong> Most MCP tooling I see today is scaffolding that future models will route around. Cluttered tool registries actively hurt stronger models.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Where are your evaluation harnesses for agent behavior?</strong> Not unit tests. Eval suites that score whether an agent made the right <em>judgment call</em>. Without these, you can't tell whether a model upgrade helped or hurt.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Is your data model legible to an agent that has never seen your company before?</strong> If onboarding a new agent takes the same effort as onboarding a new engineer, your context layer is the bottleneck &mdash; not the model.
+          </li>
+        </ul>
 
-        <details class="faq-item">
-          <summary>Which parts of your product are a moat, and which parts are just "we got here first before AI did"?</summary>
-          <div class="faq-answer">
-            Be honest about the difference.
-          </div>
-        </details>
+        <!-- Section: team -->
+        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px 0;">On how your team actually works with AI</p>
+        <ul style="list-style: none; padding: 0; margin: 0 0 22px 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Are your engineers using AI to autocomplete, or to generate, evaluate, and ship entire solutions?</strong> There is an order-of-magnitude difference between the two.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Are you capturing all the feedback the model can give you?</strong> Every prompt in my workflow ends with <em>"summarize what you changed, what you'd improve, and what I might be missing."</em> That single addition surfaces more architectural insight than most code reviews. Standardizing prompts like this across an org is nearly free and consistently underused.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">When AI accelerates an engineer's output 5x, where does the saved time go?</strong> If the answer is "waiting for review, waiting for QA, waiting for the next sprint" &mdash; the bottleneck moved, and nobody redesigned around it. The speed gain gets absorbed by process instead of captured by the business.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Who on your team has actually restructured their workflow around AI, versus bolted AI onto the old one?</strong> These look identical on a resume and produce wildly different output.
+          </li>
+          <li style="font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 14px; border-left: 2px solid var(--border);">
+            <strong style="color: var(--text);">Are your managers and processes designed for a world where code took days to write?</strong> Standups, sprint planning, ticket grooming, handoffs between PM &rarr; eng &rarr; QA &rarr; DevOps &mdash; most of this exists because writing code was slow. It isn't anymore.
+          </li>
+        </ul>
 
-        <details class="faq-item">
-          <summary>If a competitor launched tomorrow as an AI-native version of you, with 8 engineers instead of 800, what would they cut first?</summary>
-          <div class="faq-answer">
-            Why haven't you cut it?
-          </div>
-        </details>
-
-        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 18px 0 8px 0;">On the infrastructure you're building</p>
-
-        <details class="faq-item">
-          <summary>Is the infra you're shipping this quarter useful for the models of today, or for the models of 18 months from now?</summary>
-          <div class="faq-answer">
-            Building for today's context windows, today's tool-calling limits, today's hallucination rates is building technical debt with a known expiration date.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>If you're investing in MCPs and tool layers &mdash; are those tools designed for an agent that needs hand-holding, or for one that doesn't?</summary>
-          <div class="faq-answer">
-            Most MCP tooling I see today is scaffolding that future models will route around. Cluttered tool registries actively hurt stronger models.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Where are your evaluation harnesses for agent behavior?</summary>
-          <div class="faq-answer">
-            Not unit tests. Eval suites that score whether an agent made the right <em>judgment call</em>. Without these, you can't tell whether a model upgrade helped or hurt &mdash; you're flying blind on the most important variable in your stack.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Is your data model legible to an agent that has never seen your company before?</summary>
-          <div class="faq-answer">
-            If onboarding a new agent takes the same effort as onboarding a new engineer, your context layer is the bottleneck &mdash; not the model.
-          </div>
-        </details>
-
-        <p style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin: 18px 0 8px 0;">On how your team actually works with AI</p>
-
-        <details class="faq-item">
-          <summary>Are your engineers using AI to autocomplete, or to generate, evaluate, and ship entire solutions?</summary>
-          <div class="faq-answer">
-            There is an order-of-magnitude difference between the two.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Are you capturing all the feedback the model can give you?</summary>
-          <div class="faq-answer">
-            Every prompt in my workflow ends with <em>"summarize what you changed, what you'd improve, and what I might be missing."</em> That single addition surfaces more architectural insight than most code reviews. Standardizing prompts like this across an org is nearly free and consistently underused.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>When AI accelerates an engineer's output 5x, where does the saved time go?</summary>
-          <div class="faq-answer">
-            If the answer is "waiting for review, waiting for QA, waiting for the next sprint" &mdash; the bottleneck moved, and nobody redesigned around it. The speed gain gets absorbed by process instead of captured by the business.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Who on your team has actually restructured their workflow around AI, versus bolted AI onto the old one?</summary>
-          <div class="faq-answer">
-            These look identical on a resume and produce wildly different output.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Are your managers and processes designed for a world where code took days to write?</summary>
-          <div class="faq-answer">
-            Standups, sprint planning, ticket grooming, handoffs between PM &rarr; eng &rarr; QA &rarr; DevOps &mdash; most of this exists because writing code was slow. It isn't anymore.
-          </div>
-        </details>
-
-        <details class="faq-item" style="border-color: var(--accent); background: linear-gradient(135deg, var(--accent-glow), transparent);">
-          <summary style="font-weight: 700;">If the answer to most of these is "we're working on it" &mdash; who is working on it, and do they have the authority to actually change how the company operates?</summary>
-          <div class="faq-answer">
-            These are the questions driving how I want to work next. If they're the ones you're already asking, I'd like to talk.
-          </div>
-        </details>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-style: italic; border-top: 1px solid var(--border); padding-top: 16px;">
+          These are the questions driving how I want to work next. If they're the ones you're already asking, or willing to ask, I'd like to talk.
+        </p>
       </div>
     </div>
 
