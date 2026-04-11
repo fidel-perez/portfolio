@@ -709,6 +709,7 @@
     .showcase-app:nth-child(2) { animation-delay: 0.2s; }
     .showcase-app:nth-child(3) { animation-delay: 0.3s; }
     .showcase-app:nth-child(4) { animation-delay: 0.4s; }
+    .showcase-app:nth-child(5) { animation-delay: 0.5s; }
     .showcase-app:hover { border-color: var(--accent); transform: translateY(-2px); }
     .showcase-gallery {
       display: flex;
@@ -1678,6 +1679,33 @@
               <span class="tag tag-accent">Python</span>
               <span class="tag tag-purple">Docker API</span>
               <span class="tag tag-green">Self-hosted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-app">
+          <div class="showcase-gallery-wrap">
+            <div class="showcase-gallery">
+              <img src="custom_apps_showcase/cards_first.png" alt="Knowledge cards - card deck view" loading="lazy">
+              <img src="custom_apps_showcase/cards_second.png" alt="Knowledge cards - card detail" loading="lazy">
+              <img src="custom_apps_showcase/cards_third.png" alt="Knowledge cards - study mode" loading="lazy">
+            </div>
+            <button class="gallery-btn gallery-prev" onclick="galleryNav(this,-1)">&lsaquo;</button>
+            <button class="gallery-btn gallery-next" onclick="galleryNav(this,1)">&rsaquo;</button>
+          </div>
+          <div class="gallery-dots"><span class="gallery-dot active"></span><span class="gallery-dot"></span><span class="gallery-dot"></span></div>
+          <div class="showcase-info">
+            <h3>Knowledge cards</h3>
+            <p>
+              Flashcard-based knowledge retention app for studying and reviewing concepts.
+              Organize cards into decks, flip through them in study mode, and track progress.
+            </p>
+            <div class="showcase-footer">
+              <div class="showcase-tags">
+                <span class="tag tag-accent">JavaScript</span>
+                <span class="tag tag-accent">Full-stack</span>
+              </div>
+              <a class="showcase-demo-btn" href="https://fidel-perez.github.io/knowledge-cards/" target="_blank" rel="noopener">&#128279; Live demo</a>
             </div>
           </div>
         </div>
