@@ -1,0 +1,486 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>VendVino · Propuesta de distribución · Bodega La Senda (Bierzo)</title>
+  <meta name="description" content="VendVino propone a Diego Losada y Bodega La Senda llevar sus vinos naturales del Bierzo al mercado de Madrid. Vinos puros, sin aditivos, de viñas centenarias en Priaranza del Bierzo.">
+  
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed. */
+
+
+
+:root {
+  /* shared typography */
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+
+
+  /* felix-vino — bodega_acquisition palette */
+  --bg: #f8f5ef;
+  --bg-elev: #ffffff;
+  --fg: #1a0f0c;
+  --fg-muted: #5a4a44;
+  --accent: #7c1c1c;
+  --accent-hover: #5e1414;
+  --accent-soft: #f0d8d8;
+  --gold: #c9a84c;
+  --rule: #e6dccc;
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+body { font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+    }
+    .block-hero_target .target-name { color: var(--accent); text-decoration: none; }
+    .block-hero_target .target-name:hover { text-decoration: underline; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted); text-decoration: none; border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .block-hero_target .subtitle {
+      font-size: 1.1rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.25rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding-left: var(--space-2);
+    }
+  </style>
+  <div class="inner">
+    
+    <h1>
+      <a class="target-name" href="https://bodegalasenda.com/" target="_blank" rel="noopener"></a>
+      
+      <span class="target-links">
+        <a href="https://bodegalasenda.com/" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle"></p>
+    <p class="tagline"></p>
+  </div>
+</section>
+    
+      <section class="block-wine_selection_bodega">
+  <style>
+    .block-wine_selection_bodega { background: var(--bg); }
+    .block-wine_selection_bodega .label {
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 var(--space-1);
+    }
+    .block-wine_selection_bodega h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-2);
+      max-width: 32em;
+    }
+    .block-wine_selection_bodega .intro {
+      font-size: 1.05rem; color: var(--fg-muted); max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-wine_selection_bodega .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-wine_selection_bodega .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .block-wine_selection_bodega .name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0;
+    }
+    .block-wine_selection_bodega .style {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .block-wine_selection_bodega .placement {
+      font-size: 0.95rem;
+      color: var(--fg);
+      border-left: 2px solid var(--accent);
+      padding-left: var(--space-1);
+      margin: var(--space-1) 0 0;
+    }
+    .block-wine_selection_bodega .placement strong { color: var(--accent); }
+    .block-wine_selection_bodega .sumiller {
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: var(--space-1) 0 0;
+    }
+    .block-wine_selection_bodega .pvp {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+      align-self: flex-start;
+    }
+    .block-wine_selection_bodega .mesas {
+      margin-top: var(--space-3);
+      padding: var(--space-3);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+    }
+    .block-wine_selection_bodega .mesas h3 {
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 var(--space-2);
+    }
+    .block-wine_selection_bodega .mesas ul {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; gap: var(--space-1);
+    }
+    .block-wine_selection_bodega .mesas li {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: var(--space-1);
+      align-items: baseline;
+    }
+    .block-wine_selection_bodega .mesas .mesa-name { font-weight: 600; color: var(--fg); }
+    .block-wine_selection_bodega .mesas .mesa-hood {
+      font-size: 0.85rem; color: var(--fg-muted);
+      justify-self: end;
+    }
+    .block-wine_selection_bodega .mesas .mesa-line {
+      grid-column: 1 / -1; color: var(--fg-muted); font-size: 0.95rem;
+    }
+    .block-wine_selection_bodega .closer {
+      max-width: 36em;
+      font-size: 1.05rem;
+      color: var(--fg);
+      border-left: 3px solid var(--gold);
+      padding-left: var(--space-2);
+      margin: var(--space-3) 0 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Tu catálogo, posicionado para Madrid</p>
+    <h2>Cómo movería tus vinos en mesas concretas.</h2>
+    <p class="intro">Selección de cuatro vinos que representan el alma de La Senda: viñas viejas, mínima intervención, expresión pura del terruño berciano.</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="name">1984</p>
+        <p class="style"></p>
+        
+        <p class="placement"><strong>Posicionamiento —</strong> </p>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">La Barbacana</p>
+        <p class="style"></p>
+        
+        <p class="placement"><strong>Posicionamiento —</strong> </p>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">In A Gadda Da Vida</p>
+        <p class="style"></p>
+        
+        <p class="placement"><strong>Posicionamiento —</strong> </p>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">El Aqueronte</p>
+        <p class="style"></p>
+        
+        <p class="placement"><strong>Posicionamiento —</strong> </p>
+        
+      </article>
+      
+    </div>
+
+    
+
+    <p class="closer"></p>
+  </div>
+</section>
+    
+      <section class="block-why_now">
+  <style>
+    .block-why_now {
+      background: var(--bg-elev);
+      border-block: 1px solid var(--rule);
+    }
+    .block-why_now .label {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 var(--space-1);
+    }
+    .block-why_now h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-4);
+      max-width: 28em;
+    }
+    .block-why_now ol {
+      list-style: none; padding: 0; margin: 0 0 var(--space-3);
+      display: grid; gap: var(--space-2);
+      counter-reset: reasons;
+    }
+    .block-why_now ol li {
+      counter-increment: reasons;
+      position: relative;
+      padding: var(--space-2) var(--space-2) var(--space-2) calc(var(--space-4) + 0.5rem);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+    }
+    .block-why_now ol li::before {
+      content: counter(reasons, decimal-leading-zero);
+      position: absolute;
+      left: var(--space-2);
+      top: var(--space-2);
+      width: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-why_now .reason-title {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-weight: 600; color: var(--fg);
+      margin: 0 0 0.25rem;
+    }
+    .block-why_now .reason-detail {
+      color: var(--fg-muted); margin: 0; font-size: 0.95rem;
+    }
+    .block-why_now .cost {
+      max-width: 38em;
+      font-size: 1rem;
+      padding: var(--space-2);
+      border-top: 2px solid var(--gold);
+      margin: 0;
+      color: var(--fg);
+    }
+    .block-why_now .cost strong { color: var(--accent); }
+  </style>
+  <div class="inner">
+    <p class="label">Why now</p>
+    <h2></h2>
+    <ol>
+      
+      <li>
+        <p class="reason-title">
+          
+          
+        </p>
+        <p class="reason-detail"></p>
+      </li>
+      
+      <li>
+        <p class="reason-title">
+          
+          
+        </p>
+        <p class="reason-detail"></p>
+      </li>
+      
+      <li>
+        <p class="reason-title">
+          
+          
+        </p>
+        <p class="reason-detail"></p>
+      </li>
+      
+    </ol>
+    <p class="cost"><strong>Cost of waiting —</strong> </p>
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: center;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 22em;
+      margin: 0 auto var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 auto var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: white;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .secondary {
+      display: block;
+      margin-top: var(--space-2);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a { color: var(--accent); }
+  </style>
+  <div class="inner">
+    <h2></h2>
+    <p class="body"></p>
+    <a class="cta"
+       href="mailto:">
+      
+    </a>
+    
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+    }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-muted);
+      opacity: 0.7;
+    }
+    .block-footer_built_by_agents a { color: var(--accent); }
+  </style>
+  <div class="inner">
+    <p>
+      <span class="glyph">⌬ </span>
+      
+        Auto-generated by a private agent platform; published in the open-source portfolio at
+        <a href="" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a>.
+      
+    </p>
+    
+  </div>
+</section>
+    
+  </main>
+</body>
+</html>
