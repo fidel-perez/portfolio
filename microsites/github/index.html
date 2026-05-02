@@ -1,0 +1,135 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>GitHub — propuesta</title>
+  <meta name="description" content="Propuesta tailored para GitHub.">
+  
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed. */
+
+
+
+:root {
+  /* shared typography */
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+
+
+  /* felix-vino — bodega_acquisition palette */
+  --bg: #f8f5ef;
+  --bg-elev: #ffffff;
+  --fg: #1a0f0c;
+  --fg-muted: #5a4a44;
+  --accent: #7c1c1c;
+  --accent-hover: #5e1414;
+  --accent-soft: #f0d8d8;
+  --gold: #c9a84c;
+  --rule: #e6dccc;
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+body { font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+    }
+    .block-hero_target .target-name { color: var(--accent); text-decoration: none; }
+    .block-hero_target .target-name:hover { text-decoration: underline; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted); text-decoration: none; border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .block-hero_target .subtitle {
+      font-size: 1.1rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.25rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding-left: var(--space-2);
+    }
+  </style>
+  <div class="inner">
+    <span class="eyebrow">Application for</span>
+    <h1>
+      <a class="target-name" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      
+      <span class="target-links">
+        <a href="https://github.com" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle">Senior Backend Engineer</p>
+    <p class="tagline">Round-3 phase-0 simulation. No Kimi tokens spent producing this.</p>
+  </div>
+</section>
+    
+  </main>
+</body>
+</html>
