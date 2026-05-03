@@ -1,0 +1,540 @@
+
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Casa Mortero — propuesta</title>
+  <meta name="description" content="Propuesta tailored para Casa Mortero.">
+  
+  <meta property="og:title" content="Casa Mortero — propuesta">
+  <meta property="og:description" content="Propuesta tailored para Casa Mortero.">
+  
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed.
+
+   Polish pass: matches the portfolio aesthetic — DM Sans + JetBrains
+   Mono, subtle grid background, accent glows, fadeInUp animations.
+   Fonts are preconnected in _base/page.html.j2. */
+
+
+
+:root {
+  /* shared typography (matches submodules/portfolio/index.html) */
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+
+  --transition: 0.3s ease;
+
+
+  /* felix-vino — restaurant_sales palette */
+  --bg: #ffffff;
+  --bg-elev: #f0ede8;
+  --fg: #14241c;
+  --fg-muted: #4a5e54;
+  --accent: #2d6a4f;
+  --accent-hover: #1f4d39;
+  --accent-soft: #d8ebe1;
+  --accent-glow: rgba(45, 106, 79, 0.18);
+  --gold: #c9a84c;
+  --rule: #d8d4cc;
+  --grid-color: rgba(45, 106, 79, 0.06);
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* subtle grid backdrop — matches the portfolio's main page so the
+   microsite reads as part of the same brand. Off-by-default on the
+   light wine/forest palettes (looks busy on warm tones); enabled by
+   wrapping in @supports (not needed here — they have low-contrast
+   --grid-color so it disappears). */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+
+/* fadeInUp keyframe — used by hero/cards across blocks */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive defaults */
+@media (max-width: 640px) {
+  section { padding: var(--space-6) var(--space-2); }
+}
+  </style>
+</head>
+<body>
+  
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-hero_target .lockup img.logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 4px;
+    }
+    .block-hero_target .lockup .meta-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim, var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .block-hero_target .target-name {
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .block-hero_target .subtitle {
+      font-size: 1.15rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.3rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+  </style>
+  <div class="inner">
+    
+    <div class="lockup">
+      
+      <span class="meta-line">Felix → Casa Mortero</span>
+    </div>
+    
+    <span class="eyebrow">Propuesta para</span>
+    <h1>
+      <a class="target-name" href="https://casamortero.com" target="_blank" rel="noopener">Casa Mortero</a>
+      
+      <span class="target-links">
+        <a href="https://casamortero.com" target="_blank" rel="noopener">↗ site</a>
+        <a href="https://casamortero.com/contact" target="_blank" rel="noopener">✉ contact</a>
+      </span>
+      
+    </h1>
+    <p class="subtitle">Selección VendVino para vuestra carta</p>
+    <p class="tagline">Cinco referencias que completan la mesa sin pisar lo que ya funciona.</p>
+  </div>
+</section>
+    
+      <section class="block-wine_selection_restaurant">
+  <style>
+    .block-wine_selection_restaurant { background: var(--bg); }
+    .block-wine_selection_restaurant .label {
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 var(--space-1);
+    }
+    .block-wine_selection_restaurant h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-2);
+      max-width: 32em;
+    }
+    .block-wine_selection_restaurant .intro {
+      font-size: 1.05rem; color: var(--fg-muted); max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-wine_selection_restaurant .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-wine_selection_restaurant .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .block-wine_selection_restaurant .name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0;
+    }
+    .block-wine_selection_restaurant .bodega {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-style: italic;
+      margin: 0;
+    }
+    .block-wine_selection_restaurant .style {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 var(--space-1);
+    }
+    .block-wine_selection_restaurant .note {
+      font-size: 0.95rem;
+      color: var(--fg);
+      margin: 0;
+    }
+    .block-wine_selection_restaurant .pairing {
+      font-size: 0.92rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: var(--space-1) 0 0;
+    }
+    .block-wine_selection_restaurant .pairing strong { color: var(--accent); }
+    .block-wine_selection_restaurant .badges {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: var(--space-1);
+    }
+    .block-wine_selection_restaurant .badge {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+    }
+    .block-wine_selection_restaurant .badge.gold {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .block-wine_selection_restaurant .closer {
+      max-width: 36em;
+      font-size: 1.05rem;
+      color: var(--fg);
+      border-left: 3px solid var(--gold);
+      padding-left: var(--space-2);
+      margin: 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Selección para tu carta</p>
+    <h2>Vinos elegidos pensando en tu cocina.</h2>
+    <p class="intro">Vuestra carta gira en torno a producto castellano y guisos largos, con buena cobertura de Ribera y Rioja pero un hueco claro en blancos atlánticos y vinos sin roble agresivo. Estas cinco referencias completan la mesa sin pisar lo que ya funciona en sala.</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="name">Akilia Villa San Lorenzo</p>
+        <p class="bodega">Akilia</p>
+        <p class="style">Tinto, Bierzo</p>
+        <p class="note">Mencía de altitud, fermentación en tinaja. Fresco, granate, sin maquillaje de roble — perfecto para acompañar carnes al carbón sin tapar el ahumado.</p>
+        <p class="pairing"><strong>Maridaje —</strong> Vuestra paletilla de lechazo a baja temperatura.</p>
+        
+        <div class="badges">
+          <span class="badge">€14-€18 PVP</span>
+          
+        </div>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">Atlántida</p>
+        <p class="bodega">Equipo Navazos</p>
+        <p class="style">Blanco amontillado, Jerez</p>
+        <p class="note">Palomino criado bajo velo, oxidativo en su segunda fase. Salinidad mineral, retrogusto largo, peso para platos potentes.</p>
+        <p class="pairing"><strong>Maridaje —</strong> Vuestras croquetas de cocido madrileño.</p>
+        
+        <div class="badges">
+          <span class="badge">€22-€28 PVP</span>
+          
+        </div>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">Mascarón de Proa</p>
+        <p class="bodega">Forjas del Salnés</p>
+        <p class="style">Blanco albariño, Rías Baixas</p>
+        <p class="note">Albariño sobre lías 12 meses. Tensión salina, manzana verde, peso suficiente para platos contundentes — el blanco que falta en cartas castellanas.</p>
+        <p class="pairing"><strong>Maridaje —</strong> Vuestro guiso de bacalao con garbanzos.</p>
+        
+        <div class="badges">
+          <span class="badge">€19-€24 PVP</span>
+          <span class="badge gold">95 Parker</span>
+        </div>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">Cuatro Pasos</p>
+        <p class="bodega">Martín Códax</p>
+        <p class="style">Tinto, Bierzo</p>
+        <p class="note">Mencía joven, sin barrica, fruta directa. Buen rotador para carta diaria sin elevar mucho el ticket.</p>
+        <p class="pairing"><strong>Maridaje —</strong> Vuestra carrillera ibérica al vino tinto.</p>
+        
+        <div class="badges">
+          <span class="badge">€11-€15 PVP</span>
+          
+        </div>
+        
+      </article>
+      
+      <article class="card">
+        <p class="name">Vino de Pasto</p>
+        <p class="bodega">Cota 45</p>
+        <p class="style">Blanco orange, Sanlúcar</p>
+        <p class="note">Palomino sin velo, sin fortificar. Maceración corta, color naranja claro, taninos textiles — la opción curiosa para clientes que piden algo distinto.</p>
+        <p class="pairing"><strong>Maridaje —</strong> Vuestro tartar de atún rojo con yema.</p>
+        
+        <div class="badges">
+          <span class="badge">€26-€32 PVP</span>
+          
+        </div>
+        
+      </article>
+      
+    </div>
+
+    <p class="closer">Cinco botellas, todas en stock esta semana en Madrid. Os llevo una de cada para cata el día que digáis — sin compromiso de pedido mínimo, sin presión.</p>
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: left;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 24em;
+      margin: 0 0 var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .block-next_steps_cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: #fff;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .secondary {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+  <div class="inner">
+    <h2>Cata sin compromiso, vuestra mesa, esta semana.</h2>
+    <p class="body">Una hora antes del servicio, las cinco botellas abiertas, valoración con el sommelier o el chef. Si encaja una sola referencia, ya ha valido la pena.</p>
+    <div class="actions">
+      <a class="cta"
+         href="mailto:hola@vendvino.es?subject=Re%3A%20VendVino%20%E2%80%94%20selecci%C3%B3n%20Casa%20Mortero">
+        Cata en vuestra mesa
+      </a>
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-dim, var(--fg-muted));
+      margin: 0;
+      opacity: 0.7;
+      letter-spacing: 0.06em;
+    }
+    .block-footer_built_by_agents a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+      text-decoration: none;
+    }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      
+        Esta página la genera de forma autónoma una plataforma de agentes propia —
+        privada, no comercial — y se publica dentro del portfolio open source en
+        <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a>.
+        Lo que demuestra la plataforma es lo que estás leyendo.
+      
+    </p>
+    
+      <p class="meta">build · 2026-05-03T09:39:05Z</p>
+    
+  </div>
+</section>
+    
+  </main>
+  
+</body>
+</html>
