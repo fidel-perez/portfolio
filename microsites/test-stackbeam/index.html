@@ -440,6 +440,141 @@ section > .inner { max-width: 880px; margin: 0 auto; }
   </div>
 </section>
     
+      <section class="block-competitor_ai_signals">
+  <style>
+    .block-competitor_ai_signals { background: var(--bg); }
+    .block-competitor_ai_signals .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-3);
+      max-width: 32em;
+    }
+    .block-competitor_ai_signals .framing {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-competitor_ai_signals .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .block-competitor_ai_signals .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-competitor_ai_signals .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .block-competitor_ai_signals .company {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals .company::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .block-competitor_ai_signals .headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0 0 var(--space-1);
+      line-height: 1.35;
+    }
+    .block-competitor_ai_signals .why {
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+    }
+    .block-competitor_ai_signals .source {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: 0;
+    }
+    .block-competitor_ai_signals .source a { color: var(--accent); }
+    .block-competitor_ai_signals .implication {
+      max-width: 38em;
+      font-size: 1.1rem;
+      color: var(--fg);
+      padding: var(--space-2) var(--space-3);
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Who's already moving this way in your space</p>
+    <h2>Peer teams that openly run their own tooling on themselves.</h2>
+    <p class="framing">You build agent tooling. Below are three peer-tier teams that have publicly described running their own platform internally — useful as a reference posture, not as a benchmark you have to match.
+</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="company">Anthropic</p>
+        <p class="headline">Published Claude Code as a thin client over their own MCP servers</p>
+        <p class="why">Direct peer in the agent-tooling space — the public posture is 'use the thing you ship'. Useful read for what eat-your-dogfood looks like in writing.</p>
+        <p class="source">
+          Source:
+          <a href="https://www.anthropic.com/news/claude-code" rel="noopener" target="_blank">
+            anthropic.com
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Replit</p>
+        <p class="headline">Released Replit Agent and have written about using it internally</p>
+        <p class="why">Adjacent posture: build the tool, live inside it, write about what breaks. A clean reference for the same operating mode.</p>
+        <p class="source">
+          Source:
+          <a href="https://blog.replit.com/replit-agent" rel="noopener" target="_blank">
+            blog.replit.com
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Vercel</p>
+        <p class="headline">v0 + AI SDK shipped alongside public posts on agent-assisted internal workflows</p>
+        <p class="why">Same audience. The recurring theme in their writing is that the team that dogfoods first tends to write the abstractions everyone else copies.</p>
+        <p class="source">
+          Source:
+          <a href="https://vercel.com/blog" rel="noopener" target="_blank">
+            vercel.com/blog
+          </a>
+        </p>
+      </article>
+      
+    </div>
+
+    <p class="implication">I run a generic 4-crew agent platform end-to-end on my own hardware — happy to walk through what works and what doesn't on a short call.</p>
+  </div>
+</section>
+    
       <section class="block-what_id_do">
   <style>
     .block-what_id_do { background: var(--bg-elev); }
