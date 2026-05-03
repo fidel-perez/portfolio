@@ -1210,6 +1210,14 @@
               <span class="tab-icon">&#9889;</span>
               AI strategy
             </button>
+            <button
+              class="tab"
+              data-target="microsites"
+              onclick="switchTab(this)"
+            >
+              <span class="tab-icon">&#127760;</span>
+              Microsites
+            </button>
           </div>
         </div>
       </nav>
@@ -5438,6 +5446,39 @@
             </a>
           </div>
         </div>
+        <!-- ═══ PER-TARGET MICROSITES ═══ -->
+        <div class="section" id="microsites">
+          <h2>Per-target microsites</h2>
+          <p class="section-desc">
+            For selected outreach targets I generate a small, private
+            page tailored to one company &mdash; the first thing they see
+            references their own engineering blog, their stated
+            priorities, and a 90-day plan written in their stack. The
+            page is itself the demo: it is auto-produced by an
+            agent platform I built and operate, and the artefact is
+            published here so the proof is public even when the
+            platform stays private.
+          </p>
+          <p class="section-note">
+            Each microsite lives at <code>microsites/&lt;company-slug&gt;/</code>
+            and is generated from a small declarative spec; no
+            per-target HTML is hand-written.
+          </p>
+          <div class="tags">
+            <span class="tag tag-purple">Agent platform</span>
+            <span class="tag tag-purple">CrewAI</span>
+            <span class="tag tag-purple">MCP</span>
+            <span class="tag tag-accent">Per-target render</span>
+            <span class="tag tag-green">Self-hosted</span>
+          </div>
+          <p style="margin-top: 1.25rem;">
+            <a
+              href="microsites/"
+              style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, var(--accent), var(--purple)); color: #fff; border-radius: 8px; font-family: var(--font-sans); font-weight: 700; font-size: 14px; text-decoration: none; box-shadow: 0 4px 20px var(--accent-glow);"
+            >See live microsites &rarr;</a>
+          </p>
+        </div>
+
       </div><!-- .panel -->
 
       <!-- Footer -->

@@ -1,0 +1,294 @@
+{
+  "$schema": "./portfolio.schema.json",
+  "identity": {
+    "name": "Fidel Perez Rubio",
+    "headline": "Senior Data Engineer",
+    "subheadline": "AI-First Engineering · Workflow Automation · 11+ Years",
+    "tagline": "Same principles at every scale — infrastructure as code, containerize everything, automate away toil, monitor proactively, and design for reliability so a small team can manage a large surface area.",
+    "location": "Spain (remote, EU-friendly)",
+    "links": {
+      "portfolio": "https://fidel-perez.github.io/portfolio/",
+      "github": "https://github.com/fidel-perez",
+      "linkedin": "https://www.linkedin.com/in/fidel-perez/",
+      "email": "fidelperez@gmail.com"
+    }
+  },
+  "metrics": {
+    "years_engineering": "11+",
+    "homelab_services": "30+",
+    "data_sources_prof": "20+",
+    "homelab_nodes": "2"
+  },
+  "stack": {
+    "languages": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "TypeScript"
+    ],
+    "data": [
+      "Snowflake",
+      "dbt",
+      "Airflow",
+      "Airbyte",
+      "DLT",
+      "Redshift",
+      "BigQuery",
+      "Oracle"
+    ],
+    "infra": [
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Ansible",
+      "ArgoCD",
+      "FluxCD",
+      "EKS",
+      "AWS",
+      "Caddy",
+      "Headscale",
+      "Tailscale"
+    ],
+    "ai": [
+      "CrewAI",
+      "LangGraph",
+      "Claude API",
+      "Anthropic SDK",
+      "OpenHands",
+      "Hermes",
+      "Langfuse",
+      "Playwright (browser-agent)",
+      "MCP servers"
+    ],
+    "observability": [
+      "Langfuse",
+      "Structured tracing",
+      "Telegram-driven alerting"
+    ],
+    "frameworks": [
+      "Vue.js",
+      "FastAPI",
+      "Flask"
+    ]
+  },
+  "themes": [
+    {
+      "id": "agent-orchestration",
+      "label": "Multi-agent orchestration",
+      "summary": "Builds production-style agent crews (CrewAI, OpenHands, Hermes) that own end-to-end workflows, not just chat."
+    },
+    {
+      "id": "self-hosted-everything",
+      "label": "Self-hosted everything",
+      "summary": "30+ services on a 2-node home lab (Raspberry Pi gateway + Ubuntu workhorse) with auto-DNS, backups, wake-on-demand."
+    },
+    {
+      "id": "ai-first-automation",
+      "label": "AI-first internal automation",
+      "summary": "Treats internal workflows as composable LLM tools rather than hand-rolled scripts. Observability-first agentic loops."
+    },
+    {
+      "id": "platform-reliability",
+      "label": "Platform reliability uplift",
+      "summary": "Pattern: take a platform with daily failures and drive to near-zero through IaC, GitOps, decoupling, and proactive monitoring."
+    },
+    {
+      "id": "greenfield-data",
+      "label": "Greenfield data-platform builds",
+      "summary": "Designed company-wide big-data infra from scratch for a major European e-commerce retailer; decoupled analytics from a 20-year-old Oracle bottleneck."
+    },
+    {
+      "id": "infrastructure-as-prompts",
+      "label": "Infrastructure-as-prompts",
+      "summary": "Per-target work shipped as declarative YAML + crew prompts; zero-HTML-bytes-per-target microsite system is itself a demo."
+    }
+  ],
+  "projects": [
+    {
+      "slug": "agent-company",
+      "title": "Agent-company-in-a-box",
+      "summary": "Generic 4-crew agent platform (research/architecture/development/marketing) running real workloads — including this microsite — without per-customer code.",
+      "anchor": "https://github.com/fidel-perez",
+      "tech": [
+        "CrewAI",
+        "OpenHands",
+        "Hermes",
+        "Paperclip",
+        "MCP",
+        "Docker"
+      ],
+      "themes": [
+        "agent-orchestration",
+        "ai-first-automation",
+        "infrastructure-as-prompts"
+      ],
+      "screenshot": null,
+      "headline_metric": "4 generic crews, N companies, zero per-company code"
+    },
+    {
+      "slug": "production-data-platform",
+      "title": "Production data platform (fintech SaaS)",
+      "summary": "De facto tech lead. Took a daily-failures pipeline to near-zero incidents. Owned infra, ingestion, orchestration, warehouse end-to-end. Led Redshift→Snowflake migration.",
+      "anchor": "https://fidel-perez.github.io/portfolio/#professional",
+      "tech": [
+        "Airflow",
+        "Snowflake",
+        "Terraform",
+        "EKS",
+        "DLT",
+        "Airbyte",
+        "ArgoCD",
+        "dbt"
+      ],
+      "themes": [
+        "platform-reliability",
+        "self-hosted-everything"
+      ],
+      "screenshot": null,
+      "headline_metric": "Daily pipeline failures → near-zero"
+    },
+    {
+      "slug": "greenfield-ecommerce",
+      "title": "Greenfield data platform — European e-commerce retailer",
+      "summary": "Built company-wide big-data infrastructure from scratch. Decoupled analytics from a 20-year-old production Oracle DB; eliminated availability risk and slashed costs.",
+      "anchor": "https://fidel-perez.github.io/portfolio/#greenfield",
+      "tech": [
+        "Python",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "FluxCD",
+        "Argo",
+        "Vue.js"
+      ],
+      "themes": [
+        "greenfield-data",
+        "platform-reliability"
+      ],
+      "screenshot": null,
+      "headline_metric": "Decoupled 20-yr Oracle bottleneck"
+    },
+    {
+      "slug": "homelab",
+      "title": "Home-lab infrastructure (30+ services, 2 nodes)",
+      "summary": "Two-node Pi+Ubuntu setup running 30+ containerized services with auto-DNS, backups, rebuilds, wake-on-demand. Self-healing zero-touch.",
+      "anchor": "https://fidel-perez.github.io/portfolio/#homelab",
+      "tech": [
+        "Docker",
+        "Ansible",
+        "Caddy",
+        "Headscale",
+        "Playwright",
+        "Python"
+      ],
+      "themes": [
+        "self-hosted-everything",
+        "platform-reliability"
+      ],
+      "screenshot": null,
+      "headline_metric": "30+ services, zero touch"
+    },
+    {
+      "slug": "raspihub",
+      "title": "RaspiHub — Docker manager dashboard",
+      "summary": "Custom dashboard for the home-lab infra: real-time CPU/mem/uptime metrics, container start/stop, app launcher, media-server controls.",
+      "anchor": "https://fidel-perez.github.io/portfolio/#showcase",
+      "tech": [
+        "Python",
+        "Docker API",
+        "Self-hosted"
+      ],
+      "themes": [
+        "self-hosted-everything"
+      ],
+      "screenshot": "custom_apps_showcase/raspihub-mainone.png",
+      "headline_metric": "End-to-end ops dashboard from scratch"
+    },
+    {
+      "slug": "food-macro-tracker",
+      "title": "Food macro tracker",
+      "summary": "Nutrition app: daily macro targets, food DB, per-item breakdown, total composition. Keto-friendly with net-carb + ketone targets.",
+      "anchor": "https://fidel-perez.github.io/food-macro-tracker",
+      "tech": [
+        "Python",
+        "Full-stack",
+        "Self-hosted"
+      ],
+      "themes": [
+        "ai-first-automation"
+      ],
+      "screenshot": "custom_apps_showcase/foodmacro-global view.png",
+      "headline_metric": "AI-built full-stack app"
+    },
+    {
+      "slug": "todo-app",
+      "title": "Todo app",
+      "summary": "Task manager with nested categories, drag-and-drop, rich edit modal, priority management. Replaces off-the-shelf with a tailored workflow.",
+      "anchor": "https://fidel-perez.github.io/todo-app",
+      "tech": [
+        "Python",
+        "Full-stack",
+        "Self-hosted"
+      ],
+      "themes": [
+        "ai-first-automation"
+      ],
+      "screenshot": "custom_apps_showcase/todo-main view.png",
+      "headline_metric": "AI-built full-stack app"
+    },
+    {
+      "slug": "reminder-manager",
+      "title": "Reminder manager",
+      "summary": "Recurring task reminders with configurable intervals, Telegram notifications, countdown + snooze. Used for medication, vehicle inspections, etc.",
+      "anchor": "https://fidel-perez.github.io/portfolio/#showcase",
+      "tech": [
+        "Python",
+        "Telegram",
+        "Self-hosted"
+      ],
+      "themes": [
+        "ai-first-automation",
+        "self-hosted-everything"
+      ],
+      "screenshot": "custom_apps_showcase/taskreminder-mainpage.png",
+      "headline_metric": "Self-hosted Telegram-integrated"
+    },
+    {
+      "slug": "knowledge-cards",
+      "title": "Knowledge cards",
+      "summary": "Flashcard knowledge-retention app: decks, flip-through study mode, progress tracking.",
+      "anchor": "https://fidel-perez.github.io/knowledge-cards/",
+      "tech": [
+        "JavaScript",
+        "Full-stack"
+      ],
+      "themes": [
+        "ai-first-automation"
+      ],
+      "screenshot": "custom_apps_showcase/cards_first.png",
+      "headline_metric": "AI-built JS app"
+    }
+  ],
+  "career_summary": [
+    {
+      "role": "Senior Data Engineer · De facto tech lead",
+      "company": "Fintech SaaS (Remote)",
+      "dates": "Nov 2022 – Present",
+      "highlights": [
+        "Led Redshift→Snowflake migration end-to-end",
+        "Daily pipeline failures → near-zero unforced errors",
+        "Real-time ingestion: SQS → Lambda → Firehose → S3 → Snowpipe",
+        "Full IaC with Terraform, GitOps via ArgoCD, all workloads on EKS"
+      ]
+    }
+  ],
+  "value_props_for_outreach": [
+    "Ships generic agent platforms; per-target work is config not code.",
+    "Takes broken pipelines to near-zero failures via IaC + GitOps + decoupling.",
+    "Builds the full vertical: infra → data → app → agent loop.",
+    "Operates 30+ services on 2 nodes with no on-call team — leverage is the product.",
+    "Treats internal workflows as composable LLM tools, observability-first."
+  ],
+  "regenerated_at": "2026-05-03",
+  "source": "submodules/portfolio/index.html"
+}
