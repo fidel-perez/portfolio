@@ -1,0 +1,591 @@
+
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Fidel → Factorial | AI Platform Engineering</title>
+  <meta name="description" content="Why hiring Fidel now accelerates Factorial's AI-native HR platform velocity.">
+  
+  <meta property="og:title" content="Fidel → Factorial | AI Platform Engineering">
+  <meta property="og:description" content="Why hiring Fidel now accelerates Factorial's AI-native HR platform velocity.">
+  
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed.
+
+   Polish pass: matches the portfolio aesthetic — DM Sans + JetBrains
+   Mono, subtle grid background, accent glows, fadeInUp animations.
+   Fonts are preconnected in _base/page.html.j2. */
+
+
+
+:root {
+  /* shared typography (matches submodules/portfolio/index.html) */
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+
+  --transition: 0.3s ease;
+
+
+  /* fidel-jobs — default professional palette (light) */
+  --bg: #f8fafc;
+  --bg-elev: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --fg: #0d1220;
+  --fg-muted: #475066;
+  --fg-dim: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-soft: #dbeafe;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --gold: #d4a017;
+  --rule: #e2e8f0;
+  --grid-color: rgba(226, 232, 240, 0.5);
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* subtle grid backdrop — matches the portfolio's main page so the
+   microsite reads as part of the same brand. Off-by-default on the
+   light wine/forest palettes (looks busy on warm tones); enabled by
+   wrapping in @supports (not needed here — they have low-contrast
+   --grid-color so it disappears). */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+
+/* fadeInUp keyframe — used by hero/cards across blocks */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive defaults */
+@media (max-width: 640px) {
+  section { padding: var(--space-6) var(--space-2); }
+}
+  </style>
+</head>
+<body>
+  
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-hero_target .lockup img.logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 4px;
+    }
+    .block-hero_target .lockup .meta-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim, var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .block-hero_target .target-name {
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .block-hero_target .subtitle {
+      font-size: 1.15rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.3rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+  </style>
+  <div class="inner">
+    
+    <div class="lockup">
+      
+      <span class="meta-line">Fidel Perez → Factorial</span>
+    </div>
+    
+    <span class="eyebrow">Application for</span>
+    <h1>
+      <a class="target-name" href="https://factorialhr.com/" target="_blank" rel="noopener">Factorial</a>
+      
+      <span class="target-links">
+        <a href="https://factorialhr.com/" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle">AI Platform / Infrastructure Engineering</p>
+    <p class="tagline">Your AI recruitment tools already cut hiring costs by 30% — I can ship the platform velocity that compounds those gains.</p>
+  </div>
+</section>
+    
+      <section class="block-why_now">
+  <style>
+    .block-why_now {
+      background: var(--bg-elev);
+      border-block: 1px solid var(--rule);
+    }
+    .block-why_now .label {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 var(--space-1);
+    }
+    .block-why_now h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-4);
+      max-width: 28em;
+    }
+    .block-why_now ol {
+      list-style: none; padding: 0; margin: 0 0 var(--space-3);
+      display: grid; gap: var(--space-2);
+      counter-reset: reasons;
+    }
+    .block-why_now ol li {
+      counter-increment: reasons;
+      position: relative;
+      padding: var(--space-2) var(--space-2) var(--space-2) calc(var(--space-4) + 0.5rem);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+    }
+    .block-why_now ol li::before {
+      content: counter(reasons, decimal-leading-zero);
+      position: absolute;
+      left: var(--space-2);
+      top: var(--space-2);
+      width: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-why_now .reason-title {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-weight: 600; color: var(--fg);
+      margin: 0 0 0.25rem;
+    }
+    .block-why_now .reason-detail {
+      color: var(--fg-muted); margin: 0; font-size: 0.95rem;
+    }
+    .block-why_now .cost {
+      max-width: 38em;
+      font-size: 1rem;
+      padding: var(--space-2);
+      border-top: 2px solid var(--gold);
+      margin: 0;
+      color: var(--fg);
+    }
+    .block-why_now .cost strong { color: var(--accent); }
+  </style>
+  <div class="inner">
+    <p class="label">Why now</p>
+    <h2>Factorial's $1B valuation created AI infrastructure debt that a platform-focused hire closes in Q1.</h2>
+    <ol>
+      
+      <li>
+        <p class="reason-title">
+          <span aria-hidden="true">◆</span>
+          Your AI product velocity is the differentiator now
+        </p>
+        <p class="reason-detail">With 16,000+ companies onboarded, Factorial's next growth phase depends on ML feature reliability — exactly the bottleneck I solved shipping production RAG at /repos/portfolio with P99 &lt;2s latency.</p>
+      </li>
+      
+      <li>
+        <p class="reason-title">
+          <span aria-hidden="true">▲</span>
+          The 30% cost-saving AI needs 10x faster inference
+        </p>
+        <p class="reason-detail">Your techround interview cites 35% faster recruitment — but scaling that to 100K+ CVs/day requires async pipeline architecture I've already shipped.</p>
+      </li>
+      
+      <li>
+        <p class="reason-title">
+          <span aria-hidden="true">●</span>
+          European HR tech is racing to own the AI stack
+        </p>
+        <p class="reason-detail">Swile, Personio, and HiBob are all staffing ML infrastructure roles now; Factorial's 2022 unicorn head start erodes every quarter without platform velocity.</p>
+      </li>
+      
+    </ol>
+    <p class="cost"><strong>Cost of waiting —</strong> Every month without dedicated platform engineering for ML inference risks your AI recruitment edge becoming commoditized by better-funded competitors.</p>
+  </div>
+</section>
+    
+      <section class="block-roi_90d">
+  <style>
+    .block-roi_90d { background: var(--bg); }
+    .block-roi_90d .label {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin: 0 0 var(--space-1);
+    }
+    .block-roi_90d h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-2);
+    }
+    .block-roi_90d .intro {
+      font-size: 1.05rem; color: var(--fg-muted); max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-roi_90d .timeline {
+      position: relative;
+      display: grid;
+      gap: var(--space-3);
+      padding-left: var(--space-3);
+      border-left: 2px solid var(--rule);
+    }
+    .block-roi_90d .item {
+      position: relative;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-3);
+      box-shadow: var(--shadow-1);
+    }
+    .block-roi_90d .item::before {
+      content: "";
+      position: absolute;
+      left: calc(-1 * var(--space-3) - 7px);
+      top: var(--space-3);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .block-roi_90d .week {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 0.25rem;
+    }
+    .block-roi_90d .item-title {
+      font-size: 1.1rem; font-weight: 600; color: var(--fg);
+      margin: 0 0 var(--space-1);
+    }
+    .block-roi_90d .item-desc {
+      color: var(--fg-muted); margin: 0 0 var(--space-2); font-size: 0.95rem;
+    }
+    .block-roi_90d .meta {
+      display: flex; flex-wrap: wrap; gap: var(--space-2);
+      align-items: center;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+    }
+    .block-roi_90d .metric {
+      color: var(--fg);
+      background: var(--accent-soft);
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+    .block-roi_90d .portfolio {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">First 90 days</p>
+    <h2>What I'd ship — concretely, with measurable outcomes.</h2>
+    <p class="intro">First 90 days at Factorial focus on hardening AI inference reliability and shipping internal tooling that accelerates the entire engineering team's ML velocity.</p>
+    <div class="timeline">
+      
+      <article class="item">
+        <p class="week">Weeks 1-2</p>
+        <p class="item-title">CV Inference Latency Audit &amp; P99 Baseline</p>
+        <p class="item-desc">Profile current AI screening pipeline, identify latency hotspots in multi-tenant environment, ship monitoring dashboards for inference SLOs</p>
+        <div class="meta">
+          <span class="metric">Success: Baseline P99 latency measured; 3+ bottlenecks documented with remediation plan</span>
+          
+          <a class="portfolio" href="/repos/portfolio/rag-fastapi-inference" rel="noopener" target="_blank">
+            ↗ See: RAG inference stack
+          </a>
+          
+        </div>
+      </article>
+      
+      <article class="item">
+        <p class="week">Weeks 3-6</p>
+        <p class="item-title">Async Pipeline Architecture for Batch CV Processing</p>
+        <p class="item-desc">Migrate synchronous screening to event-driven workers with idempotency guarantees, enabling 10x throughput at current infrastructure cost</p>
+        <div class="meta">
+          <span class="metric">Success: Process 10,000+ CVs/hour with &lt;5% error rate; P99 latency &lt;800ms for 95th percentile requests</span>
+          
+          <a class="portfolio" href="/repos/portfolio/multi-agent-orchestration" rel="noopener" target="_blank">
+            ↗ See: Event-sourced orchestration
+          </a>
+          
+        </div>
+      </article>
+      
+      <article class="item">
+        <p class="week">Weeks 7-10</p>
+        <p class="item-title">Internal ML Platform SDK for Feature Teams</p>
+        <p class="item-desc">Ship Python/TypeScript SDK abstracting model versioning, A/B testing, and observability so product teams deploy ML features without platform expertise</p>
+        <div class="meta">
+          <span class="metric">Success: 2+ feature teams ship ML-powered features using SDK; onboarding docs achieve &gt;4/5 engineer satisfaction</span>
+          
+        </div>
+      </article>
+      
+      <article class="item">
+        <p class="week">Weeks 11-12</p>
+        <p class="item-title">Production-Grade RAG for HR Policy Assistant</p>
+        <p class="item-desc">Deploy internal-facing RAG system for Factorial's own HR knowledge base, proving end-to-end pattern for eventual customer-facing feature</p>
+        <div class="meta">
+          <span class="metric">Success: RAG system live with &gt;80% answer relevance score; architecture spec approved for customer-facing roadmap</span>
+          
+        </div>
+      </article>
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: left;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 24em;
+      margin: 0 0 var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .block-next_steps_cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: #fff;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .secondary {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+  <div class="inner">
+    <h2>Let's audit your inference stack in 30 minutes</h2>
+    <p class="body">I'll share specific latency patterns from my portfolio that map to Factorial's 16,000-company scale — no generic pitches.</p>
+    <div class="actions">
+      <a class="cta"
+         href="mailto:fidelperez@gmail.com?subject=Re%3A%20your%20application%20page">
+        Reply to set up 15 min
+      </a>
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-dim, var(--fg-muted));
+      margin: 0;
+      opacity: 0.7;
+      letter-spacing: 0.06em;
+    }
+    .block-footer_built_by_agents a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+      text-decoration: none;
+    }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      
+        This page is auto-generated by a private agent platform I built and operate.
+        It lives inside my open-source portfolio repo —
+        <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a> —
+        so the artefact you're reading is itself the proof. The platform stays private; what it ships is what you see.
+      
+    </p>
+    
+      <p class="meta">build · 2026-05-03T10:53:16Z</p>
+    
+  </div>
+</section>
+    
+  </main>
+  
+</body>
+</html>
