@@ -1,0 +1,338 @@
+
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Fidel Perez — for Lighthouse (Senior MLOps / AI Solutions / Senior DE)</title>
+  <meta name="description" content="A 90-day proposal for Lighthouse — MLOps for Connect AI + KITT, an MCP layer over the rate warehouse, and an agent-driven dataeng cycle.">
+  <link rel="canonical" href="https://fidel-perez.github.io/portfolio/microsites/lighthouse/">
+  <meta property="og:title" content="Fidel Perez — for Lighthouse">
+  <meta property="og:description" content="A 90-day proposal for Lighthouse — MLOps for Connect AI + KITT, an MCP layer over the rate warehouse, and an agent-driven dataeng cycle.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+:root {
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px;
+  --space-1: 0.5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 2rem; --space-6: 3rem; --space-8: 5rem;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+  --transition: 0.3s ease;
+  /* fidel-jobs — slate_indigo (default professional) */
+  --bg: #f8fafc; --bg-elev: #ffffff; --bg-card-hover: #f1f5f9;
+  --fg: #0d1220; --fg-muted: #475066; --fg-dim: #94a3b8;
+  --accent: #3b82f6; --accent-hover: #2563eb; --accent-soft: #dbeafe;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --gold: #d4a017; --rule: #e2e8f0; --grid-color: rgba(226, 232, 240, 0.5);
+}
+:root[data-theme="dark"] {
+  --bg: #0a0e17; --bg-elev: #111827; --bg-card-hover: #1a2332;
+  --fg: #e2e8f0; --fg-muted: #94a3b8; --fg-dim: #64748b;
+  --accent: #3b82f6; --accent-hover: #60a5fa;
+  --accent-soft: rgba(59, 130, 246, 0.12); --accent-glow: rgba(59, 130, 246, 0.25);
+  --gold: #f59e0b; --rule: #1e293b; --grid-color: rgba(30, 41, 59, 0.4);
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.5), 0 16px 32px rgba(0,0,0,0.4);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); transition: background-color 0.25s ease, color 0.25s ease; }
+body { font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; position: relative; min-height: 100vh; }
+body::before {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 640px) { section { padding: var(--space-6) var(--space-2); } }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement;var n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}})()">
+    <span class="toggle-icon" aria-hidden="true">◐</span>
+  </button>
+  <style>
+    .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;border:1px solid var(--rule);background:var(--bg-elev);color:var(--fg);font-family:var(--font-mono);font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all var(--transition);}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  </style>
+  <script>
+    (function(){
+      try{ var s=localStorage.getItem('theme'); if(s){document.documentElement.dataset.theme=s;} }catch(e){}
+    })();
+  </script>
+
+  <main>
+    <section class="block-hero_target">
+  <style>
+    .block-hero_target { background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%); border-bottom: 1px solid var(--rule); padding-block: var(--space-8) var(--space-6); animation: fadeInUp 0.6s ease-out both; }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+    .block-hero_target .lockup .meta-line { font-family: var(--font-mono); font-size: 0.78rem; color: var(--fg-dim, var(--fg-muted)); text-transform: uppercase; letter-spacing: 0.18em; }
+    .block-hero_target .eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 0.3rem 0.7rem; border-radius: var(--radius-sm); margin-bottom: var(--space-2); }
+    .block-hero_target h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); margin: 0 0 var(--space-1); color: var(--fg); font-weight: 700; }
+    .block-hero_target .target-name { color: var(--accent); text-decoration: none; background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%); -webkit-text-fill-color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links { display: inline-flex; gap: var(--space-2); font-family: var(--font-mono); font-size: 0.85rem; color: var(--fg-muted); margin-left: var(--space-2); vertical-align: middle; }
+    .block-hero_target .target-links a { color: var(--fg-muted); text-decoration: none; border-bottom: 1px dotted var(--fg-muted); }
+    .block-hero_target .target-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .block-hero_target .subtitle { font-size: 1.15rem; color: var(--fg-muted); margin: 0 0 var(--space-3); }
+    .block-hero_target .tagline { font-size: 1.3rem; max-width: 36em; margin: 0; color: var(--fg); border-left: 3px solid var(--accent); padding: var(--space-1) var(--space-3); background: var(--accent-soft); border-radius: 0 var(--radius-md) var(--radius-md) 0; box-shadow: var(--shadow-glow); animation: fadeInUp 0.7s ease-out 0.15s both; }
+  </style>
+  <div class="inner">
+    <div class="lockup">
+      <span class="meta-line">Fidel Perez → Lighthouse</span>
+    </div>
+    <span class="eyebrow">Proposal for</span>
+    <h1>
+      <a class="target-name" href="https://www.mylighthouse.com/" target="_blank" rel="noopener">Lighthouse</a>
+      <span class="target-links">
+        <a href="https://www.mylighthouse.com/" target="_blank" rel="noopener">↗ site</a>
+        <a href="https://job-boards.eu.greenhouse.io/lighthouse" target="_blank" rel="noopener">↗ careers</a>
+      </span>
+    </h1>
+    <p class="subtitle">Senior MLOps Engineer · Senior AI Solutions Engineer · Senior Data Engineer — Remote (Spain → EU)</p>
+    <p class="tagline">Three doors are open at the same time. Same engineer can credibly walk through any of them — and the proposal below is why that's the conversation worth having.</p>
+  </div>
+</section>
+
+<section class="block-one_dev_threat">
+  <style>
+    .block-one_dev_threat { background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%); border-block: 1px solid var(--rule); animation: fadeInUp 0.6s ease-out both; }
+    .block-one_dev_threat .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-2); }
+    .block-one_dev_threat h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); max-width: 22em; margin: 0 0 var(--space-3); color: var(--fg); line-height: 1.2; font-weight: 700; }
+    .block-one_dev_threat h2 .accent { color: var(--accent); background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%); -webkit-text-fill-color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .block-one_dev_threat .body { font-size: 1.1rem; color: var(--fg); max-width: 38em; margin: 0 0 var(--space-3); line-height: 1.7; }
+    .block-one_dev_threat .body strong { color: var(--accent); font-weight: 600; }
+    .block-one_dev_threat .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+    .block-one_dev_threat .pillars li { padding: var(--space-2) var(--space-3); background: var(--bg-elev); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 0 0 var(--radius-md) var(--radius-md); box-shadow: var(--shadow-1); }
+    .block-one_dev_threat .pillars .ptitle { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.4rem; }
+    .block-one_dev_threat .pillars .pbody { font-size: 0.95rem; color: var(--fg); margin: 0; line-height: 1.55; }
+  </style>
+  <div class="inner">
+    <p class="label">The thing the org chart doesn't show</p>
+    <h2>You're hiring DE, MLOps, AI Solutions and Platform Eng <span class="accent">at the same time</span>. The bottleneck is the seam between them, not any one of them.</h2>
+    <p class="body">Connect AI is in-market on the ChatGPT store. KITT is in-market with The Hotels Network. The data platform ingests <strong>1.7B rates / day</strong>. Three Senior Data Engineer reqs, two Senior MLOps Engineer reqs, a Senior AI Solutions Engineer, a Senior Director of Platform Engineering and DevOps reqs are all open right now. That hiring shape says the platform is consolidating — and the rate-limit on the next AI product is almost never <em>any one</em> of those roles in isolation. It's the seam: an MLOps loop that can defend Connect AI's quality under partner load, an MCP-shaped surface over the rate warehouse so internal and customer-facing AI surfaces share one query plane, and a dataeng cycle compressed enough that the platform team stops being the rate-limiter on every product team. I have shipped exactly that seam at a fintech with the same shape.</p>
+    <ul class="pillars">
+      <li>
+        <p class="ptitle">MLOps for AI in production</p>
+        <p class="pbody">Langfuse-shaped tracing, golden-set evals, cost / latency / quality slicing — the discipline that lets you upgrade a model behind Connect AI without a partner-side incident.</p>
+      </li>
+      <li>
+        <p class="ptitle">One query plane, two consumers</p>
+        <p class="pbody">An MCP layer over BigQuery + BigTable that internal agents and customer-facing AI surfaces share — instead of N bespoke SQL clients reinventing the same business logic.</p>
+      </li>
+      <li>
+        <p class="ptitle">Compressing the dataeng cycle</p>
+        <p class="pbody">Agent crews for schema PRs, dbt model authoring, Dataflow scaffolding, on-call triage. So the next AI product doesn't wait three sprints for a pipeline.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block-speed_advantage">
+  <style>
+    .block-speed_advantage { background: var(--bg); }
+    .block-speed_advantage .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-1); }
+    .block-speed_advantage h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 var(--space-3); color: var(--fg); max-width: 28em; }
+    .block-speed_advantage .body { font-size: 1.05rem; color: var(--fg); max-width: 38em; margin: 0 0 var(--space-3); line-height: 1.7; }
+    .block-speed_advantage .chips { display: flex; flex-wrap: wrap; gap: var(--space-1); list-style: none; padding: 0; margin: 0; }
+    .block-speed_advantage .chips li { display: inline-flex; flex-direction: column; gap: 0.1rem; align-items: flex-start; padding: var(--space-1) var(--space-2); background: var(--bg-elev); border: 1px solid var(--rule); border-radius: var(--radius-sm); min-width: 8rem; }
+    .block-speed_advantage .chip-num { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+    .block-speed_advantage .chip-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  </style>
+  <div class="inner">
+    <p class="label">Why this is the right hire for the seam</p>
+    <h2>I've been the seam-engineer at a fintech data platform for two years. Same shape, smaller scale.</h2>
+    <p class="body">At my current role I built the agent-driven development lifecycle on top of the data platform — Hermes (operator chat layer) · CrewAI crews (architecture / development / review) · LangGraph flows · OpenHands autonomous coder · custom MCP servers fronting Airflow / Snowflake / EKS / ArgoCD / Datadog · Langfuse for end-to-end LLM observability and evals — triggered by GitHub webhooks across Terraform, ArgoCD, and Python/Airflow repos. The feature/fix cycle compressed from days/weeks to hours/minutes. Daily pipeline failures dropped to near-zero. That is the loop that maps onto Lighthouse's three-doors-at-once hiring shape, not into one of the JD bullet lists.</p>
+    <ul class="chips">
+      <li><span class="chip-num">days→min</span><span class="chip-label">feature/fix cycle compressed</span></li>
+      <li><span class="chip-num">≈ 0</span><span class="chip-label">daily pipeline failures (was: many)</span></li>
+      <li><span class="chip-num">11+ yrs</span><span class="chip-label">Python · SQL · cloud · streaming</span></li>
+      <li><span class="chip-num">30+</span><span class="chip-label">services self-hosted today</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block-competitor_ai_signals">
+  <style>
+    .block-competitor_ai_signals { background: var(--bg); }
+    .block-competitor_ai_signals .label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 var(--space-1); }
+    .block-competitor_ai_signals h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 0 0 var(--space-3); max-width: 32em; }
+    .block-competitor_ai_signals .framing { font-size: 1.05rem; color: var(--fg-muted); max-width: 38em; margin: 0 0 var(--space-4); }
+    .block-competitor_ai_signals .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-2); margin-bottom: var(--space-4); }
+    .block-competitor_ai_signals .card { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: var(--radius-md); padding: var(--space-3); box-shadow: var(--shadow-1); transition: transform 120ms ease, box-shadow 120ms ease; }
+    .block-competitor_ai_signals .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .block-competitor_ai_signals .company { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--accent); margin: 0 0 var(--space-1); }
+    .block-competitor_ai_signals .company::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .block-competitor_ai_signals .headline { font-size: 1.05rem; font-weight: 600; color: var(--fg); margin: 0 0 var(--space-1); line-height: 1.35; }
+    .block-competitor_ai_signals .why { font-size: 0.95rem; color: var(--fg-muted); margin: 0 0 var(--space-2); }
+    .block-competitor_ai_signals .source { font-size: 0.82rem; color: var(--fg-muted); border-top: 1px solid var(--rule); padding-top: var(--space-1); margin: 0; }
+    .block-competitor_ai_signals .source a { color: var(--accent); }
+    .block-competitor_ai_signals .implication { max-width: 38em; font-size: 1.1rem; color: var(--fg); padding: var(--space-2) var(--space-3); background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 0; }
+  </style>
+  <div class="inner">
+    <p class="label">What your peer set has already shipped</p>
+    <h2>Three references already ahead of where the JD positions Lighthouse.</h2>
+    <p class="framing">All three operate on the same axis: AI-native surfaces over a streaming data platform, with the ML observability discipline that lets the team ship model changes without breaking partners.</p>
+    <div class="grid">
+      <article class="card">
+        <p class="company">Booking.com</p>
+        <p class="headline">Genius AI Trip Planner and large-scale LLM personalization on a Kafka + warehouse stack — production for >1B rates/queries.</p>
+        <p class="why">Direct peer on data scale. The interesting public signal is not that they shipped AI features — it's that their engineering blog talks openly about evaluation harnesses and cost governance per request class. That's the maturity bar Connect AI will be measured against.</p>
+        <p class="source">Source: <a href="https://booking.ai/" rel="noopener" target="_blank">booking.ai</a></p>
+      </article>
+      <article class="card">
+        <p class="company">Mews (PMS)</p>
+        <p class="headline">Smaller, AI-forward hospitality SaaS shipping internal copilots over their PMS data plane — same vertical, different layer.</p>
+        <p class="why">Useful as a "what AI looks like at our scale, not Booking's" reference. Their public posts describe wiring LLM features into existing operational data — exactly the §2.2 MCP-over-warehouse pattern, customer-facing.</p>
+        <p class="source">Source: <a href="https://www.mews.com/en/blog" rel="noopener" target="_blank">mews.com/blog</a></p>
+      </article>
+      <article class="card">
+        <p class="company">Cloudbeds</p>
+        <p class="headline">Hospitality SaaS peer that hired an MLOps lead before they hired their second ML engineer — the org-shape you eventually need.</p>
+        <p class="why">Indirectly relevant: it's the same realisation the Lighthouse hiring board is now expressing — that the constraint is the loop around the model, not the model. Two MLOps reqs at once is exactly that move.</p>
+        <p class="source">Source: <a href="https://www.cloudbeds.com/articles/" rel="noopener" target="_blank">cloudbeds.com/articles</a></p>
+      </article>
+    </div>
+    <p class="implication">None of these three is a hyperscaler. The pattern travels to a team Lighthouse's size with the right seam-engineer — not with a six-month transformation programme.</p>
+  </div>
+</section>
+
+<section class="block-case_study_pick">
+  <style>
+    .block-case_study_pick { background: var(--bg-elev); }
+    .block-case_study_pick .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-1); }
+    .block-case_study_pick h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 var(--space-3); max-width: 28em; color: var(--fg); }
+    .block-case_study_pick .card { display: grid; grid-template-columns: 1fr; gap: var(--space-3); padding: var(--space-3); background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-md); box-shadow: var(--shadow-1); transition: transform 120ms ease, box-shadow 120ms ease; }
+    .block-case_study_pick .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .block-case_study_pick .body h3 { font-size: 1.25rem; margin: 0 0 var(--space-1); color: var(--fg); }
+    .block-case_study_pick .body p { font-size: 1rem; color: var(--fg-muted); margin: 0 0 var(--space-2); line-height: 1.6; }
+    .block-case_study_pick .body .why { color: var(--fg); border-left: 3px solid var(--accent); padding: var(--space-1) var(--space-2); background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: var(--space-2); }
+    .block-case_study_pick .tech { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 var(--space-2); }
+    .block-case_study_pick .tech li { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.18rem 0.5rem; background: var(--bg-elev); border: 1px solid var(--rule); border-radius: var(--radius-sm); color: var(--fg-muted); }
+    .block-case_study_pick .deep-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); text-decoration: none; border-bottom: 1px dotted currentColor; }
+  </style>
+  <div class="inner">
+    <p class="label">Closest match in my portfolio</p>
+    <h2>Already in production on a stack that overlaps with yours.</h2>
+    <div class="card">
+      <div class="body">
+        <h3>Production data platform (fintech SaaS) — daily failures to near-zero, dataeng cycle compressed days→minutes</h3>
+        <p class="why">Same shape as Lighthouse's current step: a streaming-first data platform feeding multiple product surfaces, where the bottleneck is the loop around the platform — not the platform itself.</p>
+        <p>De facto tech lead in a 2-3 person team. Owner of infra, ingestion, orchestration, warehouse and an agent-driven development lifecycle that compressed merge-to-prod from days to minutes. Led the Redshift→Snowflake migration. Took daily pipeline failures to near-zero unforced errors. Same Langfuse + custom-MCP + crew-based discipline that maps onto the §2.1 / §2.2 proposals above, one swap of cloud vendors away.</p>
+        <ul class="tech">
+          <li>Airflow</li><li>Snowflake</li><li>Terraform</li><li>EKS</li><li>ArgoCD</li><li>dbt</li><li>Langfuse</li><li>CrewAI</li><li>OpenHands</li><li>Custom MCP</li>
+        </ul>
+        <a class="deep-link" href="https://fidel-perez.github.io/portfolio/#professional" rel="noopener" target="_blank">↗ full case in the portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block-what_id_do">
+  <style>
+    .block-what_id_do { background: var(--bg-elev); }
+    .block-what_id_do .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-1); }
+    .block-what_id_do h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 var(--space-3); color: var(--fg); max-width: 28em; }
+    .block-what_id_do .body { font-size: 1.1rem; color: var(--fg); max-width: 38em; margin: 0 0 var(--space-3); line-height: 1.7; }
+    .block-what_id_do .anchors { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+    .block-what_id_do .anchors li a { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.85rem; padding: 0.4rem 0.8rem; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-sm); color: var(--accent); transition: all var(--transition); text-decoration: none; }
+    .block-what_id_do .anchors li a:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+  </style>
+  <div class="inner">
+    <p class="label">What I'd do in the first ~90 days</p>
+    <h2>Concrete, not aspirational.</h2>
+    <p class="body">First focus: stand up the MLOps loop around Connect AI and KITT — Langfuse-shaped tracing, a small golden eval set per partner / query class, cost-per-conversion tagging, and a regression harness that lets the team change models without partner-side surprises. Second focus: an MCP server over BigQuery + BigTable + dbt manifests, scoped initially to internal RM-consultant and customer-success queries. Same MCP, two consumers later — internal agents today, customer-facing AI surfaces (Connect AI v2, future product features) tomorrow. Third focus: an agent-loop for the dataeng team itself — schema-change PRs, dbt model authoring with golden-row regression, on-call triage of pipeline failures with first-pass root-cause classification. Same playbook I shipped at a fintech, applied to your stack. Pick any one of those three doors as the starting role; the proposal does not change.</p>
+    <ul class="anchors">
+      <li><a href="https://fidel-perez.github.io/portfolio/#professional" target="_blank" rel="noopener">↗ fintech data platform case</a></li>
+      <li><a href="https://fidel-perez.github.io/portfolio/#showcase" target="_blank" rel="noopener">↗ homelab + RaspiHub</a></li>
+      <li><a href="https://job-boards.eu.greenhouse.io/lighthouse" target="_blank" rel="noopener">↗ all open Lighthouse roles</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta { background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%); border-block: 1px solid var(--rule); text-align: left; }
+    .block-next_steps_cta h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); max-width: 24em; margin: 0 0 var(--space-2); color: var(--fg); }
+    .block-next_steps_cta .body { max-width: 32em; margin: 0 0 var(--space-3); color: var(--fg-muted); font-size: 1.05rem; line-height: 1.7; }
+    .block-next_steps_cta .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+    .block-next_steps_cta .cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; padding: 0.8rem 1.4rem; border-radius: var(--radius-md); font-weight: 600; font-size: 1rem; text-decoration: none; box-shadow: var(--shadow-2); transition: transform 120ms ease, background 120ms ease; }
+    .block-next_steps_cta .cta:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: #fff; }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .cta-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--accent); padding: 0.78rem 1.3rem; border-radius: var(--radius-md); font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid var(--accent); transition: background 120ms ease, color 120ms ease; }
+    .block-next_steps_cta .cta-secondary:hover { background: var(--accent); color: #fff; text-decoration: none; }
+    .block-next_steps_cta .cta-emoji { font-size: 1.05em; line-height: 1; }
+  </style>
+  <div class="inner">
+    <h2>15 minutes this week — which of the three doors makes most sense from your side?</h2>
+    <p class="body">If after the call it's not a fit, no pressure — and the analysis above stays with you regardless.</p>
+    <div class="actions">
+      <a class="cta" href="https://app.cal.com/fidel-n-ihmlju" rel="noopener" target="_blank">
+        <span class="cta-emoji" aria-hidden="true">📅</span>
+        Book 15 min
+      </a>
+      <a class="cta-secondary" href="mailto:fidelperez@gmail.com?subject=Re%3A%20Lighthouse%20%E2%80%94%20MLOps%20%2F%20AI%20Solutions%20%2F%20Senior%20DE">
+        <span class="cta-emoji" aria-hidden="true">✉️</span>
+        Email me
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block-links_strip">
+  <style>
+    .block-links_strip { padding-block: var(--space-3); background: var(--bg); border-top: 1px solid var(--rule); }
+    .block-links_strip .inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+    .block-links_strip .who { font-family: var(--font-mono); font-size: 0.85rem; color: var(--fg-muted); margin: 0; }
+    .block-links_strip .who b { color: var(--fg); }
+    .block-links_strip ul { display: flex; flex-wrap: wrap; gap: var(--space-1); list-style: none; padding: 0; margin: 0; }
+    .block-links_strip ul a { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.85rem; padding: 0.4rem 0.7rem; background: var(--bg-elev); border: 1px solid var(--rule); border-radius: var(--radius-sm); color: var(--accent); text-decoration: none; transition: all var(--transition); }
+    .block-links_strip ul a:hover { border-color: var(--accent); background: var(--accent-soft); }
+  </style>
+  <div class="inner">
+    <p class="who"><b>Fidel Perez</b> · Senior Data Engineer · AI-First · 11+ yrs</p>
+    <ul>
+      <li><a href="https://fidel-perez.github.io/portfolio/" rel="noopener" target="_blank">↗ portfolio</a></li>
+      <li><a href="https://www.linkedin.com/in/fidel-perez/" rel="noopener" target="_blank">in linkedin</a></li>
+      <li><a href="https://github.com/fidel-perez" rel="noopener" target="_blank">{} github</a></li>
+      <li><a href="mailto:fidelperez@gmail.com">✉ fidelperez@gmail.com</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents { background: var(--bg-elev); border-top: 1px solid var(--rule); padding-block: var(--space-4); }
+    .block-footer_built_by_agents .inner { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-2); justify-content: space-between; font-size: 0.88rem; color: var(--fg-muted); line-height: 1.6; }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph { font-family: var(--font-mono); color: var(--accent); font-weight: 600; margin-right: 0.4rem; }
+    .block-footer_built_by_agents a { color: var(--accent); border-bottom: 1px dotted currentColor; text-decoration: none; }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      This page is generated autonomously by a private agent platform I built and operate. It lives inside my open-source portfolio at <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a> — so what you're reading is itself the demo. The platform is private; the artefacts are what you see.
+    </p>
+  </div>
+</section>
+  </main>
+</body>
+</html>
