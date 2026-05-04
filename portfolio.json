@@ -128,9 +128,18 @@
     {
       "slug": "production-data-platform",
       "title": "Production data platform (fintech SaaS)",
-      "summary": "De facto tech lead. Took a daily-failures pipeline to near-zero incidents. Owned infra, ingestion, orchestration, warehouse end-to-end. Led Redshift→Snowflake migration.",
+      "summary": "De facto tech lead. Took a daily-failures pipeline to near-zero incidents and built an agent-driven dev lifecycle (Hermes operator layer · CrewAI crews · LangGraph flows · OpenHands autonomous coder · custom MCP servers · Langfuse observability · GitHub-webhook-triggered) across our Terraform, ArgoCD, and Python/Airflow repos — feature/fix cycle from days/weeks to hours/minutes. Owned infra, ingestion, orchestration, warehouse end-to-end. Led Redshift→Snowflake migration.",
       "anchor": "https://fidel-perez.github.io/portfolio/#professional",
       "tech": [
+        "Hermes",
+        "CrewAI",
+        "LangGraph",
+        "OpenHands",
+        "Custom MCP servers",
+        "Langfuse",
+        "Anthropic Claude",
+        "GitHub Webhooks",
+        "RAG / pgvector",
         "Airflow",
         "Snowflake",
         "Terraform",
@@ -141,11 +150,14 @@
         "dbt"
       ],
       "themes": [
+        "ai-first-automation",
+        "agent-orchestration",
+        "infrastructure-as-prompts",
         "platform-reliability",
         "self-hosted-everything"
       ],
       "screenshot": null,
-      "headline_metric": "Daily pipeline failures → near-zero"
+      "headline_metric": "Daily pipeline failures → near-zero · feature cycle days→minutes"
     },
     {
       "slug": "greenfield-ecommerce",
@@ -271,10 +283,11 @@
   ],
   "career_summary": [
     {
-      "role": "Senior Data Engineer · De facto tech lead",
+      "role": "Senior Data Engineer · De facto tech lead · AI-driven platform",
       "company": "Fintech SaaS (Remote)",
       "dates": "Nov 2022 – Present",
       "highlights": [
+        "Built an agent-driven development lifecycle on top of the data platform — Hermes (operator chat layer) · CrewAI crews (architecture / development / review) · LangGraph flows · OpenHands autonomous coder · custom MCP servers fronting Airflow / Snowflake / EKS / ArgoCD / Datadog · Langfuse for end-to-end LLM observability and evals — triggered by GitHub webhooks across Terraform, ArgoCD, and Python/Airflow repos. Feature/fix cycle compressed from days/weeks to hours/minutes",
         "Led Redshift→Snowflake migration end-to-end",
         "Daily pipeline failures → near-zero unforced errors",
         "Real-time ingestion: SQS → Lambda → Firehose → S3 → Snowpipe",
@@ -289,6 +302,6 @@
     "Operates 30+ services on 2 nodes with no on-call team — leverage is the product.",
     "Treats internal workflows as composable LLM tools, observability-first."
   ],
-  "regenerated_at": "2026-05-03",
+  "regenerated_at": "2026-05-04",
   "source": "submodules/portfolio/index.html"
 }

@@ -2528,17 +2528,30 @@
 
         <!-- ═══ PROFESSIONAL DATA PLATFORM ═══ -->
         <div class="section" id="professional">
-          <h2>Production data platform</h2>
+          <h2>Production data platform &mdash; AI-driven dev lifecycle</h2>
           <p class="section-desc">
             De facto tech lead of a 2&ndash;3 person team. Full ownership of
-            infrastructure, ingestion, orchestration, and warehouse. Transformed
-            a platform with daily failures to near-zero incidents.
+            infrastructure, ingestion, orchestration, warehouse &mdash; and
+            an agent-driven development lifecycle that owns the loop from
+            GitHub webhook to merged PR across our Terraform, ArgoCD, and
+            Python/Airflow repos. New features and fixes that used to take
+            days or weeks now land in hours or minutes. Transformed a
+            platform with daily failures to near-zero incidents.
           </p>
           <p class="section-note">
             Company details anonymized &mdash; architecture patterns and
             technology choices are my own.
           </p>
           <div class="tags">
+            <span class="tag tag-purple">Hermes</span>
+            <span class="tag tag-purple">CrewAI</span>
+            <span class="tag tag-purple">LangGraph</span>
+            <span class="tag tag-purple">OpenHands</span>
+            <span class="tag tag-purple">Custom MCP</span>
+            <span class="tag tag-purple">Langfuse</span>
+            <span class="tag tag-purple">Claude / Anthropic</span>
+            <span class="tag tag-purple">RAG · pgvector</span>
+            <span class="tag tag-purple">GitHub Webhooks</span>
             <span class="tag tag-accent">Airflow</span>
             <span class="tag tag-accent">Snowflake</span>
             <span class="tag tag-accent">Terraform</span>
@@ -3462,7 +3475,8 @@
                     </li>
                     <li>
                       End-to-end ownership: infrastructure, ingestion,
-                      orchestration, warehouse management, and developer tooling
+                      orchestration, warehouse management, developer tooling,
+                      and the agent-driven dev lifecycle on top of it all
                     </li>
                     <li>
                       Led the full Redshift-to-Snowflake migration &mdash;
@@ -3473,6 +3487,11 @@
                       inherited a platform with daily pipeline failures;
                       stabilized to near-zero incidents &mdash; failures now are
                       almost exclusively third-party source issues
+                    </li>
+                    <li>
+                      <strong>Delivery transformation:</strong>
+                      typical feature/fix cycle compressed from days or weeks
+                      to hours or minutes by handing the dev loop to agents
                     </li>
                   </ul>
                 </div>
@@ -3574,18 +3593,107 @@
                   <ul>
                     <li>
                       GitHub: repository management, branch protection, PR
-                      workflows
+                      workflows &mdash; with webhooks as the entry point of
+                      the agent loop
                     </li>
                     <li>
                       Pre-commit hooks for linting and code format enforcement
                     </li>
                     <li>Automated test suites running in CI</li>
                     <li>
-                      AI-powered code review (CodeRabbit) on pull requests
+                      AI-powered code review (CodeRabbit) plus our own agents
+                      reacting to PR comments, review threads, and CI failures
                     </li>
                     <li>
                       Containerized dev environments matching production (EKS
-                      parity)
+                      parity) &mdash; the same containers agents run in
+                    </li>
+                  </ul>
+                </div>
+                <div class="detail-card">
+                  <h4 style="color: var(--purple);">
+                    Agent-driven development lifecycle
+                  </h4>
+                  <ul>
+                    <li>
+                      <strong>Hermes</strong> as the operator-facing
+                      orchestration layer &mdash; humans and agents both talk
+                      to the platform through a single chat surface; routing,
+                      memory, and approval gating live there
+                    </li>
+                    <li>
+                      <strong>CrewAI</strong> crews (architecture &middot;
+                      development &middot; review &middot; on-call) for the
+                      multi-agent flows where role separation matters &mdash;
+                      planner / coder / reviewer / merger collaborating
+                      against shared context
+                    </li>
+                    <li>
+                      <strong>LangGraph</strong> for the deterministic
+                      structured flows: triage &rarr; plan &rarr; implement
+                      &rarr; self-review &rarr; respond, with branching for
+                      migration work, hotfixes, and infra-only changes
+                      (Terraform plan gating before apply)
+                    </li>
+                    <li>
+                      <strong>OpenHands</strong> as the autonomous coding
+                      agent: picks up issues and PR comments, edits across
+                      our Terraform, ArgoCD, and Python/Airflow repos, opens
+                      PRs against the right branch, iterates on review
+                      feedback until green
+                    </li>
+                    <li>
+                      <strong>GitHub webhooks</strong> as the trigger surface
+                      &mdash; new issues, PR comments, review threads, and CI
+                      failures all fan out to the agent fleet for reactions,
+                      reviews, and follow-up commits
+                    </li>
+                    <li>
+                      <strong>Custom MCP servers</strong> wired into Airflow,
+                      Snowflake, EKS, ArgoCD, GitHub, dbt, and Datadog
+                      &mdash; agents pull logs, recent run state, dbt
+                      manifests, lineage, and pod events on demand to debug
+                      failures instead of guessing. Each tool has typed
+                      input/output and structured error codes so weak
+                      models can recover
+                    </li>
+                    <li>
+                      <strong>Semantic data catalog (RAG over pgvector)</strong>
+                      indexing dbt manifests, Snowflake DDL, Airflow DAG
+                      history, and past incidents &mdash; agents retrieve
+                      "how did this pipeline look last time it worked"
+                      before proposing a fix
+                    </li>
+                    <li>
+                      <strong>Langfuse</strong> for end-to-end LLM
+                      observability: every crew run, tool call, prompt
+                      version, token cost, latency, and outcome traced and
+                      diffable. Drives our offline eval harness (golden-set
+                      regressions, LLM-as-a-judge scoring) so prompt and
+                      model changes ship like code does
+                    </li>
+                    <li>
+                      <strong>Anthropic Claude (4.x)</strong> as the
+                      production model for planning and review; smaller /
+                      cheaper models routed in for narrow tool-call hops via
+                      a provider abstraction
+                    </li>
+                    <li>
+                      Human-in-the-loop approval gating for anything
+                      irreversible (Terraform apply on prod, Snowflake DDL,
+                      external comms) &mdash; agents draft, humans confirm
+                    </li>
+                    <li>
+                      One loop spans all our repos and languages &mdash;
+                      Terraform/HCL, ArgoCD application manifests, Helm
+                      charts, Python Airflow DAGs, dbt SQL, Streamlit apps
+                      &mdash; with per-repo guardrails baked into prompts
+                      and tool wrappers
+                    </li>
+                    <li>
+                      <strong>Outcome:</strong> typical feature or fix cycle
+                      collapsed from days or weeks of human-only work to
+                      hours or minutes of human-supervised agent work
                     </li>
                   </ul>
                 </div>
@@ -4459,6 +4567,12 @@
               <div class="timeline-date">Nov 2022 &ndash; Present</div>
               <div class="timeline-desc">
                 <ul>
+                  <li>
+                    Built an agent-driven development lifecycle (OpenHands +
+                    LangGraph + MCP, triggered by GitHub webhooks) spanning
+                    our Terraform, ArgoCD, and Python/Airflow repos &mdash;
+                    feature/fix cycle from days/weeks to hours/minutes
+                  </li>
                   <li>
                     Led Redshift-to-Snowflake migration end-to-end &mdash;
                     architecture, execution, and cutover
