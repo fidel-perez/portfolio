@@ -1,0 +1,56 @@
+name: microsites-index
+
+# Auto-regenerate microsites/index.html + microsites/_index.json whenever
+# a new microsite (or an edit to an existing one) lands on main. Pure
+# stdlib Python — no LLM agent involved.
+#
+# Loop guard: paths-ignore excludes the two files this workflow itself
+# rewrites, so the bot's own commit does not retrigger the workflow.
+# Belt-and-braces: the commit step also bails when there is no diff.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'microsites/**'
+      - 'scripts/build_microsites_index.py'
+      - '.github/workflows/microsites-index.yml'
+      - '!microsites/index.html'
+      - '!microsites/_index.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: microsites-index-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN with contents:write is enough to push
+          # back to the same branch on this same repo.
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate index
+        run: python3 scripts/build_microsites_index.py
+
+      - name: Commit + push if changed
+        run: |
+          if git diff --quiet -- microsites/index.html microsites/_index.json; then
+            echo "no changes — skipping commit"
+            exit 0
+          fi
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add microsites/index.html microsites/_index.json
+          git commit -m "microsites: regenerate index ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push origin HEAD:${{ github.ref_name }}
