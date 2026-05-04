@@ -1,0 +1,1035 @@
+
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Fidel Pérez — para Acoru (Senior Platform Engineer)</title>
+  <meta name="description" content="Plan de 90 días para escalar la plataforma de Acoru — Frame Integrator → Inspector — del primer banco al décimo en semanas, no trimestres.">
+  <link rel="canonical" href="https://fidel-perez.github.io/portfolio/microsites/acoru/">
+  <meta property="og:title" content="Fidel Pérez — para Acoru (Senior Platform Engineer)">
+  <meta property="og:description" content="Plan de 90 días para escalar la plataforma de Acoru — Frame Integrator → Inspector — del primer banco al décimo en semanas, no trimestres.">
+  <meta property="og:image" content="https://fidel-perez.github.io/portfolio/og/fidel-acoru.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed.
+
+   2026-05-04: split into two passes so the dark-mode toggle on the
+   _base/page.html.j2 button actually works. The button toggles
+   `data-theme` between "light" and "dark" on <html>; we now respond
+   with `:root[data-theme="dark"] {...}` overrides. Default values live
+   in `:root` (the toggle's "light" state) — no `[data-theme="light"]`
+   selector is needed because the cascade falls back to those.
+
+   Per-palette dark overrides only exist for the two palettes that have
+   a sensible dark mirror (slate_indigo, carbon_lime). The brand-locked
+   wine_red / forest_clean palettes intentionally have no dark variant —
+   strategies using those should leave dark_toggle off. */
+
+
+
+:root {
+  /* shared typography (matches submodules/portfolio/index.html) */
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+
+  --transition: 0.3s ease;
+
+
+  /* fidel-jobs alt — for AI-forward / dev-tool targets (light pass).
+     The classic carbon_lime look is dark; the light variant softens the
+     lime accent so it stays readable on a near-white background. */
+  --bg: #fbfdf6;
+  --bg-elev: #ffffff;
+  --bg-card-hover: #f3f7e8;
+  --fg: #161a22;
+  --fg-muted: #4a5266;
+  --fg-dim: #8a93a8;
+  --accent: #5fa31d;
+  --accent-hover: #467a14;
+  --accent-soft: #e6f4d4;
+  --accent-glow: rgba(95, 163, 29, 0.15);
+  --gold: #d4a017;
+  --rule: #e6ecdc;
+  --grid-color: rgba(95, 163, 29, 0.06);
+
+}
+
+/* Dark-mode overrides. Applied when the toggle button (or restored
+   localStorage state) sets data-theme="dark" on <html>. Only palettes
+   with a sensible dark mirror declare overrides here; the brand-locked
+   wine_red / forest_clean palettes fall back to their :root values. */
+:root[data-theme="dark"] {
+
+  --bg: #0b0d12;
+  --bg-elev: #14171f;
+  --bg-card-hover: #1a1f2b;
+  --fg: #e8edf5;
+  --fg-muted: #99a3b8;
+  --fg-dim: #64748b;
+  --accent: #b8ff3a;
+  --accent-hover: #9cdb1f;
+  --accent-soft: rgba(184, 255, 58, 0.12);
+  --accent-glow: rgba(184, 255, 58, 0.18);
+  --gold: #ffd86b;
+  --rule: #232735;
+  --grid-color: rgba(35, 39, 53, 0.5);
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.5), 0 16px 32px rgba(0,0,0,0.4);
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  /* Smooth the bg/fg flip when the toggle fires; without this the page
+     snaps and reads as a flicker. Only color-class properties get the
+     transition (no layout). */
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* subtle grid backdrop — matches the portfolio's main page so the
+   microsite reads as part of the same brand. Off-by-default on the
+   light wine/forest palettes (looks busy on warm tones); enabled by
+   wrapping in @supports (not needed here — they have low-contrast
+   --grid-color so it disappears). */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+
+/* fadeInUp keyframe — used by hero/cards across blocks */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive defaults */
+@media (max-width: 640px) {
+  section { padding: var(--space-6) var(--space-2); }
+}
+  </style>
+</head>
+<body>
+  
+  <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement;var n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}})()">
+    <span class="toggle-icon" aria-hidden="true">◐</span>
+  </button>
+  <style>
+    .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;border:1px solid var(--rule);background:var(--bg-elev);color:var(--fg);font-family:var(--font-mono);font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all var(--transition);}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  </style>
+  <script>
+    (function(){
+      try{
+        var s=localStorage.getItem('theme');
+        if(s){document.documentElement.dataset.theme=s;}
+      }catch(e){}
+    })();
+  </script>
+  
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-hero_target .lockup img.logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 4px;
+    }
+    .block-hero_target .lockup .meta-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim, var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .block-hero_target .target-name {
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .block-hero_target .subtitle {
+      font-size: 1.15rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.3rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+  </style>
+  <div class="inner">
+    
+    <div class="lockup">
+      
+      <span class="meta-line">Fidel Pérez → Acoru</span>
+    </div>
+    
+    <span class="eyebrow">Para el equipo construyendo</span>
+    <h1>
+      <a class="target-name" href="https://www.acoru.com/en/" target="_blank" rel="noopener">Acoru</a>
+      
+      <span class="target-links">
+        <a href="https://www.acoru.com/en/" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle">Senior Platform Engineer — Remoto (Madrid → UE)</p>
+    <p class="tagline">Vuestro Agentic Fraud Operator escalando del primer banco al décimo en semanas, no trimestres. El mismo stack desde el día uno.</p>
+  </div>
+</section>
+    
+      <section class="block-one_dev_threat">
+  <style>
+    .block-one_dev_threat {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-one_dev_threat .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-2);
+    }
+    .block-one_dev_threat h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      max-width: 22em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .block-one_dev_threat h2 .accent {
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-one_dev_threat .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-one_dev_threat .body strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-one_dev_threat .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-one_dev_threat .pillars li {
+      padding: var(--space-2) var(--space-3);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      box-shadow: var(--shadow-1);
+    }
+    .block-one_dev_threat .pillars .ptitle {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.4rem;
+    }
+    .block-one_dev_threat .pillars .pbody {
+      font-size: 0.95rem;
+      color: var(--fg);
+      margin: 0;
+      line-height: 1.55;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">La amenaza que nadie está midiendo</p>
+    <h2>Tus clientes serán <span class="accent">un ingeniero más un agent stack</span>. ¿Va tu equipo a entregar igual?</h2>
+    <p class="body">En 12 meses, un solo ingeniero con el stack de agentes adecuado va a iterar más rápido que la mayoría de equipos de producto. Los equipos que sobreviven no son los más grandes — son aquellos cuyo <strong>know-how está documentado</strong> mientras el trabajo ocurre, y cuya <strong>infraestructura está lista para agentes</strong> para que el siguiente pivote sea un prompt, no una reescritura. Yo ayudo a tu equipo de plataforma a construir las dos cosas, en paralelo con la entrega que ya tenéis comprometida.
+</p>
+    
+    <ul class="pillars">
+      
+      <li>
+        <p class="ptitle">Documentar el know-how</p>
+        <p class="pbody">Decisiones, runbooks y conocimiento tácito capturados por los mismos agentes que hacen el trabajo — no una auditoría trimestral en Confluence.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">Infra preparada para agentes</p>
+        <p class="pbody">Herramientas internas MCP-native. El próximo pivote es un prompt, no una reescritura.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">Ya manejo este stack</p>
+        <p class="pbody">Cuatro crews genéricos end-to-end sobre hardware que compré yo mismo. Sé cómo se rompe antes de que se rompa para vosotros.</p>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-speed_advantage">
+  <style>
+    .block-speed_advantage { background: var(--bg); }
+    .block-speed_advantage .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-speed_advantage h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-speed_advantage .body {
+      font-size: 1.05rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-speed_advantage .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-speed_advantage .chips li {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      align-items: flex-start;
+      padding: var(--space-1) var(--space-2);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      min-width: 8rem;
+    }
+    .block-speed_advantage .chip-num {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .block-speed_advantage .chip-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">La velocidad es el moat</p>
+    <h2>El mismo ingeniero para infra, datos, app y el loop agéntico.</h2>
+    <p class="body">En fraud-prevention B2B, el negocio no se gana por modelo — se gana por integrar al banco número once tan rápido como al primero. Cada nuevo banco es un Frame Integrator nuevo, un mapeo de attributes nuevo, un set de reglas regulatorias (PS23/4, PSD3, PSR) nuevo. La cuña real es un equipo de plataforma capaz de cerrar ese loop de onboarding end-to-end: ingestión, orquestación, eval del Agentic Fraud Operator, Inspector tunado al stack del cliente. Ese es el operating mode que ejecuto día a día — un solo ingeniero dueño del camino completo, no cinco coordinándose en cuatro reuniones.
+</p>
+    
+    <ul class="chips">
+      
+      <li>
+        <span class="chip-num">3-4 sem</span>
+        <span class="chip-label">primer banco onboarded</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">1 dev</span>
+        <span class="chip-label">dueño de Frame Integrator → Inspector</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">MCP</span>
+        <span class="chip-label">native, no wrapper</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">30+</span>
+        <span class="chip-label">servicios self-hosted hoy</span>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-competitor_ai_signals">
+  <style>
+    .block-competitor_ai_signals { background: var(--bg); }
+    .block-competitor_ai_signals .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-3);
+      max-width: 32em;
+    }
+    .block-competitor_ai_signals .framing {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-competitor_ai_signals .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .block-competitor_ai_signals .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-competitor_ai_signals .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .block-competitor_ai_signals .company {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals .company::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .block-competitor_ai_signals .headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0 0 var(--space-1);
+      line-height: 1.35;
+    }
+    .block-competitor_ai_signals .why {
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+    }
+    .block-competitor_ai_signals .source {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: 0;
+    }
+    .block-competitor_ai_signals .source a { color: var(--accent); }
+    .block-competitor_ai_signals .implication {
+      max-width: 38em;
+      font-size: 1.1rem;
+      color: var(--fg);
+      padding: var(--space-2) var(--space-3);
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Qué está haciendo tu competencia</p>
+    <h2>Qué está haciendo vuestra competencia.</h2>
+    <p class="framing">Tres referencias en el mismo eje que Acoru — distinto tamaño, mismo playbook agéntico. Útiles como cota superior cuando alguien diga "aún es pronto para apostar la plataforma a agentes".
+</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="company">Featurespace (Visa)</p>
+        <p class="headline">Cerrada por Visa en diciembre 2024 (~$925M reportado) — el incumbente compró capa de fraude basada en ML.</p>
+        <p class="why">Cuando un network de pagos paga ~mil millones por una capa de fraude AI, el veredicto está cerrado: la plataforma de fraude basada en agentes ya no es una apuesta de research, es trabajo de plataforma. Esa es la categoría en la que Acoru va a competir el próximo trienio.</p>
+        <p class="source">
+          Source:
+          <a href="https://investor.visa.com/news/news-details/2024/Visa-Completes-Acquisition-of-Featurespace/default.aspx" rel="noopener" target="_blank">
+            investor.visa.com
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Hawk</p>
+        <p class="headline">Peer europeo (Munich) entregando AML/transaction monitoring agéntico — Series C $56M en marzo 2025, lead One Peak.</p>
+        <p class="why">Misma escala, mismo mercado UE, misma apuesta agéntica que vuestro Agentic Fraud Operator. Es el peer más cercano para benchmarkear velocidad de onboarding por banco — y el patrón que tenéis que igualar en la próxima ronda.</p>
+        <p class="source">
+          Source:
+          <a href="https://hawk.ai/news-press/hawk-raises-56m-tier-1-banks-adopt-its-ai-combat-financial-crime" rel="noopener" target="_blank">
+            hawk.ai
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Stripe Radar (Foundation Models)</p>
+        <p class="headline">Bet la detección de fraude en foundation models entrenados sobre la red completa — plataforma sobre red, no sobre cliente.</p>
+        <p class="why">El move de Stripe valida la tesis del Consortium Manager de Acoru: la inteligencia inter-red es donde se gana la siguiente fase. Cita esto cuando alguien argumente que data-sharing entre bancos es 'demasiado complejo' — Stripe ya monetizó esa misma idea.</p>
+        <p class="source">
+          Source:
+          <a href="https://stripe.com/blog/radar-foundation-models" rel="noopener" target="_blank">
+            stripe.com/blog
+          </a>
+        </p>
+      </article>
+      
+    </div>
+
+    <p class="implication">Ninguno ganó por modelo. Lo mismo será cierto para Acoru — la plataforma que onboardea bancos (y consortiums) más rápido se queda con el mercado. Esa es la palanca, y es trabajo de plataforma puro.
+</p>
+  </div>
+</section>
+    
+      <section class="block-case_study_pick">
+  <style>
+    .block-case_study_pick { background: var(--bg-elev); }
+    .block-case_study_pick .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-case_study_pick h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      max-width: 28em;
+      color: var(--fg);
+    }
+    .block-case_study_pick .card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-case_study_pick .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    @media (min-width: 720px) {
+      .block-case_study_pick .card.has-shot { grid-template-columns: 280px 1fr; }
+    }
+    .block-case_study_pick .shot img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--rule);
+      display: block;
+    }
+    .block-case_study_pick .body h3 {
+      font-size: 1.25rem;
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+    }
+    .block-case_study_pick .body p {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+      line-height: 1.6;
+    }
+    .block-case_study_pick .body .why {
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-2);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: var(--space-2);
+    }
+    .block-case_study_pick .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-2);
+    }
+    .block-case_study_pick .tech li {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.18rem 0.5rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--fg-muted);
+    }
+    .block-case_study_pick .deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Lo más cercano — agent platform</p>
+    <h2>Ya manejo una plataforma genérica de 4 crews end-to-end.</h2>
+    <div class="card">
+      
+      <div class="body">
+        <h3>Plataforma genérica de 4 crews — homelab, end-to-end</h3>
+        <p class="why">Ya entregué la infra aburrida alrededor de agentes interesantes. Es la diferencia entre "el agent funciona en demo" y "el agent funciona en el banco número once" — y es la cuña que cierro en Acoru desde el día uno.
+</p>
+        <p>Auto-hospedada en un cluster de 2 nodos comprado por mí: crews CrewAI, orquestador Hermes, OpenHands como autonomous coder, servidores MCP propios, traces Langfuse, Postgres + Qdrant, todo. Cuatro crews genéricos (architecture, development, marketing, hr) pluggables a distintas "companies" — los mismos primitives que necesita el Agentic Fraud Operator de Acoru en producción: loops, retries, evals, observabilidad, gates humanos.
+</p>
+        
+        <ul class="tech">
+          <li>MCP</li><li>CrewAI</li><li>OpenHands</li><li>Langfuse</li><li>Qdrant</li><li>Postgres</li><li>Docker</li><li>Tailscale</li>
+        </ul>
+        
+        
+        <a class="deep-link" href="https://fidel-perez.github.io/portfolio/#showcase" rel="noopener" target="_blank">↗ ver homelab + showcase</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+    
+      <section class="block-what_id_do">
+  <style>
+    .block-what_id_do { background: var(--bg-elev); }
+    .block-what_id_do .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-what_id_do h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-what_id_do .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-what_id_do .anchors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-what_id_do .anchors li a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .block-what_id_do .anchors li a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Qué haría en los primeros 90 días</p>
+    <h2>Construir la infra aburrida alrededor de vuestros agentes interesantes.</h2>
+    <p class="body">Primer foco: una librería de adaptadores MCP-native para los verticales de banco más comunes — Frame Integrator a escala, que el banco número once onboardee en días, no en seis semanas. Mismos primitives que ya manejo: MCP es la capa que hace que cada cliente nuevo cueste una fracción del primero. Segundo foco: eval + trace harness sobre el Agentic Fraud Operator (Langfuse-style + golden regression sets). Ningún agente en producción sobrevive sin esto, y es la pieza que protege la tasa de falsos positivos al actualizar el Operator. Tercer foco: el Consortium Manager — orquestación agéntica privacy-preserving entre bancos. La parte difícil no es la cripto, es la coreografía: qué agent dispara qué señal y bajo qué consentimiento. Plataforma agéntica pura. Compone.
+</p>
+    
+    <ul class="anchors">
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#showcase" target="_blank" rel="noopener">↗ homelab agent platform</a></li>
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#professional" target="_blank" rel="noopener">↗ pipeline fintech SaaS</a></li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: left;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 24em;
+      margin: 0 0 var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .block-next_steps_cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: #fff;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--accent);
+      padding: 0.78rem 1.3rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .block-next_steps_cta .cta-secondary:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+    .block-next_steps_cta .cta-emoji {
+      font-size: 1.05em;
+      line-height: 1;
+    }
+    .block-next_steps_cta .secondary {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+    }
+    .block-next_steps_cta .cta-hint {
+      display: block;
+      width: 100%;
+      margin-top: var(--space-1);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+    }
+  </style>
+  <div class="inner">
+    <h2>¿Vale 15 minutos hablar?</h2>
+    <p class="body">Si tras una llamada corta no encaja, sin presión. En cualquier caso os quedáis con el análisis que ya escribí sobre vuestro stack.</p>
+    <div class="actions">
+      
+      <a class="cta"
+         href="https://app.cal.com/fidel-n-ihmlju"
+         rel="noopener" target="_blank">
+        <span class="cta-emoji" aria-hidden="true">📅</span>
+        Reservar 15 min
+      </a>
+      
+      
+      <a class="cta-secondary"
+         href="mailto:fidelperez@gmail.com?subject=Re%3A%20vuestro%20equipo%20%E2%80%94%20agent%20platform%20engineer">
+        <span class="cta-emoji" aria-hidden="true">✉️</span>
+        O escríbeme
+      </a>
+      
+      
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-links_strip">
+  <style>
+    .block-links_strip {
+      padding-block: var(--space-3);
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+    .block-links_strip .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+    .block-links_strip .who {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+    .block-links_strip .who b { color: var(--fg); }
+    .block-links_strip ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-links_strip ul a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .block-links_strip ul a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+  </style>
+  <div class="inner">
+    <p class="who"><b>Fidel Pérez</b> · Agent-platform engineer · 11+ años · MCP-native</p>
+    <ul>
+      <li><a href="https://fidel-perez.github.io/portfolio/" rel="noopener" target="_blank">↗ portfolio</a></li>
+      <li><a href="https://www.linkedin.com/in/fidel-perez/" rel="noopener" target="_blank">in linkedin</a></li>
+      <li><a href="https://github.com/fidel-perez" rel="noopener" target="_blank">{} github</a></li>
+      
+      <li><a href="mailto:fidelperez@gmail.com">✉ fidelperez@gmail.com</a></li>
+    </ul>
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-dim, var(--fg-muted));
+      margin: 0;
+      opacity: 0.7;
+      letter-spacing: 0.06em;
+    }
+    .block-footer_built_by_agents a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+      text-decoration: none;
+    }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      
+        Esta página la genera de forma autónoma una plataforma de agentes privada que yo mismo construí y opero.
+        Vive dentro de mi portfolio open source en
+        <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a> —
+        así que lo que estás leyendo es la prueba en sí. La plataforma es privada; lo que produce es lo que ves.
+      
+    </p>
+    
+  </div>
+</section>
+    
+  </main>
+  
+</body>
+</html>
