@@ -1,0 +1,1030 @@
+
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Fidel Pérez — para Factorial (Senior Platform Engineer)</title>
+  <meta name="description" content="Plan de 90 días para el equipo de plataforma de Factorial — HR data, asistente de IA, agentes de payroll/onboarding.">
+  <link rel="canonical" href="https://fidel-perez.github.io/portfolio/microsites/factorial/">
+  <meta property="og:title" content="Fidel Pérez — para Factorial (Senior Platform Engineer)">
+  <meta property="og:description" content="Plan de 90 días para el equipo de plataforma de Factorial — HR data, asistente de IA, agentes de payroll/onboarding.">
+  
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed.
+
+   2026-05-04: split into two passes so the dark-mode toggle on the
+   _base/page.html.j2 button actually works. The button toggles
+   `data-theme` between "light" and "dark" on <html>; we now respond
+   with `:root[data-theme="dark"] {...}` overrides. Default values live
+   in `:root` (the toggle's "light" state) — no `[data-theme="light"]`
+   selector is needed because the cascade falls back to those.
+
+   Per-palette dark overrides only exist for the two palettes that have
+   a sensible dark mirror (slate_indigo, carbon_lime). The brand-locked
+   wine_red / forest_clean palettes intentionally have no dark variant —
+   strategies using those should leave dark_toggle off. */
+
+
+
+:root {
+  /* shared typography (matches submodules/portfolio/index.html) */
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+
+  --transition: 0.3s ease;
+
+
+  /* fidel-jobs — default professional palette (light pass) */
+  --bg: #f8fafc;
+  --bg-elev: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --fg: #0d1220;
+  --fg-muted: #475066;
+  --fg-dim: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-soft: #dbeafe;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --gold: #d4a017;
+  --rule: #e2e8f0;
+  --grid-color: rgba(226, 232, 240, 0.5);
+
+}
+
+/* Dark-mode overrides. Applied when the toggle button (or restored
+   localStorage state) sets data-theme="dark" on <html>. Only palettes
+   with a sensible dark mirror declare overrides here; the brand-locked
+   wine_red / forest_clean palettes fall back to their :root values. */
+:root[data-theme="dark"] {
+
+  --bg: #0a0e17;
+  --bg-elev: #111827;
+  --bg-card-hover: #1a2332;
+  --fg: #e2e8f0;
+  --fg-muted: #94a3b8;
+  --fg-dim: #64748b;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-soft: rgba(59, 130, 246, 0.12);
+  --accent-glow: rgba(59, 130, 246, 0.25);
+  --gold: #f59e0b;
+  --rule: #1e293b;
+  --grid-color: rgba(30, 41, 59, 0.4);
+  /* dark mode sees less of the page-edge shadow; soften it so the
+     elevation cards don't disappear into the background */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.5), 0 16px 32px rgba(0,0,0,0.4);
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  /* Smooth the bg/fg flip when the toggle fires; without this the page
+     snaps and reads as a flicker. Only color-class properties get the
+     transition (no layout). */
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* subtle grid backdrop — matches the portfolio's main page so the
+   microsite reads as part of the same brand. Off-by-default on the
+   light wine/forest palettes (looks busy on warm tones); enabled by
+   wrapping in @supports (not needed here — they have low-contrast
+   --grid-color so it disappears). */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+
+/* fadeInUp keyframe — used by hero/cards across blocks */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive defaults */
+@media (max-width: 640px) {
+  section { padding: var(--space-6) var(--space-2); }
+}
+  </style>
+</head>
+<body>
+  
+  <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement;var n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}})()">
+    <span class="toggle-icon" aria-hidden="true">◐</span>
+  </button>
+  <style>
+    .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;border:1px solid var(--rule);background:var(--bg-elev);color:var(--fg);font-family:var(--font-mono);font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all var(--transition);}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  </style>
+  <script>
+    (function(){
+      try{
+        var s=localStorage.getItem('theme');
+        if(s){document.documentElement.dataset.theme=s;}
+      }catch(e){}
+    })();
+  </script>
+  
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-hero_target .lockup img.logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 4px;
+    }
+    .block-hero_target .lockup .meta-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim, var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .block-hero_target .target-name {
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .block-hero_target .subtitle {
+      font-size: 1.15rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.3rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+  </style>
+  <div class="inner">
+    
+    <div class="lockup">
+      
+      <span class="meta-line">Fidel Pérez → Factorial</span>
+    </div>
+    
+    <span class="eyebrow">Para</span>
+    <h1>
+      <a class="target-name" href="https://factorialhr.com/" target="_blank" rel="noopener">Factorial</a>
+      
+      <span class="target-links">
+        <a href="https://factorialhr.com/" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle">Senior Platform Engineer — Remoto (España → UE)</p>
+    <p class="tagline">Tu equipo de plataforma desplegando flujos basados en agentes en semanas, no trimestres — el mismo stack desde el día uno.</p>
+  </div>
+</section>
+    
+      <section class="block-one_dev_threat">
+  <style>
+    .block-one_dev_threat {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-one_dev_threat .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-2);
+    }
+    .block-one_dev_threat h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      max-width: 22em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .block-one_dev_threat h2 .accent {
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-one_dev_threat .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-one_dev_threat .body strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-one_dev_threat .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-one_dev_threat .pillars li {
+      padding: var(--space-2) var(--space-3);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      box-shadow: var(--shadow-1);
+    }
+    .block-one_dev_threat .pillars .ptitle {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.4rem;
+    }
+    .block-one_dev_threat .pillars .pbody {
+      font-size: 0.95rem;
+      color: var(--fg);
+      margin: 0;
+      line-height: 1.55;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">La amenaza que nadie está midiendo</p>
+    <h2>¿Está tu empresa lista para competir con las <span class="accent">empresas de una persona</span> que aparecerán en los próximos 12 meses?</h2>
+    <p class="body">En los próximos 12 meses, un solo ingeniero con el stack de agentes adecuado va a iterar más rápido que la mayoría de equipos de producto. Las empresas que sobreviven no son las más grandes — son aquellas cuyo <strong>know-how está documentado</strong> (para poder reorientarse rápido) y cuya <strong>infraestructura está lista para agentes</strong> (para que un giro estratégico cueste días, no trimestres). Yo te ayudo a construir las dos cosas, en paralelo con lo que ya tenéis que entregar — esa es la diferencia que la mayoría de candidatos no sabe ni nombrar.
+</p>
+    
+    <ul class="pillars">
+      
+      <li>
+        <p class="ptitle">Documentar el know-how</p>
+        <p class="pbody">Procesos pilotados por agentes que capturan decisiones, runbooks y conocimiento tácito mientras ocurre — no una auditoría trimestral en Confluence.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">Infra preparada para agentes</p>
+        <p class="pbody">Servidores MCP + herramientas internas componibles para que el siguiente pivote sea un prompt, no una reescritura.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">En paralelo con la entrega</p>
+        <p class="pbody">Las dos cosas pasan junto al roadmap que ya tenéis. Sin programa de transformación de seis meses; los artefactos componen desde la primera semana.</p>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-speed_advantage">
+  <style>
+    .block-speed_advantage { background: var(--bg); }
+    .block-speed_advantage .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-speed_advantage h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-speed_advantage .body {
+      font-size: 1.05rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-speed_advantage .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-speed_advantage .chips li {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      align-items: flex-start;
+      padding: var(--space-1) var(--space-2);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      min-width: 8rem;
+    }
+    .block-speed_advantage .chip-num {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .block-speed_advantage .chip-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Por qué la velocidad a producción es la palanca</p>
+    <h2>Las empresas que despliegan funciones agénticas en semanas no son las que tienen equipos más grandes.</h2>
+    <p class="body">La categoría HR-tech no se decide en quién mete IA primero — se decide en qué equipo de plataforma sabe enchufarla al stack existente (datos + payroll + compliance) sin un rebuild de seis meses. El blog de ingeniería de Factorial ya marcó 2024 como el año en que empezasteis a entregar features de IA end-to-end; lo que compone en 2026 es tener un ingeniero capaz de cerrar el loop completo: infra, datos, capa de agente, superficie cliente. Esa es la cuña — y es exactamente lo que hago hoy día a día.
+</p>
+    
+    <ul class="chips">
+      
+      <li>
+        <span class="chip-num">3-4 sem</span>
+        <span class="chip-label">primer loop agéntico en producción</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">1 dev</span>
+        <span class="chip-label">dueño de infra → app → loop</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">30+</span>
+        <span class="chip-label">servicios self-hosted hoy</span>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-competitor_ai_signals">
+  <style>
+    .block-competitor_ai_signals { background: var(--bg); }
+    .block-competitor_ai_signals .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-3);
+      max-width: 32em;
+    }
+    .block-competitor_ai_signals .framing {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-competitor_ai_signals .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .block-competitor_ai_signals .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-competitor_ai_signals .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .block-competitor_ai_signals .company {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals .company::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .block-competitor_ai_signals .headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0 0 var(--space-1);
+      line-height: 1.35;
+    }
+    .block-competitor_ai_signals .why {
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+    }
+    .block-competitor_ai_signals .source {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: 0;
+    }
+    .block-competitor_ai_signals .source a { color: var(--accent); }
+    .block-competitor_ai_signals .implication {
+      max-width: 38em;
+      font-size: 1.1rem;
+      color: var(--fg);
+      padding: var(--space-2) var(--space-3);
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Qué está haciendo tu competencia</p>
+    <h2>Tres referencias que tu competencia ya ha movido.</h2>
+    <p class="framing">Las tres referencias de abajo se han movido en el mismo eje que Factorial — distinto tamaño, mismo playbook — y cada una se puede defender ante el comité con un único enlace público.
+</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="company">Personio</p>
+        <p class="headline">Roadmap público con automatización HR dirigida por IA como prioridad de plataforma 2025 — peer europeo directo.</p>
+        <p class="why">Mismo mercado, mismas restricciones de compliance UE, mismos datos. Lo que Personio entregue primero se convierte en la expectativa por defecto en la próxima RFP donde compitáis — la velocidad a producción es la única respuesta.</p>
+        <p class="source">
+          Source:
+          <a href="https://www.personio.com/about/" rel="noopener" target="_blank">
+            personio.com/about
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Workday</p>
+        <p class="headline">Adquirió Sana para enchufar una capa agéntica sobre un núcleo HCM de 20 años.</p>
+        <p class="why">Cuando el incumbente compra una capa de agentes en lugar de construirla, el veredicto está claro: los agentes son trabajo de plataforma ahora, no una apuesta de research. Cita esto si alguien en la sala dice 'todavía es pronto'.</p>
+        <p class="source">
+          Source:
+          <a href="https://newsroom.workday.com/2024-12-13-Workday-Announces-Agreement-to-Acquire-Sana" rel="noopener" target="_blank">
+            newsroom.workday.com
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Mercadona Tech</p>
+        <p class="headline">Plataforma propia en lugar de SaaS — peer español, escala parecida.</p>
+        <p class="why">Mismo dilema build-vs-buy en otra industria: cuando el loop de datos + ops es el moat, pagar margen SaaS en cada capa compone hasta convertirse en cuello de botella estratégico. Sus posts describen qué mantuvieron y qué reescribieron.</p>
+        <p class="source">
+          Source:
+          <a href="https://mercadonatech.com/blog/" rel="noopener" target="_blank">
+            mercadonatech.com/blog
+          </a>
+        </p>
+      </article>
+      
+    </div>
+
+    <p class="implication">Ninguna de las tres es un FAANG. El patrón es portable a un equipo del tamaño de Factorial con el ingeniero adecuado, no con un programa de transformación de seis meses.
+</p>
+  </div>
+</section>
+    
+      <section class="block-case_study_pick">
+  <style>
+    .block-case_study_pick { background: var(--bg-elev); }
+    .block-case_study_pick .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-case_study_pick h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      max-width: 28em;
+      color: var(--fg);
+    }
+    .block-case_study_pick .card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-case_study_pick .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    @media (min-width: 720px) {
+      .block-case_study_pick .card.has-shot { grid-template-columns: 280px 1fr; }
+    }
+    .block-case_study_pick .shot img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--rule);
+      display: block;
+    }
+    .block-case_study_pick .body h3 {
+      font-size: 1.25rem;
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+    }
+    .block-case_study_pick .body p {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+      line-height: 1.6;
+    }
+    .block-case_study_pick .body .why {
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-2);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: var(--space-2);
+    }
+    .block-case_study_pick .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-2);
+    }
+    .block-case_study_pick .tech li {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.18rem 0.5rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--fg-muted);
+    }
+    .block-case_study_pick .deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Lo más cercano en mi portfolio</p>
+    <h2>Este ya está en producción — sobre un stack que se solapa con el vuestro.</h2>
+    <div class="card">
+      
+      <div class="body">
+        <h3>Plataforma de datos en producción (fintech SaaS) — de fallos diarios a cero</h3>
+        <p class="why">Misma forma que el trabajo de fiabilidad de Factorial en 2026: una plataforma con deuda, sin un dueño dedicado, y la necesidad de defender cada decisión con datos reales en lugar de opinión.
+</p>
+        <p>Tech lead de facto en un equipo de 2-3 personas. Propietario de infra, ingestión, orquestación, warehouse y un ciclo de desarrollo dirigido por agentes que llevó el merge-to-prod de días a horas. Lideré la migración Redshift→Snowflake en caliente; pasé de fallos diarios a cero incidencias forzadas.
+</p>
+        
+        <ul class="tech">
+          <li>Airflow</li><li>Snowflake</li><li>Terraform</li><li>EKS</li><li>ArgoCD</li><li>dbt</li><li>Langfuse</li>
+        </ul>
+        
+        
+        <a class="deep-link" href="https://fidel-perez.github.io/portfolio/#professional" rel="noopener" target="_blank">↗ ver caso completo en el portfolio</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+    
+      <section class="block-what_id_do">
+  <style>
+    .block-what_id_do { background: var(--bg-elev); }
+    .block-what_id_do .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-what_id_do h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-what_id_do .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-what_id_do .anchors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-what_id_do .anchors li a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .block-what_id_do .anchors li a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Qué haría en tus primeros ~90 días</p>
+    <h2>Concreto, no aspiracional.</h2>
+    <p class="body">Primer foco: el flujo HR interno con más fricción (onboarding doc-parsing es un candidato fuerte) reconstruido como un agente que cubre el 70% end-to-end con handoff limpio al 30%. Mismo patrón que entregué en una fintech: de un runbook Confluence de 40 pasos a un loop automático de 4 horas. Segundo foco: tracing tipo Langfuse sobre las llamadas a modelos que ya alimentan vuestro asistente de IA, para que cualquier decisión de roadmap se defienda con coste + calidad reales. Tercer foco: un adaptador MCP sobre el data warehouse para que los agentes internos respondan "cuántas bajas laborales hubo el último trimestre" sin construir otro dashboard. El patrón compone; la feature es solo la prueba.
+</p>
+    
+    <ul class="anchors">
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#professional" target="_blank" rel="noopener">↗ pipeline fintech SaaS</a></li>
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#showcase" target="_blank" rel="noopener">↗ homelab + RaspiHub</a></li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: left;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 24em;
+      margin: 0 0 var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .block-next_steps_cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: #fff;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--accent);
+      padding: 0.78rem 1.3rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .block-next_steps_cta .cta-secondary:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+    .block-next_steps_cta .cta-emoji {
+      font-size: 1.05em;
+      line-height: 1;
+    }
+    .block-next_steps_cta .secondary {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+    }
+    .block-next_steps_cta .cta-hint {
+      display: block;
+      width: 100%;
+      margin-top: var(--space-1);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+    }
+  </style>
+  <div class="inner">
+    <h2>Una llamada corta esta semana.</h2>
+    <p class="body">Si tras 15 minutos no encaja, sin presión — y os quedáis con el análisis que ya escribí.</p>
+    <div class="actions">
+      
+      <a class="cta"
+         href="https://app.cal.com/fidel-n-ihmlju"
+         rel="noopener" target="_blank">
+        <span class="cta-emoji" aria-hidden="true">📅</span>
+        Reservar 15 min
+      </a>
+      
+      
+      <a class="cta-secondary"
+         href="mailto:fidelperez@gmail.com?subject=Re%3A%20la%20p%C3%A1gina%20que%20te%20prepar%C3%A9">
+        <span class="cta-emoji" aria-hidden="true">✉️</span>
+        O escríbeme
+      </a>
+      
+      
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-links_strip">
+  <style>
+    .block-links_strip {
+      padding-block: var(--space-3);
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+    .block-links_strip .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+    .block-links_strip .who {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+    .block-links_strip .who b { color: var(--fg); }
+    .block-links_strip ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-links_strip ul a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .block-links_strip ul a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+  </style>
+  <div class="inner">
+    <p class="who"><b>Fidel Pérez</b> · Senior Data Engineer · AI-First · 11+ años</p>
+    <ul>
+      <li><a href="https://fidel-perez.github.io/portfolio/" rel="noopener" target="_blank">↗ portfolio</a></li>
+      <li><a href="https://www.linkedin.com/in/fidel-perez/" rel="noopener" target="_blank">in linkedin</a></li>
+      <li><a href="https://github.com/fidel-perez" rel="noopener" target="_blank">{} github</a></li>
+      
+      <li><a href="mailto:fidelperez@gmail.com">✉ fidelperez@gmail.com</a></li>
+    </ul>
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-dim, var(--fg-muted));
+      margin: 0;
+      opacity: 0.7;
+      letter-spacing: 0.06em;
+    }
+    .block-footer_built_by_agents a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+      text-decoration: none;
+    }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      
+        Esta página la genera de forma autónoma una plataforma de agentes privada que yo mismo construí y opero.
+        Vive dentro de mi portfolio open source en
+        <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a> —
+        así que lo que estás leyendo es la prueba en sí. La plataforma es privada; lo que produce es lo que ves.
+      
+    </p>
+    
+  </div>
+</section>
+    
+  </main>
+  
+</body>
+</html>

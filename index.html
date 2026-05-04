@@ -5677,6 +5677,22 @@
         }
       });
     }
+
+    // Honour deep links: opening /portfolio/#professional should activate
+    // that tab and scroll to it. Sections live behind a tab system, so a
+    // bare hash navigation lands on a hidden div. Map hash → tab button
+    // on initial load and on hashchange.
+    function _activateFromHash() {
+      const id = (window.location.hash || "").replace(/^#/, "");
+      if (!id) return;
+      const btn = document.querySelector('.tab[data-target="' + CSS.escape(id) + '"]');
+      if (!btn) return;
+      switchTab(btn);
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+    window.addEventListener("DOMContentLoaded", _activateFromHash);
+    window.addEventListener("hashchange", _activateFromHash);
     </script>
   </body>
 </html>

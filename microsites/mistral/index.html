@@ -1,0 +1,1035 @@
+
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
+  <title>Fidel Perez — for Mistral AI (Senior Platform Engineer)</title>
+  <meta name="description" content="A 90-day plan tailored to Mistral's platform direction — La Plateforme, tool-use, eval infra.">
+  <link rel="canonical" href="https://fidel-perez.github.io/portfolio/microsites/mistral/">
+  <meta property="og:title" content="Fidel Perez — for Mistral AI (Senior Platform Engineer)">
+  <meta property="og:description" content="A 90-day plan tailored to Mistral's platform direction — La Plateforme, tool-use, eval infra.">
+  
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    
+    /* Theme tokens — palette + typography vars consumed by every block.
+   Palettes are keyed; strategies pick one via theme.palette. New palette
+   = new key here; no other file changes needed.
+
+   2026-05-04: split into two passes so the dark-mode toggle on the
+   _base/page.html.j2 button actually works. The button toggles
+   `data-theme` between "light" and "dark" on <html>; we now respond
+   with `:root[data-theme="dark"] {...}` overrides. Default values live
+   in `:root` (the toggle's "light" state) — no `[data-theme="light"]`
+   selector is needed because the cascade falls back to those.
+
+   Per-palette dark overrides only exist for the two palettes that have
+   a sensible dark mirror (slate_indigo, carbon_lime). The brand-locked
+   wine_red / forest_clean palettes intentionally have no dark variant —
+   strategies using those should leave dark_toggle off. */
+
+
+
+:root {
+  /* shared typography (matches submodules/portfolio/index.html) */
+  --font-display: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 1px var(--accent-soft), 0 8px 32px var(--accent-glow);
+
+  --transition: 0.3s ease;
+
+
+  /* fidel-jobs alt — for AI-forward / dev-tool targets (light pass).
+     The classic carbon_lime look is dark; the light variant softens the
+     lime accent so it stays readable on a near-white background. */
+  --bg: #fbfdf6;
+  --bg-elev: #ffffff;
+  --bg-card-hover: #f3f7e8;
+  --fg: #161a22;
+  --fg-muted: #4a5266;
+  --fg-dim: #8a93a8;
+  --accent: #5fa31d;
+  --accent-hover: #467a14;
+  --accent-soft: #e6f4d4;
+  --accent-glow: rgba(95, 163, 29, 0.15);
+  --gold: #d4a017;
+  --rule: #e6ecdc;
+  --grid-color: rgba(95, 163, 29, 0.06);
+
+}
+
+/* Dark-mode overrides. Applied when the toggle button (or restored
+   localStorage state) sets data-theme="dark" on <html>. Only palettes
+   with a sensible dark mirror declare overrides here; the brand-locked
+   wine_red / forest_clean palettes fall back to their :root values. */
+:root[data-theme="dark"] {
+
+  --bg: #0b0d12;
+  --bg-elev: #14171f;
+  --bg-card-hover: #1a1f2b;
+  --fg: #e8edf5;
+  --fg-muted: #99a3b8;
+  --fg-dim: #64748b;
+  --accent: #b8ff3a;
+  --accent-hover: #9cdb1f;
+  --accent-soft: rgba(184, 255, 58, 0.12);
+  --accent-glow: rgba(184, 255, 58, 0.18);
+  --gold: #ffd86b;
+  --rule: #232735;
+  --grid-color: rgba(35, 39, 53, 0.5);
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-2: 0 4px 8px rgba(0,0,0,0.5), 0 16px 32px rgba(0,0,0,0.4);
+
+}
+
+/* base resets shared by all blocks */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  /* Smooth the bg/fg flip when the toggle fires; without this the page
+     snaps and reads as a flicker. Only color-class properties get the
+     transition (no layout). */
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* subtle grid backdrop — matches the portfolio's main page so the
+   microsite reads as part of the same brand. Off-by-default on the
+   light wine/forest palettes (looks busy on warm tones); enabled by
+   wrapping in @supports (not needed here — they have low-contrast
+   --grid-color so it disappears). */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+main { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.2; }
+section { padding: var(--space-8) var(--space-3); }
+section > .inner { max-width: 880px; margin: 0 auto; }
+
+/* fadeInUp keyframe — used by hero/cards across blocks */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* responsive defaults */
+@media (max-width: 640px) {
+  section { padding: var(--space-6) var(--space-2); }
+}
+  </style>
+</head>
+<body>
+  
+  <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement;var n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}})()">
+    <span class="toggle-icon" aria-hidden="true">◐</span>
+  </button>
+  <style>
+    .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;border:1px solid var(--rule);background:var(--bg-elev);color:var(--fg);font-family:var(--font-mono);font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all var(--transition);}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  </style>
+  <script>
+    (function(){
+      try{
+        var s=localStorage.getItem('theme');
+        if(s){document.documentElement.dataset.theme=s;}
+      }catch(e){}
+    })();
+  </script>
+  
+  <main>
+    
+      <section class="block-hero_target">
+  <style>
+    .block-hero_target {
+      background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      padding-block: var(--space-8) var(--space-6);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-hero_target .inner { text-align: left; }
+    .block-hero_target .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .block-hero_target .lockup img.logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      padding: 4px;
+    }
+    .block-hero_target .lockup .meta-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim, var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .block-hero_target .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-2);
+    }
+    .block-hero_target h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .block-hero_target .target-name {
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-hero_target .target-name:hover { opacity: 0.85; }
+    .block-hero_target .target-links {
+      display: inline-flex; gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+    .block-hero_target .target-links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--fg-muted);
+    }
+    .block-hero_target .target-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .block-hero_target .subtitle {
+      font-size: 1.15rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-3);
+    }
+    .block-hero_target .tagline {
+      font-size: 1.3rem;
+      max-width: 36em;
+      margin: 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+  </style>
+  <div class="inner">
+    
+    <div class="lockup">
+      
+      <span class="meta-line">Fidel Perez → Mistral AI</span>
+    </div>
+    
+    <span class="eyebrow">For the team building</span>
+    <h1>
+      <a class="target-name" href="https://mistral.ai/" target="_blank" rel="noopener">Mistral AI</a>
+      
+      <span class="target-links">
+        <a href="https://mistral.ai/" target="_blank" rel="noopener">↗ site</a>
+        
+      </span>
+      
+    </h1>
+    <p class="subtitle">Senior Platform Engineer — Remote (Spain → EU)</p>
+    <p class="tagline">Your enterprise customers shipping production loops on Mistral end-to-end — same MCP-native stack I run today, day one with me.</p>
+  </div>
+</section>
+    
+      <section class="block-one_dev_threat">
+  <style>
+    .block-one_dev_threat {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .block-one_dev_threat .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-2);
+    }
+    .block-one_dev_threat h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      max-width: 22em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .block-one_dev_threat h2 .accent {
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .block-one_dev_threat .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-one_dev_threat .body strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .block-one_dev_threat .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-one_dev_threat .pillars li {
+      padding: var(--space-2) var(--space-3);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      box-shadow: var(--shadow-1);
+    }
+    .block-one_dev_threat .pillars .ptitle {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.4rem;
+    }
+    .block-one_dev_threat .pillars .pbody {
+      font-size: 0.95rem;
+      color: var(--fg);
+      margin: 0;
+      line-height: 1.55;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">The threat nobody is pricing in</p>
+    <h2>Your customers will be one engineer plus an agent stack. Will your team ship the same way?</h2>
+    <p class="body">In 12 months, a single engineer with the right agent stack will out-iterate most product teams. The teams that survive aren't the biggest — they're the ones whose <strong>know-how is documented</strong> as the work happens, and whose <strong>infrastructure is agent-ready</strong> so the next pivot is a prompt instead of a rebuild. I help your platform team build both, in parallel with the shipping you already have to do.
+</p>
+    
+    <ul class="pillars">
+      
+      <li>
+        <p class="ptitle">Document the know-how</p>
+        <p class="pbody">Decisions, runbooks, and tribal knowledge captured by the same agents that do the work — not a quarterly Confluence audit.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">Make infra agent-ready</p>
+        <p class="pbody">MCP-native internal tools. Next pivot is a prompt away, not a rebuild.</p>
+      </li>
+      
+      <li>
+        <p class="ptitle">I already run this stack</p>
+        <p class="pbody">Four generic crews end-to-end on hardware I bought myself. I know how it breaks before it breaks for you.</p>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-speed_advantage">
+  <style>
+    .block-speed_advantage { background: var(--bg); }
+    .block-speed_advantage .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-speed_advantage h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-speed_advantage .body {
+      font-size: 1.05rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-speed_advantage .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-speed_advantage .chips li {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      align-items: flex-start;
+      padding: var(--space-1) var(--space-2);
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      min-width: 8rem;
+    }
+    .block-speed_advantage .chip-num {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .block-speed_advantage .chip-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Speed is the moat</p>
+    <h2>Same engineer for infra, data, app, and the agent loop.</h2>
+    <p class="body">Your customers will pick the model that's cheapest plus the platform that ships features fastest around it. The first half of that you already own. The second half is platform work that compounds: tracing across La Plateforme + Le Chat enterprise, eval harnesses that run on every release, agent-loop primitives that customers can adopt without rewriting their stack. The wedge is whoever ships those weeks faster — the headcount on the other side of the bet doesn't matter if the loop is run by one engineer who already does this.
+</p>
+    
+    <ul class="chips">
+      
+      <li>
+        <span class="chip-num">3-4 wks</span>
+        <span class="chip-label">first agent-loop in prod</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">1 dev</span>
+        <span class="chip-label">owns infra → app → loop</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">MCP</span>
+        <span class="chip-label">native, not wrapped</span>
+      </li>
+      
+      <li>
+        <span class="chip-num">30+</span>
+        <span class="chip-label">self-hosted services I run today</span>
+      </li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-competitor_ai_signals">
+  <style>
+    .block-competitor_ai_signals { background: var(--bg); }
+    .block-competitor_ai_signals .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin: 0 0 var(--space-3);
+      max-width: 32em;
+    }
+    .block-competitor_ai_signals .framing {
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      max-width: 38em;
+      margin: 0 0 var(--space-4);
+    }
+    .block-competitor_ai_signals .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .block-competitor_ai_signals .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-competitor_ai_signals .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    .block-competitor_ai_signals .company {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-competitor_ai_signals .company::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .block-competitor_ai_signals .headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 0 0 var(--space-1);
+      line-height: 1.35;
+    }
+    .block-competitor_ai_signals .why {
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+    }
+    .block-competitor_ai_signals .source {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--rule);
+      padding-top: var(--space-1);
+      margin: 0;
+    }
+    .block-competitor_ai_signals .source a { color: var(--accent); }
+    .block-competitor_ai_signals .implication {
+      max-width: 38em;
+      font-size: 1.1rem;
+      color: var(--fg);
+      padding: var(--space-2) var(--space-3);
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 0;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">What your competition is doing</p>
+    <h2>What your competition is doing.</h2>
+    <p class="framing">You compete on the model. You compete harder on the platform around it. Three peers are public about exactly that pivot — use them as the upper-bound reference for what platform work should look like in your 2026.
+</p>
+
+    <div class="grid">
+      
+      <article class="card">
+        <p class="company">Anthropic</p>
+        <p class="headline">Open-sourced MCP — turned tool-use into a portable protocol the whole industry adopted.</p>
+        <p class="why">MCP is now the substrate every serious agent platform speaks. Mistral's tool-use API speaks JSON-schema today; the gap to MCP-native is small but real, and it's the kind of platform decision that compounds for two years.</p>
+        <p class="source">
+          Source:
+          <a href="https://www.anthropic.com/news/model-context-protocol" rel="noopener" target="_blank">
+            anthropic.com/news
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Hugging Face</p>
+        <p class="headline">Built the platform layer (Inference Endpoints, Spaces, Hub) into the moat — not the models.</p>
+        <p class="why">HF's leverage is platform-on-top-of-everyone's-models. Same shape as the customer-platform work Mistral could ship around La Plateforme + Le Chat enterprise; the bottleneck is platform engineers who think in loops, not just inference.</p>
+        <p class="source">
+          Source:
+          <a href="https://huggingface.co/blog" rel="noopener" target="_blank">
+            huggingface.co/blog
+          </a>
+        </p>
+      </article>
+      
+      <article class="card">
+        <p class="company">Cohere</p>
+        <p class="headline">Command-R + Toolkit — bet enterprise distribution on tool-use + RAG-as-a-platform, not raw model wins.</p>
+        <p class="why">Cohere's moat isn't a single benchmark; it's the platform their customers use for tool-use + retrieval. That's the same opportunity Mistral has with La Plateforme — and the kind of work I'd ship rather than try to outscore Llama on a leaderboard.</p>
+        <p class="source">
+          Source:
+          <a href="https://cohere.com/research/papers" rel="noopener" target="_blank">
+            cohere.com/research
+          </a>
+        </p>
+      </article>
+      
+    </div>
+
+    <p class="implication">None of these win on model alone. The pattern holds for Mistral — the platform team is where the next 12 months of customer retention is fought.
+</p>
+  </div>
+</section>
+    
+      <section class="block-case_study_pick">
+  <style>
+    .block-case_study_pick { background: var(--bg-elev); }
+    .block-case_study_pick .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-case_study_pick h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      max-width: 28em;
+      color: var(--fg);
+    }
+    .block-case_study_pick .card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-1);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .block-case_study_pick .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+    }
+    @media (min-width: 720px) {
+      .block-case_study_pick .card.has-shot { grid-template-columns: 280px 1fr; }
+    }
+    .block-case_study_pick .shot img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--rule);
+      display: block;
+    }
+    .block-case_study_pick .body h3 {
+      font-size: 1.25rem;
+      margin: 0 0 var(--space-1);
+      color: var(--fg);
+    }
+    .block-case_study_pick .body p {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-2);
+      line-height: 1.6;
+    }
+    .block-case_study_pick .body .why {
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding: var(--space-1) var(--space-2);
+      background: var(--accent-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: var(--space-2);
+    }
+    .block-case_study_pick .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-2);
+    }
+    .block-case_study_pick .tech li {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.18rem 0.5rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--fg-muted);
+    }
+    .block-case_study_pick .deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+  <div class="inner">
+    <p class="label">Closest match — agent platform</p>
+    <h2>I already run a generic 4-crew agent platform end-to-end.</h2>
+    <div class="card">
+      
+      <div class="body">
+        <h3>Generic 4-crew agent platform — homelab, end-to-end</h3>
+        <p class="why">I've already shipped the boring infra around interesting agents (loops, retries, evals, observability) — the work that makes a model platform deployable by customers who are not AI-native. That's the gap I'd close at Mistral.
+</p>
+        <p>Self-hosted on a 2-node cluster I bought myself: CrewAI crews, Hermes orchestrator, OpenHands autonomous coder, custom MCP servers, Langfuse traces, Postgres + Qdrant, the lot. Four generic crews (architecture, development, marketing, hr) pluggable into different "companies" — same primitives Mistral's enterprise customers will need to wire up around La Plateforme.
+</p>
+        
+        <ul class="tech">
+          <li>CrewAI</li><li>MCP</li><li>OpenHands</li><li>Langfuse</li><li>Qdrant</li><li>Postgres</li><li>Docker</li><li>Tailscale</li>
+        </ul>
+        
+        
+        <a class="deep-link" href="https://fidel-perez.github.io/portfolio/#showcase" rel="noopener" target="_blank">↗ see homelab + showcase</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+    
+      <section class="block-what_id_do">
+  <style>
+    .block-what_id_do { background: var(--bg-elev); }
+    .block-what_id_do .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-1);
+    }
+    .block-what_id_do h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 var(--space-3);
+      color: var(--fg);
+      max-width: 28em;
+    }
+    .block-what_id_do .body {
+      font-size: 1.1rem;
+      color: var(--fg);
+      max-width: 38em;
+      margin: 0 0 var(--space-3);
+      line-height: 1.7;
+    }
+    .block-what_id_do .anchors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .block-what_id_do .anchors li a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .block-what_id_do .anchors li a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+  </style>
+  <div class="inner">
+    <p class="label">What I'd do in the first 90 days</p>
+    <h2>Build the boring infra around your interesting agents.</h2>
+    <p class="body">First wedge: an MCP-native adapter on top of Mistral's tool-use API so customer agent loops can speak the same protocol they already use against Anthropic + everywhere else — a one-week compatibility win that closes the most-cited gap in community posts. Second wedge: a Langfuse-style trace + eval harness wired into La Plateforme so customers can defend "Mistral's model is enough" with cost + quality data, not vibes. Third wedge: pick the highest-friction enterprise customer onboarding flow and rebuild it as an agent that handles 70% end-to-end — same pattern I shipped at a fintech SaaS, daily failures to near-zero. The pattern, not the feature, is what compounds.
+</p>
+    
+    <ul class="anchors">
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#showcase" target="_blank" rel="noopener">↗ homelab agent platform</a></li>
+      
+      <li><a href="https://fidel-perez.github.io/portfolio/#professional" target="_blank" rel="noopener">↗ fintech SaaS pipeline</a></li>
+      
+    </ul>
+    
+  </div>
+</section>
+    
+      <section class="block-next_steps_cta">
+  <style>
+    .block-next_steps_cta {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      border-block: 1px solid var(--rule);
+      text-align: left;
+    }
+    .block-next_steps_cta h2 {
+      font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+      max-width: 24em;
+      margin: 0 0 var(--space-2);
+      color: var(--fg);
+    }
+    .block-next_steps_cta .body {
+      max-width: 32em;
+      margin: 0 0 var(--space-3);
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .block-next_steps_cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .block-next_steps_cta .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-2);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .block-next_steps_cta .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: #fff;
+    }
+    .block-next_steps_cta .cta::after { content: " →"; }
+    .block-next_steps_cta .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--accent);
+      padding: 0.78rem 1.3rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .block-next_steps_cta .cta-secondary:hover {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+    .block-next_steps_cta .cta-emoji {
+      font-size: 1.05em;
+      line-height: 1;
+    }
+    .block-next_steps_cta .secondary {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+    .block-next_steps_cta .secondary a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+    }
+    .block-next_steps_cta .cta-hint {
+      display: block;
+      width: 100%;
+      margin-top: var(--space-1);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+    }
+  </style>
+  <div class="inner">
+    <h2>Worth a 15-minute call?</h2>
+    <p class="body">If after a short call it isn't the right fit, no pressure. Either way you get the analysis I already wrote about your stack.</p>
+    <div class="actions">
+      
+      <a class="cta"
+         href="https://app.cal.com/fidel-n-ihmlju"
+         rel="noopener" target="_blank">
+        <span class="cta-emoji" aria-hidden="true">📅</span>
+        Book 15 min
+      </a>
+      
+      
+      <a class="cta-secondary"
+         href="mailto:fidelperez@gmail.com?subject=Re%3A%20your%20team%20%E2%80%94%20agent%20platform%20engineer">
+        <span class="cta-emoji" aria-hidden="true">✉️</span>
+        Email instead
+      </a>
+      
+      
+      
+    </div>
+  </div>
+</section>
+    
+      <section class="block-links_strip">
+  <style>
+    .block-links_strip {
+      padding-block: var(--space-3);
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+    .block-links_strip .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+    .block-links_strip .who {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+    .block-links_strip .who b { color: var(--fg); }
+    .block-links_strip ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .block-links_strip ul a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .block-links_strip ul a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+  </style>
+  <div class="inner">
+    <p class="who"><b>Fidel Perez</b> · Agent-platform engineer · 11+ yrs · MCP-native</p>
+    <ul>
+      <li><a href="https://fidel-perez.github.io/portfolio/" rel="noopener" target="_blank">↗ portfolio</a></li>
+      <li><a href="https://www.linkedin.com/in/fidel-perez/" rel="noopener" target="_blank">in linkedin</a></li>
+      <li><a href="https://github.com/fidel-perez" rel="noopener" target="_blank">{} github</a></li>
+      
+      <li><a href="mailto:fidelperez@gmail.com">✉ fidelperez@gmail.com</a></li>
+    </ul>
+  </div>
+</section>
+    
+      <section class="block-footer_built_by_agents">
+  <style>
+    .block-footer_built_by_agents {
+      background: var(--bg-elev);
+      border-top: 1px solid var(--rule);
+      padding-block: var(--space-4);
+    }
+    .block-footer_built_by_agents .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-2);
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .block-footer_built_by_agents .body { max-width: 44em; margin: 0; }
+    .block-footer_built_by_agents .glyph {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+    .block-footer_built_by_agents .meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--fg-dim, var(--fg-muted));
+      margin: 0;
+      opacity: 0.7;
+      letter-spacing: 0.06em;
+    }
+    .block-footer_built_by_agents a {
+      color: var(--accent);
+      border-bottom: 1px dotted currentColor;
+      text-decoration: none;
+    }
+    .block-footer_built_by_agents a:hover { color: var(--accent-hover); }
+  </style>
+  <div class="inner">
+    <p class="body">
+      <span class="glyph">⌬</span>
+      
+        This page is auto-generated by a private agent platform I built and operate.
+        It lives inside my open-source portfolio repo —
+        <a href="https://github.com/fidel-perez/portfolio" rel="noopener" target="_blank">github.com/fidel-perez/portfolio</a> —
+        so the artefact you're reading is itself the proof. The platform stays private; what it ships is what you see.
+      
+    </p>
+    
+  </div>
+</section>
+    
+  </main>
+  
+</body>
+</html>
