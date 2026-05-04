@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex"><!-- per-target page; not for SEO -->
   <title>Fidel Pérez — para Glovo (Senior Platform Engineer)</title>
-  <meta name="description" content="Plan de 90 días para el equipo de plataforma de Glovo — ops, fraude, on-call, partner tooling agéntico.">
+  <meta name="description" content="Plan de 90 días para el equipo de plataforma de Glovo — ops, fraude, on-call y herramientas de partners impulsadas por agentes.">
   <link rel="canonical" href="https://fidel-perez.github.io/portfolio/microsites/glovo/">
   <meta property="og:title" content="Fidel Pérez — para Glovo (Senior Platform Engineer)">
-  <meta property="og:description" content="Plan de 90 días para el equipo de plataforma de Glovo — ops, fraude, on-call, partner tooling agéntico.">
+  <meta property="og:description" content="Plan de 90 días para el equipo de plataforma de Glovo — ops, fraude, on-call y herramientas de partners impulsadas por agentes.">
   
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,19 +455,19 @@ section > .inner { max-width: 880px; margin: 0 auto; }
   <div class="inner">
     <p class="label">Por qué la velocidad a producción es la palanca</p>
     <h2>Las empresas que despliegan funciones agénticas en semanas no son las que tienen equipos más grandes.</h2>
-    <p class="body">En on-demand, ganar trimestre a trimestre depende menos del tamaño del equipo de plataforma y más de cuántos flujos operativos manuales (clasificación de tickets, triage de on-call, detección de fraude, partner tooling) se han convertido en bucles agénticos. El blog de ingeniería de Glovo ya ha publicado sobre on-call asistido por agentes — la siguiente palanca es hacer que ese patrón viva en cada flujo donde el coste es lineal con el GMV. Esa es la cuña, y es exactamente el operating mode que ejecuto día a día.
+    <p class="body">En on-demand, ganar trimestre a trimestre depende menos del tamaño del equipo de plataforma y más de cuántos flujos operativos manuales (clasificación de tickets, triaje de on-call, detección de fraude, herramientas para partners) se han convertido en bucles agénticos. El blog de ingeniería de Glovo ya ha publicado sobre on-call asistido por agentes — la siguiente palanca es llevar ese patrón a cada flujo cuyo coste crece con el GMV. Esa es la palanca, y es exactamente la forma en que opero día a día.
 </p>
     
     <ul class="chips">
       
       <li>
         <span class="chip-num">3-4 sem</span>
-        <span class="chip-label">primer loop agéntico en producción</span>
+        <span class="chip-label">primer bucle agéntico en producción</span>
       </li>
       
       <li>
         <span class="chip-num">1 dev</span>
-        <span class="chip-label">dueño de infra → app → loop</span>
+        <span class="chip-label">dueño de infra → app → bucle</span>
       </li>
       
       <li>
@@ -712,7 +712,7 @@ section > .inner { max-width: 880px; margin: 0 auto; }
       
       <div class="body">
         <h3>Plataforma de datos en producción (fintech SaaS) — de fallos diarios a cero</h3>
-        <p class="why">Misma forma que el trabajo de fiabilidad y observabilidad de Glovo en 2026: plataforma con deuda, sin dueño dedicado, y la necesidad de defender cada decisión con datos reales (cost-to- serve, fraud-rate) en lugar de opinión.
+        <p class="why">Misma forma que el trabajo de fiabilidad y observabilidad de Glovo en 2026: plataforma con deuda, sin dueño dedicado, y necesidad de defender cada decisión con datos reales (coste por servicio, tasa de fraude) en lugar de opinión.
 </p>
         <p>Tech lead de facto en un equipo de 2-3 personas. Propietario de infra, ingestión, orquestación, warehouse y un ciclo de desarrollo dirigido por agentes que llevó el merge-to-prod de días a horas. Lideré la migración Redshift→Snowflake en caliente; pasé de fallos diarios a cero incidencias forzadas.
 </p>
@@ -784,7 +784,7 @@ section > .inner { max-width: 880px; margin: 0 auto; }
   <div class="inner">
     <p class="label">Qué haría en tus primeros ~90 días</p>
     <h2>Concreto, no aspiracional.</h2>
-    <p class="body">Primer foco: el flujo de tickets de soporte con más fricción (probablemente partner onboarding o disputas rider) reconstruido como un agente que cubre el 70% end-to-end con handoff limpio. Mismo patrón que entregué en una fintech: de un runbook Confluence de 40 pasos a un loop automático de 4 horas. Segundo foco: tracing tipo Langfuse sobre las llamadas a modelos que ya tenéis (incluido el on-call assistant), para defender el roadmap con coste + calidad reales y no con intuición. Tercer foco: un adaptador MCP sobre el warehouse para que los agentes internos respondan "cuál fue el fraud-rate por flow el último mes" sin construir otro dashboard ad-hoc. El patrón compone; la feature es solo la prueba.
+    <p class="body">Primer foco: el flujo de tickets de soporte con más fricción (probablemente alta de partners o disputas con riders) reconstruido como un agente que cubre el 70% de extremo a extremo, con un traspaso limpio al humano para el 30% restante. Mismo patrón que entregué en una fintech: un runbook de Confluence de 40 pasos convertido en un bucle automático de 4 horas. Segundo foco: trazas tipo Langfuse sobre las llamadas a modelos que ya tenéis (incluido el asistente de on-call), para defender el roadmap con datos reales de coste y calidad. Tercer foco: un adaptador MCP sobre el warehouse para que los agentes internos respondan "cuál fue la tasa de fraude por flujo el último mes" sin construir otro dashboard ad hoc. El patrón compone; la feature es solo la prueba.
 </p>
     
     <ul class="anchors">
@@ -887,8 +887,8 @@ section > .inner { max-width: 880px; margin: 0 auto; }
     }
   </style>
   <div class="inner">
-    <h2>Una llamada corta esta semana.</h2>
-    <p class="body">Si tras 15 minutos no encaja, sin presión — y os quedáis con el análisis que ya escribí.</p>
+    <h2>¿Hablamos 15 minutos esta semana?</h2>
+    <p class="body">Si tras la llamada no encaja, sin presión — y os quedáis con el análisis que ya escribí.</p>
     <div class="actions">
       
       <a class="cta"
@@ -902,7 +902,7 @@ section > .inner { max-width: 880px; margin: 0 auto; }
       <a class="cta-secondary"
          href="mailto:fidelperez@gmail.com?subject=Re%3A%20la%20p%C3%A1gina%20que%20te%20prepar%C3%A9">
         <span class="cta-emoji" aria-hidden="true">✉️</span>
-        O escríbeme
+        Escríbeme un email
       </a>
       
       
