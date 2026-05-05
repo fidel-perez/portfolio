@@ -1,86 +1,86 @@
 [
   {
     "slug": "acoru",
-    "title": "Fidel P\u00e9rez \u2014 para Acoru (Senior Platform Engineer)",
-    "subtitle": "Vuestro Agentic Fraud Operator escalando del primer banco al d\u00e9cimo en semanas, no trimestres. El mismo stack desde el d\u00eda uno.",
-    "mtime": "2026-05-04T18:39:29",
+    "title": "Fidel P\u00e9rez \u2014 para Acoru",
+    "subtitle": "Vuestro ciclo Frame Integrator + Frame Orchestrator comprimido por banco \u2014 la misma forma que entregu\u00e9 en una plataforma de datos fintech.",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/acoru/"
   },
   {
     "slug": "almirall",
     "title": "Fidel P\u00e9rez \u2014 para Almirall (Senior Platform Engineer)",
     "subtitle": "Tu equipo de plataforma transformando flujos manuales (R&D, regulatorio, supply) en agentes \u2014 semanas, no trimestres.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/almirall/"
   },
   {
     "slug": "anthropic",
     "title": "Fidel Perez \u2014 for Anthropic (Senior Platform Engineer)",
     "subtitle": "Your enterprise customers shipping Claude end-to-end in production \u2014 same MCP-native stack I run today, day one with me.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/anthropic/"
   },
   {
     "slug": "factorial",
     "title": "Fidel P\u00e9rez \u2014 para Factorial (Senior Platform Engineer)",
     "subtitle": "Tu equipo de plataforma desplegando flujos basados en agentes en semanas, no trimestres \u2014 el mismo stack desde el d\u00eda uno.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/factorial/"
   },
   {
     "slug": "galenicum",
     "title": "Fidel P\u00e9rez \u2014 para Galenicum (Senior Platform Engineer)",
     "subtitle": "Tu operaci\u00f3n de APIs y dossier regulatorio convertida en bucles ag\u00e9nticos \u2014 semanas, no trimestres. Mismo stack desde el d\u00eda uno.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/galenicum/"
   },
   {
     "slug": "glovo",
     "title": "Fidel P\u00e9rez \u2014 para Glovo (Senior Platform Engineer)",
     "subtitle": "Tu equipo de plataforma transformando flujos operativos (riders, fraude, on-call) en agentes \u2014 semanas, no trimestres.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/glovo/"
   },
   {
     "slug": "lighthouse",
     "title": "Fidel Perez \u2014 for Lighthouse (Senior MLOps / Senior AI Solutions / Senior DE)",
     "subtitle": "Connect AI defended under partner load with golden-set evals; KITT's quality regression caught at deploy time, not by hoteliers; Smart Compset queries answered by an agent over the rate warehouse inst",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/lighthouse/"
   },
   {
     "slug": "mistral",
     "title": "Fidel Perez \u2014 for Mistral AI (Senior Platform Engineer)",
     "subtitle": "Your enterprise customers shipping production loops on Mistral end-to-end \u2014 same MCP-native stack I run today, day one with me.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/mistral/"
   },
   {
     "slug": "payfit",
     "title": "Fidel Perez \u2014 for PayFit",
     "subtitle": "Your Jetlang authoring cycle compressed across all four jurisdictions \u2014 same shape I shipped on a fintech data platform.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/payfit/"
   },
   {
     "slug": "test-helio-ai",
     "title": "Fidel Perez \u2014 for Helio AI (Senior Platform Engineer)",
     "subtitle": "Your last three eng posts make customer-onboarding the wedge. That's the loop I'd ship first \u2014 same pattern I shipped at a fintech SaaS.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/test-helio-ai/"
   },
   {
     "slug": "test-lumeo-data",
     "title": "Fidel Perez \u2014 for Lumeo Data (Senior Data Platform Engineer)",
     "subtitle": "Your eng blog flagged pipeline reliability as the 2026 wedge \u2014 same move I made at a fintech SaaS, daily failures to near-zero.",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/test-lumeo-data/"
   },
   {
     "slug": "test-stackbeam",
     "title": "Fidel Perez \u2014 for Stackbeam (Agent Platform Engineer)",
     "subtitle": "I run a generic 4-crew agent platform end-to-end on hardware I bought myself. Want one of those?",
-    "mtime": "2026-05-04T18:39:29",
+    "mtime": "2026-05-05T06:19:03",
     "url": "https://fidel-perez.github.io/portfolio/microsites/test-stackbeam/"
   }
 ]
