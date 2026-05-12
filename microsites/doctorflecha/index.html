@@ -1,0 +1,1490 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pre-consulta orientativa — Dr. Pérez-Flecha</title>
+<meta name="description" content="Pre-consulta orientativa. Una conversación previa, no un diagnóstico — Dr. Francisco Pérez-Flecha.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+/* ============================================================
+   doctorflecha.com — pre-consult funnel
+   Brand: terracotta on cream, Helvetica stack.
+   Single-file vanilla JS app, GitHub-Pages friendly.
+   ============================================================ */
+
+:root {
+  --terra:        #bf8672;
+  --terra-dark:   #8b5c3a;
+  --terra-soft:   #e8d5c9;
+  --wine:         #8b2121;
+  --sage:         #7e9a47;
+  --cream:        #f7eee4;
+  --cream-soft:   #fbf6ef;
+  --paper:        #ffffff;
+  --ink:          #2f2f2f;
+  --ink-soft:     #6b5d54;
+  --rule:         #e3d6c9;
+  --shadow:       0 1px 2px rgba(94, 58, 36, .06), 0 8px 24px rgba(94, 58, 36, .08);
+  --shadow-lg:    0 4px 12px rgba(94, 58, 36, .10), 0 24px 48px rgba(94, 58, 36, .12);
+  --radius:       2px;
+  --radius-md:    6px;
+  --maxw:         780px;
+
+  --font-body:    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- typography ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: .01em;
+  color: var(--ink);
+  margin: 0 0 .5em;
+}
+h1 { font-size: 2.1rem; line-height: 1.2; }
+h2 { font-size: 1.55rem; line-height: 1.25; font-weight: 400; }
+h3 { font-size: 1.15rem; line-height: 1.3; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--terra-dark); }
+h4 { font-size: 1.02rem; font-weight: 600; letter-spacing: .02em; }
+p { margin: 0 0 1em; }
+a { color: var(--terra-dark); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--wine); }
+small { font-size: .85rem; color: var(--ink-soft); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
+
+/* ---- shell ---- */
+.shell { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+.demo-ribbon {
+  background: var(--ink);
+  color: var(--cream-soft);
+  padding: .55rem 1rem;
+  font-size: .78rem;
+  text-align: center;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.demo-ribbon strong { color: #fff; font-weight: 600; }
+.demo-ribbon a { color: var(--cream-soft); text-decoration: underline; }
+
+.topbar {
+  background: var(--cream-soft);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 1.25rem;
+}
+.topbar-inner {
+  max-width: var(--maxw); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  display: flex; flex-direction: column; line-height: 1.1;
+}
+.brand-mark {
+  font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra-dark); font-weight: 500;
+}
+.brand-sub {
+  font-size: .75rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-soft); margin-top: 4px;
+}
+.topbar-right {
+  font-size: .82rem; color: var(--ink-soft); text-align: right;
+}
+.topbar-right a { color: var(--ink); }
+
+main { padding: 2.5rem 0 4rem; }
+
+/* ---- cards / panels ---- */
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 2rem 1.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+}
+.panel-soft {
+  background: var(--cream-soft);
+  border: 1px solid var(--rule);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+}
+.panel-flag {
+  background: #fbf2ee;
+  border: 1px solid var(--terra);
+  border-left: 4px solid var(--terra);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+}
+.panel-warn {
+  background: #fdf6f3;
+  border-left: 4px solid var(--wine);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.eyebrow {
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--terra-dark); font-weight: 500; margin-bottom: .85rem;
+}
+.lede { font-size: 1.12rem; color: var(--ink-soft); }
+
+/* ---- video placeholder ---- */
+.video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #3a2a22 0%, #5a3d2e 60%, #8b5c3a 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+.video::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,.08), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,.05), transparent 50%);
+  pointer-events: none;
+}
+.video-play {
+  position: relative;
+  width: 76px; height: 76px;
+  background: rgba(255,255,255,.92);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  transition: transform .2s ease, background .2s ease;
+}
+.video:hover .video-play { transform: scale(1.06); background: #fff; }
+.video-play::after {
+  content: "";
+  width: 0; height: 0;
+  border-left: 22px solid var(--terra-dark);
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  margin-left: 6px;
+}
+.video-caption {
+  position: absolute; left: 1.25rem; bottom: 1.1rem; right: 1.25rem;
+  color: #fff; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase;
+  opacity: .85;
+}
+.video-title {
+  position: absolute; left: 1.25rem; top: 1.1rem;
+  color: #fff; font-size: .9rem; font-weight: 500;
+  background: rgba(0,0,0,.32); padding: 4px 10px; border-radius: 2px;
+  letter-spacing: .04em;
+}
+
+/* ---- form controls ---- */
+.q { margin-bottom: 1.75rem; }
+.q-label {
+  display: block; font-size: 1.02rem; font-weight: 500;
+  margin-bottom: .85rem; color: var(--ink);
+}
+.q-label .qid {
+  display: inline-block;
+  font-size: .7rem; letter-spacing: .12em;
+  color: var(--terra-dark); margin-right: .5rem;
+  font-weight: 600; vertical-align: 1px;
+}
+.q-hint { display: block; font-size: .82rem; color: var(--ink-soft); margin-bottom: .65rem; font-weight: 400; }
+
+.opt-list { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px;
+  background: var(--cream-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  font-size: .96rem;
+  line-height: 1.4;
+}
+.opt:hover { border-color: var(--terra); background: #fdf7f1; }
+.opt input { margin-top: 3px; accent-color: var(--terra-dark); flex-shrink: 0; }
+.opt.selected { border-color: var(--terra-dark); background: #fbeee5; }
+
+.scale {
+  display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;
+}
+.scale label {
+  flex: 1 1 0; min-width: 60px;
+  text-align: center;
+  padding: 14px 6px 12px;
+  background: var(--cream-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: .92rem;
+  transition: border-color .15s, background .15s;
+}
+.scale label:hover { border-color: var(--terra); }
+.scale input { display: none; }
+.scale label.selected { background: var(--terra-dark); color: #fff; border-color: var(--terra-dark); }
+.scale-num { display: block; font-size: 1.4rem; font-weight: 500; line-height: 1; margin-bottom: 4px; }
+.scale-key { display: flex; justify-content: space-between; font-size: .76rem; color: var(--ink-soft); margin-top: 6px; }
+
+/* ---- nav buttons ---- */
+.nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; margin-top: 1.5rem;
+}
+.btn {
+  font-family: inherit;
+  background: var(--terra-dark);
+  color: #fff;
+  border: 1px solid var(--terra-dark);
+  padding: 12px 26px;
+  font-size: .92rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background .15s, transform .05s;
+  font-weight: 500;
+}
+.btn:hover:not(:disabled) { background: #6e4626; }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { background: #cbb9a8; border-color: #cbb9a8; cursor: not-allowed; }
+.btn-ghost {
+  background: transparent; color: var(--ink-soft);
+  border: 1px solid transparent;
+  padding: 12px 18px;
+}
+.btn-ghost:hover:not(:disabled) { color: var(--terra-dark); background: transparent; }
+.btn-outline {
+  background: transparent; color: var(--terra-dark);
+  border: 1px solid var(--terra);
+}
+.btn-outline:hover:not(:disabled) { background: var(--terra-soft); }
+
+/* ---- progress ---- */
+.progress {
+  margin: 0 0 1.5rem;
+  font-size: .78rem; color: var(--ink-soft);
+  letter-spacing: .18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+}
+.progress-bar {
+  flex: 1; height: 2px; background: var(--rule); position: relative;
+}
+.progress-bar > span {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--terra-dark);
+  transition: width .35s ease;
+}
+
+/* ---- result page ---- */
+.result-hero {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 2.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  position: relative;
+}
+.result-hero::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--terra-dark);
+}
+.code-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--cream); border: 1px solid var(--rule);
+  padding: 10px 16px; border-radius: var(--radius);
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: .9rem;
+  letter-spacing: .06em;
+  color: var(--terra-dark);
+  margin-top: 1rem;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.code-badge button {
+  font-size: .7rem; padding: 4px 10px;
+  letter-spacing: .1em;
+  background: var(--terra-dark); color: #fff;
+  border: 0; border-radius: 2px; cursor: pointer;
+  text-transform: uppercase; font-family: inherit;
+}
+.code-badge button:hover { background: #6e4626; }
+
+.recap {
+  list-style: none; padding: 0; margin: 1rem 0 0;
+  font-size: .95rem;
+}
+.recap li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--rule);
+  display: flex; gap: 1rem;
+}
+.recap li:last-child { border-bottom: 0; }
+.recap-k { color: var(--ink-soft); flex: 0 0 38%; }
+.recap-v { color: var(--ink); flex: 1; }
+
+.proc-card {
+  border: 1px solid var(--rule);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  background: var(--cream-soft);
+}
+.proc-card h4 { margin-bottom: .35rem; color: var(--terra-dark); }
+.proc-card .range {
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: .82rem;
+  color: var(--wine);
+  letter-spacing: .04em;
+  margin-top: .5rem;
+}
+.proc-card .why {
+  font-size: .9rem; color: var(--ink-soft);
+  font-style: italic;
+  margin-top: .4rem;
+}
+
+.cta-block {
+  background: var(--terra-dark);
+  color: #fff;
+  padding: 1.75rem 1.5rem;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+}
+.cta-block h3 { color: #fff; margin-bottom: .75rem; }
+.cta-block p { color: rgba(255,255,255,.92); }
+.cta-block a.cta-btn {
+  display: inline-block;
+  background: #fff; color: var(--terra-dark);
+  padding: 12px 22px;
+  font-size: .88rem; letter-spacing: .06em; text-transform: uppercase;
+  font-weight: 600; text-decoration: none;
+  border-radius: var(--radius);
+  margin-top: .75rem; margin-right: .5rem;
+}
+.cta-block a.cta-btn.alt {
+  background: transparent; color: #fff;
+  border: 1px solid rgba(255,255,255,.5);
+}
+
+.photo-list {
+  list-style: none; padding: 0; margin: .75rem 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.photo-list li {
+  padding: 10px 12px;
+  background: var(--cream-soft);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  font-size: .88rem;
+  color: var(--ink-soft);
+}
+.photo-list li::before {
+  content: "▢ "; color: var(--terra-dark); font-weight: 600;
+}
+
+.exit-tag {
+  display: inline-block;
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 8px;
+  background: var(--terra-soft); color: var(--terra-dark);
+  border-radius: 2px; margin-bottom: .75rem;
+  font-weight: 500;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 1.25rem 3rem;
+  text-align: center;
+  font-size: .82rem;
+  color: var(--ink-soft);
+  margin-top: 3rem;
+}
+footer a { color: var(--terra-dark); }
+
+/* ---- doctor view ---- */
+.doc-banner {
+  background: #f3eee7;
+  border-top: 3px solid var(--terra-dark);
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem 1.25rem;
+  font-size: .9rem;
+}
+.doc-banner-inner {
+  max-width: var(--maxw); margin: 0 auto;
+}
+.doc-banner strong { color: var(--terra-dark); letter-spacing: .04em; }
+.doc-table {
+  width: 100%; border-collapse: collapse; font-size: .88rem;
+  margin-top: .5rem;
+}
+.doc-table th, .doc-table td {
+  text-align: left; padding: 6px 10px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.doc-table th {
+  color: var(--ink-soft); font-weight: 500; width: 28%;
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
+}
+.doc-toggle {
+  font-size: .78rem; color: var(--terra-dark); cursor: pointer;
+  background: transparent; border: 0; padding: 0;
+  text-decoration: underline; text-underline-offset: 3px;
+  font-family: inherit;
+}
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.3rem; }
+  .panel { padding: 1.4rem 1.1rem; }
+  .topbar { padding: .85rem 1rem; }
+  .brand-mark { font-size: 1rem; }
+  .recap li { flex-direction: column; gap: 2px; }
+  .recap-k { flex-basis: auto; font-size: .8rem; }
+  .scale label { padding: 10px 4px; }
+  .scale-num { font-size: 1.1rem; }
+  main { padding: 1.5rem 0 2.5rem; }
+}
+
+/* print-friendly when doctor wants paper copy */
+@media print {
+  .demo-ribbon, .topbar, footer, .nav-row, .doc-toggle, .video { display: none !important; }
+  body { background: #fff; }
+  .panel, .result-hero, .panel-soft, .panel-flag, .cta-block { border: 1px solid #999; box-shadow: none; }
+  .cta-block { background: #fff; color: #000; }
+  .cta-block h3, .cta-block p { color: #000; }
+}
+</style>
+</head>
+<body>
+
+<div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+  <p class="tagline">Demo interactivo de pre-consulta orientativa para doctorflecha.com — embudo de 4 vídeos + 4 encuestas con código personalizado de paciente.</p>
+</div>
+
+<div class="demo-ribbon">
+  <strong>Demo interactivo</strong> · pre-consulta orientativa · vídeos provisionales · pensado para revisión del Dr. Pérez-Flecha
+  &nbsp;·&nbsp; <a href="#" id="doc-mode-toggle">Vista del doctor</a>
+</div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">Clínica Flecha</span>
+      <span class="brand-sub">Aesthetic Surgery</span>
+    </div>
+    <div class="topbar-right">
+      <div>Dr. Francisco Pérez-Flecha</div>
+      <div><small>Lifting Deep-Plane</small></div>
+    </div>
+  </div>
+</header>
+
+<main id="app" class="shell">
+  <!-- rendered by JS -->
+</main>
+
+<footer>
+  Clínica Flecha · Madrid · <a href="mailto:info@doctorflecha.com">info@doctorflecha.com</a> · WhatsApp 665 131 485<br>
+  <small>Esta orientación no sustituye consulta médica presencial. Demo técnica · sin recopilación de datos personales.</small>
+</footer>
+
+<script>
+/* ============================================================
+   STATE + DATA MODEL
+   ============================================================ */
+
+// Survey definition. Each question lists options; multi: true means
+// checkboxes. The order of the options is the encoding order — never
+// reorder once codes are in the wild.
+const SURVEY = {
+  intro: {
+    title: "Antes de venir a consulta: cómo entender tu caso",
+    video: {
+      title: "Vídeo 0 — Introducción (9–11 min)",
+      caption: "Presentación, filosofía y cómo funciona esta pre-consulta",
+    },
+    questions: [
+      { id: "p01", label: "¿Qué edad tienes?", type: "single",
+        opts: ["30-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70+"] },
+      { id: "p02", label: "¿Eres mujer u hombre?", type: "single",
+        opts: ["Mujer", "Hombre", "Prefiero no decirlo"] },
+      { id: "p03", label: "¿Dónde vives?", type: "single",
+        opts: ["Madrid", "Resto de España", "Fuera de España"] },
+      { id: "p04", label: "¿Qué te ha traído hasta aquí?", type: "single",
+        opts: [
+          "Llevo tiempo viendo cambios en mi cara y quiero entender qué opciones tengo",
+          "Tengo claro que quiero operarme y busco al cirujano adecuado",
+          "Ya me operé antes y no estoy satisfecha, busco segunda opinión",
+          "Estoy explorando, sin compromiso",
+          "Vengo recomendada por una paciente operada"
+        ] },
+      { id: "p05", label: "¿Qué tipo de tratamiento te interesa?", type: "single",
+        opts: [
+          "Cirugía (lifting o similar)",
+          "Algo no quirúrgico (rellenos, botox, hilos…)",
+          "No lo tengo claro, quiero que me orienten",
+          "Otro (ortognática, cirugía de nariz, etc.)"
+        ] },
+      { id: "p06", label: "¿Tienes alguna de estas condiciones médicas?", type: "multi",
+        hint: "Marca todas las que apliquen.",
+        opts: [
+          "Esclerosis múltiple",
+          "Lupus",
+          "Cardiopatía",
+          "Diabetes mal controlada",
+          "Hipertensión no controlada",
+          "Tomo anticoagulantes",
+          "Tomo antiagregantes (aspirina, clopidogrel…)",
+          "Ninguna de estas"
+        ] },
+      { id: "p07", label: "¿Fumas?", type: "single",
+        opts: [
+          "No, nunca",
+          "Lo dejé hace más de 1 año",
+          "Lo dejé hace menos de 1 año",
+          "Sí, ocasionalmente",
+          "Sí, a diario"
+        ] },
+      { id: "p08", label: "¿Te has hecho alguna cirugía facial estética antes?", type: "single",
+        opts: [
+          "No",
+          "Sí, hace más de 10 años, satisfecha",
+          "Sí, hace menos de 10 años, satisfecha",
+          "Sí, pero no estoy satisfecha",
+          "Sí, hace mucho y me gustaría retocar"
+        ] },
+      { id: "p09", label: "¿Te han puesto biopolímeros o sustancias permanentes (no reabsorbibles) en la cara?", type: "single",
+        opts: ["No", "Sí", "No estoy segura de qué me pusieron"] }
+    ]
+  },
+
+  s1: {
+    title: "Qué le está pasando a tu cara",
+    video: { title: "Vídeo 1 — Entendiendo tu envejecimiento (2:30)",
+             caption: "Flacidez, volumen y piel: qué le pasa a tu cara, en concreto" },
+    questions: [
+      { id: "p11", label: "Cuando te miras al espejo, ¿qué te molesta más?", type: "multi",
+        hint: "Elige hasta 3.", max: 3,
+        opts: [
+          "El óvalo y la línea mandibular han perdido definición",
+          "Tengo \"papada\" o cuello descolgado",
+          "Las mejillas se ven hundidas o sin volumen",
+          "Los párpados superiores caen sobre los ojos",
+          "Tengo bolsas o piel bajo los ojos",
+          "Las cejas se han descendido y tengo mirada cansada",
+          "Mi cara ha perdido en general \"frescura\" pero no sé qué es exactamente",
+          "Tengo arrugas finas y manchas"
+        ] },
+      { id: "p12", label: "Lo que más has notado en los últimos años es…", type: "single",
+        opts: [
+          "Que la cara se ha \"caído\" — los tejidos están más abajo que antes",
+          "Que la cara se ha \"vaciado\" — he perdido relleno",
+          "Las dos cosas a la vez",
+          "Sobre todo cambios en la piel (arrugas, manchas, textura)"
+        ] },
+      { id: "p13", label: "Si tuvieras que puntuar lo marcado del cambio (1–5)", type: "scale",
+        opts: ["1", "2", "3", "4", "5"],
+        scaleKey: ["apenas perceptible", "muy marcado"] },
+      { id: "p14", label: "¿Notas que un lado de la cara es distinto del otro?", type: "single",
+        opts: ["Sí, claramente", "Un poco", "No", "No me había fijado"] }
+    ]
+  },
+
+  s2: {
+    title: "Qué procedimiento podría encajar contigo",
+    video: { title: "Vídeo 2 — Lifting, deep-plane y procedimientos que lo acompañan (2:30)",
+             caption: "Diferencias entre técnicas, sin jerga" },
+    questions: [
+      { id: "p21", label: "¿Qué tipo de resultado buscas?", type: "single",
+        opts: [
+          "Rejuvenecer sin que se note que me he operado",
+          "Un cambio visible pero que siga pareciendo yo",
+          "Corregir una zona muy concreta que me molesta",
+          "Una mejora funcional y estética a la vez",
+          "No lo tengo claro todavía"
+        ] },
+      { id: "p22", label: "¿Te has puesto rellenos de ácido hialurónico antes?", type: "single",
+        opts: ["Nunca", "Sí, hace más de 2 años, nada reciente", "Sí, en el último año", "Sí, muchos a lo largo de los años"] },
+      { id: "p23", label: "¿Usas o has usado botox?", type: "single",
+        opts: ["Nunca", "Esporádicamente", "Habitualmente"] },
+      { id: "p24", label: "¿Te has hecho otros tratamientos en la cara?", type: "multi",
+        opts: [
+          "Hilos tensores",
+          "Radiofrecuencia o ultrasonidos (Ulthera, Morpheus…)",
+          "Láser",
+          "Peelings",
+          "Ninguno de estos"
+        ] },
+      { id: "p25", label: "Cuando piensas en la cirugía, lo que más te frena es…", type: "multi",
+        opts: [
+          "El miedo a quedar \"operada\" o artificial",
+          "El miedo a los riesgos",
+          "El tiempo de recuperación",
+          "La inversión económica",
+          "La opinión de mi familia o entorno",
+          "Nada en particular, vengo decidida",
+          "Otra cosa"
+        ] }
+    ]
+  },
+
+  s3: {
+    title: "Recuperación, riesgos y qué esperar",
+    video: { title: "Vídeo 3 — Recuperación, riesgos y tiempos (2:30)",
+             caption: "Tiempos reales, riesgos conocidos y cómo se manejan" },
+    questions: [
+      { id: "p31", label: "¿Cuánto tiempo de recuperación puedes asumir?", type: "single",
+        opts: [
+          "Menos de 1 semana",
+          "1-2 semanas",
+          "2-4 semanas",
+          "Sin límite, organizo lo que haga falta"
+        ] },
+      { id: "p32", label: "¿En qué horizonte te planteas hacer esto?", type: "single",
+        opts: [
+          "En los próximos 3 meses",
+          "En 3-6 meses",
+          "En 6-12 meses",
+          "Estoy explorando, sin fecha"
+        ] },
+      { id: "p33", label: "Rango orientativo de inversión que has contemplado", type: "single",
+        opts: ["Hasta 5.000 €", "5.000-10.000 €", "10.000-15.000 €", "Más de 15.000 €", "Prefiero no decirlo ahora"] },
+      { id: "p34", label: "¿Cuál es la mejor forma de contactarte?", type: "single",
+        opts: ["Email", "WhatsApp", "Llamada"] },
+      { id: "p35", label: "¿Has visto resultados míos antes de llegar aquí (Instagram, web, antes-después)?",
+        type: "single",
+        opts: ["Sí, conozco tu trabajo", "Algo", "No, vengo de cero"] }
+    ]
+  }
+};
+
+const ORDER = ["intro", "s1", "s2", "s3"];
+
+// In-memory state.
+// answers shape: { p01: 2, p06: [0,3], p11: [1,2,3], ... }
+let state = {
+  step: 0,           // 0..ORDER.length-1, then "result"
+  answers: {}
+};
+
+/* ============================================================
+   CODE ENCODING / DECODING
+   - Codes are URL-safe and self-contained.
+   - Prefix "DF1-" lets us bump versions without breaking decode.
+   - Payload is a base64url-encoded compact JSON of answers.
+   - Multi answers stay as arrays of indices, single as integer.
+   ============================================================ */
+
+const CODE_PREFIX = "DF1-";
+
+function b64urlEncode(str) {
+  return btoa(unescape(encodeURIComponent(str)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function b64urlDecode(s) {
+  s = s.replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  return decodeURIComponent(escape(atob(s)));
+}
+
+function encodeAnswers(ans) {
+  // Compact representation: { v: 1, a: { p01: idx, p06: [idx,...], ... } }
+  return CODE_PREFIX + b64urlEncode(JSON.stringify({ v: 1, a: ans }));
+}
+function decodeCode(code) {
+  if (!code || !code.startsWith(CODE_PREFIX)) return null;
+  try {
+    const payload = b64urlDecode(code.slice(CODE_PREFIX.length));
+    const obj = JSON.parse(payload);
+    if (!obj || obj.v !== 1 || typeof obj.a !== "object") return null;
+    return obj.a;
+  } catch (e) {
+    return null;
+  }
+}
+
+/* ============================================================
+   BRANCHING LOGIC
+   Determines exit flag(s) based on answers.
+   Returns a single primary exit code or "estandar".
+   ============================================================ */
+function classify(a) {
+  const flags = [];
+  const p01 = a.p01, p05 = a.p05, p06 = a.p06 || [], p07 = a.p07, p08 = a.p08, p09 = a.p09;
+  const p11 = a.p11 || [], p13 = a.p13, p21 = a.p21;
+
+  // SALIDA C — wants non-surgical
+  if (p05 === 1) flags.push("C");
+  // SALIDA D — different specialty
+  if (p05 === 3) flags.push("D");
+
+  // RUTA COMPLEJA — biopolymers
+  if (p09 === 1 || p09 === 2) flags.push("B");
+  // Cirugía previa insatisfactoria
+  if (p08 === 3) flags.push("B");
+  // Patologías de la lista que requieren consulta presencial obligada:
+  // EM (0), Lupus (1), Cardiopatía (2), Anticoagulantes (5)
+  if (p06.some(i => [0,1,2,5].includes(i))) flags.push("B");
+
+  // SALIDA E — fumadora diaria + cirugía
+  if (p07 === 4 && (p05 === 0 || p05 === 2)) flags.push("E");
+
+  // SALIDA A — joven (<40), apertura cirugía, leve y cutáneo
+  // p01 index 0 = "30-39"
+  if (p01 === 0 && (p05 === 0 || p05 === 2) && (p13 != null && p13 <= 1) && a.p12 === 3) flags.push("A");
+
+  // SALIDA F — expectativa desalineada
+  if (p21 === 2 && p11.length > 1 && (p13 != null && p13 >= 3)) flags.push("F");
+
+  // Precedence: B (compleja) trumps; then C/D (no fit); then E; then A; then F
+  for (const f of ["B", "C", "D", "E", "A", "F"]) {
+    if (flags.includes(f)) return f;
+  }
+  return "estandar";
+}
+
+/* ============================================================
+   RECOMMENDATION ENGINE
+   Picks a primary procedure + complementary blocks.
+   ============================================================ */
+function recommend(a) {
+  const p01 = a.p01, p11 = a.p11 || [], p12 = a.p12, p13 = a.p13;
+  const ageBucket = p01; // index 0..7
+  const hasNeck = p11.includes(1);
+  const hasMidFaceLoss = p11.includes(2) || p12 === 1 || p12 === 2;
+  const hasLid = p11.includes(3) || p11.includes(4);
+  const hasBrow = p11.includes(5);
+
+  let primary;
+  if (ageBucket != null && ageBucket <= 1 && (p13 != null && p13 <= 2)) {
+    primary = {
+      name: "Minilifting",
+      desc: "Reposición selectiva del tercio inferior. Cicatriz más corta y recuperación algo más breve. Resultado más limitado y de menor duración que un deep-plane completo.",
+      range: "9.000–10.500 €",
+      why: "Por tu edad y descolgamiento limitado, podría ser una opción si en consulta confirmamos que el cuello no requiere abordaje completo."
+    };
+  } else if (hasNeck) {
+    primary = {
+      name: "Deep-plane + platismoplastia",
+      desc: "Lifting deep-plane completo combinado con corrección del cuello (bandas, ángulo cervicomandibular). Devuelve la línea mandibular y el cuello sin tirones de piel.",
+      range: "12.000–14.500 €",
+      why: "Lo que describes — descolgamiento mandibular junto con cuello — encaja con un planteamiento que aborde rostro y cuello en el mismo tiempo quirúrgico."
+    };
+  } else {
+    primary = {
+      name: "Lifting deep-plane",
+      desc: "Reposición de los tejidos en el plano profundo. Es la técnica con resultado más natural y duradero, la que mejor envejece y la que evita el aspecto \"estirado\".",
+      range: "11.000–14.000 €",
+      why: "Por la combinación de zonas que marcas, tu caso encaja con un lifting deep-plane completo de rostro."
+    };
+  }
+
+  const adjuncts = [];
+  if (hasMidFaceLoss) adjuncts.push({
+    name: "Lipofilling facial",
+    desc: "Reposición de volumen con grasa propia donde se ha perdido (mejilla, surcos). Se hace en el mismo tiempo quirúrgico."
+  });
+  if (a.p11 && a.p11.includes(3)) adjuncts.push({
+    name: "Blefaroplastia superior",
+    desc: "Corrección del exceso de piel en el párpado superior. Si reposicionamos tejidos sin tocar el párpado y este sobra, queda raro."
+  });
+  if (a.p11 && a.p11.includes(4)) adjuncts.push({
+    name: "Blefaroplastia inferior",
+    desc: "Reposicionamiento de bolsas y corrección del exceso de piel bajo los ojos."
+  });
+  if (hasBrow) adjuncts.push({
+    name: "Browlift (lifting de ceja)",
+    desc: "Reposición de la ceja cuando ha descendido y crea apariencia de exceso de piel en el párpado superior."
+  });
+
+  return { primary, adjuncts };
+}
+
+/* ============================================================
+   RENDER — DISPATCH
+   ============================================================ */
+function render() {
+  const url = new URL(window.location);
+  const codeParam = url.searchParams.get("codigo");
+
+  // Doctor's decoder view: forced if ?codigo=... AND #doctor present,
+  // OR if doc-mode toggle activated. Otherwise patients with a code see
+  // their personalized page.
+  if (codeParam) {
+    const decoded = decodeCode(codeParam);
+    if (!decoded) {
+      renderInvalidCode(codeParam);
+      return;
+    }
+    state.answers = decoded;
+    state.step = "result";
+    const docMode = url.hash === "#doctor" || sessionStorage.getItem("df_doc_mode") === "1";
+    renderResult(docMode, codeParam);
+    return;
+  }
+
+  // Normal funnel
+  if (state.step === "result") {
+    renderResult(false, encodeAnswers(state.answers));
+    return;
+  }
+  renderStep(state.step);
+}
+
+/* ============================================================
+   RENDER — STEPS
+   ============================================================ */
+function renderStep(idx) {
+  const key = ORDER[idx];
+  const block = SURVEY[key];
+  const totalSteps = ORDER.length;
+  const app = document.getElementById("app");
+
+  const progressPct = Math.round(((idx) / totalSteps) * 100);
+
+  app.innerHTML = `
+    <div class="progress">
+      <span>Paso ${idx + 1} de ${totalSteps}</span>
+      <div class="progress-bar"><span style="width:${progressPct}%"></span></div>
+    </div>
+
+    <section class="panel">
+      <div class="eyebrow">${idx === 0 ? "Antes de empezar" : "Continuamos"}</div>
+      <h1>${block.title}</h1>
+
+      <div class="video" data-video-key="${key}">
+        <div class="video-title">${block.video.title}</div>
+        <div class="video-play" aria-label="Reproducir vídeo"></div>
+        <div class="video-caption">${block.video.caption} · vídeo de muestra</div>
+      </div>
+
+      <p class="lede">${idx === 0
+        ? "Esto no es un diagnóstico. Es una preparación para que, cuando vengas a consulta, la conversación arranque desde otro punto. Dame unos minutos."
+        : "Las preguntas de abajo ayudan a entender mejor tu caso. No tienes que adivinar la respuesta técnica — describe lo que ves."}
+      </p>
+
+      <hr>
+
+      <form id="form-step" novalidate>
+        ${block.questions.map(q => renderQuestion(q)).join("")}
+      </form>
+
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="btn-back" ${idx === 0 ? "disabled" : ""}>← Atrás</button>
+        <button class="btn" id="btn-next">${idx === totalSteps - 1 ? "Ver mi orientación" : "Continuar"} →</button>
+      </div>
+    </section>
+  `;
+
+  wireForm(block);
+  document.getElementById("btn-back").addEventListener("click", goBack);
+  document.getElementById("btn-next").addEventListener("click", goNext.bind(null, block));
+  document.querySelectorAll(".video").forEach(v => v.addEventListener("click", () => {
+    const cap = v.querySelector(".video-caption");
+    cap.textContent = "Vídeo de muestra · el doctor grabará la versión final.";
+  }));
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function renderQuestion(q) {
+  const answered = state.answers[q.id];
+  if (q.type === "scale") {
+    return `
+      <div class="q" data-qid="${q.id}" data-type="scale">
+        <label class="q-label"><span class="qid">${q.id.toUpperCase()}</span>${q.label}</label>
+        ${q.hint ? `<span class="q-hint">${q.hint}</span>` : ""}
+        <div class="scale">
+          ${q.opts.map((o, i) => `
+            <label class="${answered === i ? "selected" : ""}">
+              <input type="radio" name="${q.id}" value="${i}" ${answered === i ? "checked" : ""}>
+              <span class="scale-num">${o}</span>
+            </label>
+          `).join("")}
+        </div>
+        <div class="scale-key">
+          <span>1 = ${q.scaleKey[0]}</span>
+          <span>5 = ${q.scaleKey[1]}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  const isMulti = q.type === "multi";
+  const inputType = isMulti ? "checkbox" : "radio";
+  return `
+    <div class="q" data-qid="${q.id}" data-type="${q.type}" ${q.max ? `data-max="${q.max}"` : ""}>
+      <label class="q-label"><span class="qid">${q.id.toUpperCase()}</span>${q.label}</label>
+      ${q.hint ? `<span class="q-hint">${q.hint}</span>` : ""}
+      <div class="opt-list">
+        ${q.opts.map((o, i) => {
+          const sel = isMulti
+            ? (answered || []).includes(i)
+            : answered === i;
+          return `
+            <label class="opt${sel ? " selected" : ""}">
+              <input type="${inputType}" name="${q.id}" value="${i}" ${sel ? "checked" : ""}>
+              <span>${o}</span>
+            </label>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function wireForm(block) {
+  document.querySelectorAll(".q").forEach(qNode => {
+    const qid = qNode.dataset.qid;
+    const type = qNode.dataset.type;
+    const max = qNode.dataset.max ? parseInt(qNode.dataset.max, 10) : null;
+
+    qNode.querySelectorAll("input").forEach(input => {
+      input.addEventListener("change", () => {
+        if (type === "multi") {
+          const checked = [...qNode.querySelectorAll("input:checked")].map(i => parseInt(i.value, 10));
+          if (max && checked.length > max) {
+            // disallow exceeding max — undo the latest
+            input.checked = false;
+            return;
+          }
+          state.answers[qid] = checked;
+        } else {
+          state.answers[qid] = parseInt(input.value, 10);
+        }
+        // Update selected styling
+        qNode.querySelectorAll(type === "scale" ? ".scale label" : ".opt").forEach(lbl => {
+          const inp = lbl.querySelector("input");
+          lbl.classList.toggle("selected", inp.checked);
+        });
+      });
+    });
+  });
+}
+
+function allAnswered(block) {
+  for (const q of block.questions) {
+    const a = state.answers[q.id];
+    if (q.type === "multi") {
+      if (!Array.isArray(a) || a.length === 0) return false;
+    } else {
+      if (a == null) return false;
+    }
+  }
+  return true;
+}
+
+function goBack() {
+  if (state.step > 0) {
+    state.step--;
+    render();
+  }
+}
+
+function goNext(block) {
+  if (!allAnswered(block)) {
+    // Soft validation: scroll to first missing
+    for (const q of block.questions) {
+      const a = state.answers[q.id];
+      const missing = (q.type === "multi") ? (!Array.isArray(a) || a.length === 0) : (a == null);
+      if (missing) {
+        const node = document.querySelector(`.q[data-qid="${q.id}"]`);
+        node.scrollIntoView({ behavior: "smooth", block: "center" });
+        node.style.transition = "background .25s";
+        node.style.background = "#fbeee5";
+        setTimeout(() => { node.style.background = ""; }, 700);
+        return;
+      }
+    }
+    return;
+  }
+  if (state.step < ORDER.length - 1) {
+    state.step++;
+    render();
+  } else {
+    state.step = "result";
+    render();
+  }
+}
+
+/* ============================================================
+   RENDER — RESULT PAGE
+   Composes blocks 1..12 based on answers + exit classification.
+   ============================================================ */
+function renderResult(docMode, code) {
+  const a = state.answers;
+  const exit = classify(a);
+  const reco = recommend(a);
+  const app = document.getElementById("app");
+
+  // BLOCK 1 — recap
+  const block1 = renderRecapBlock(a);
+
+  // Exit-specific overrides
+  const earlyExits = { C: true, D: true, A: true };
+  const showProcedure = !earlyExits[exit];
+  const showRisks = !earlyExits[exit];
+
+  // BLOCK 2 — procedure
+  const block2 = showProcedure ? renderProcedureBlock(a, reco, exit) : "";
+
+  // BLOCK 3 — what you probably do NOT need
+  const block3 = showProcedure ? renderNotNeededBlock(a) : "";
+
+  // BLOCK 4 — adjuncts
+  const block4 = showProcedure && reco.adjuncts.length ? renderAdjunctsBlock(reco.adjuncts) : "";
+
+  // BLOCK 5 — timing
+  const block5 = showProcedure ? renderTimingBlock(a) : "";
+
+  // BLOCK 6 — risks (standard)
+  const block6 = showRisks ? renderRisksBlock() : "";
+
+  // BLOCK 7 — moment
+  const block7 = renderMomentBlock(a, exit);
+
+  // BLOCK 8 — what will happen in consultation
+  const block8 = !["C","D"].includes(exit) ? renderConsultBlock() : "";
+
+  // BLOCK 9 — flags
+  const block9 = renderFlagsBlock(a, exit);
+
+  // BLOCK 10 — photos
+  const block10 = showProcedure ? renderPhotosBlock(reco) : "";
+
+  // BLOCK 11 — CTA
+  const block11 = renderCTABlock(a, exit, code);
+
+  // BLOCK 12 — disclaimer (standard)
+  const block12 = renderDisclaimerBlock();
+
+  const docHeader = docMode ? renderDoctorHeader(a, code) : "";
+
+  app.innerHTML = `
+    ${docHeader}
+
+    <section class="result-hero">
+      <div class="eyebrow">Tu orientación personalizada</div>
+      <h1>${headlineForExit(exit, a)}</h1>
+      <p class="lede">${ledeForExit(exit, a)}</p>
+      <div class="code-badge">
+        <span><strong>Tu código:</strong> ${code}</span>
+        <button id="btn-copy">Copiar</button>
+      </div>
+    </section>
+
+    ${block1}
+    ${block9}
+    ${block2}
+    ${block4}
+    ${block3}
+    ${block5}
+    ${block7}
+    ${block6}
+    ${block8}
+    ${block10}
+    ${block11}
+    ${block12}
+
+    <div class="nav-row">
+      <button class="btn btn-ghost" id="btn-restart">← Empezar de nuevo</button>
+      <button class="btn btn-outline" id="btn-print" onclick="window.print()">Imprimir mi orientación</button>
+    </div>
+  `;
+
+  document.getElementById("btn-copy").addEventListener("click", () => {
+    navigator.clipboard.writeText(code).then(() => {
+      const b = document.getElementById("btn-copy");
+      const o = b.textContent; b.textContent = "Copiado"; setTimeout(() => b.textContent = o, 1500);
+    });
+  });
+  document.getElementById("btn-restart").addEventListener("click", () => {
+    state = { step: 0, answers: {} };
+    history.replaceState({}, "", window.location.pathname);
+    render();
+  });
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function headlineForExit(exit, a) {
+  if (exit === "A") return "Aún no es tu momento — y eso es buena noticia";
+  if (exit === "B") return "Tu caso necesita verse en persona";
+  if (exit === "C") return "Mi foco no es exactamente lo que buscas";
+  if (exit === "D") return "Lo que buscas no se canaliza por aquí";
+  if (exit === "E") return "Antes de avanzar, hablemos del tabaco";
+  if (exit === "F") return "Hay una conversación importante antes de la consulta";
+  return "Esto es lo que entiendo de tu caso";
+}
+
+function ledeForExit(exit, a) {
+  if (exit === "A") return "Por lo que cuentas, hoy no es momento de plantear cirugía. Lo razonable es cuidar piel y, si en 3–5 años notas cambios estructurales, vuelves. Cierro abajo con orientaciones.";
+  if (exit === "B") return "Por una o más razones que comentas más abajo, tu caso no se puede orientar a distancia con honestidad. Antes de ninguna recomendación, te necesito ver en consulta.";
+  if (exit === "C") return "Mi foco es cirugía facial — no medicina estética. Te oriento abajo sin presión y te dejo la puerta abierta por si en el futuro tu caso evoluciona.";
+  if (exit === "D") return "Lo que buscas no entra dentro de este embudo. Abajo te redirijo según lo que has marcado.";
+  if (exit === "E") return "Por lo que cuentas eres candidata a cirugía, pero el tabaco activo compromete el resultado del lifting. Antes de avanzar a consulta de cirugía, necesitamos una llamada para hablar del plan de cese.";
+  if (exit === "F") return "Lo que describes apunta a un planteamiento más amplio del que esperas. Mejor que llegues sabiéndolo y decidas si quieres seguir.";
+  return "Lo que viene abajo es una lectura de lo que me has contado: un punto de partida para la consulta. No es diagnóstico, ni presupuesto cerrado.";
+}
+
+/* ---- block builders ---- */
+
+function renderRecapBlock(a) {
+  const items = [];
+  const get = (qid, key) => {
+    const idx = a[qid];
+    if (idx == null) return null;
+    const q = findQ(qid);
+    if (!q) return null;
+    if (Array.isArray(idx)) return idx.map(i => q.opts[i]);
+    return q.opts[idx];
+  };
+  const edad = get("p01");
+  const ubi = get("p03");
+  const motiv = get("p04");
+  const trat = get("p05");
+  const compEnv = get("p12");
+  const sev = a.p13 != null ? `${a.p13 + 1}/5` : null;
+  const zonas = get("p11");
+
+  if (edad) items.push(["Edad", edad]);
+  if (ubi) items.push(["Ubicación", ubi]);
+  if (motiv) items.push(["Motivación", motiv]);
+  if (trat) items.push(["Lo que te interesa", trat]);
+  if (compEnv) items.push(["Lo que más has notado", compEnv]);
+  if (sev) items.push(["Severidad subjetiva", sev]);
+  if (zonas && zonas.length) items.push(["Te molesta sobre todo", zonas.join(" · ")]);
+
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 1 — Lo que entiendo de ti</div>
+      <h2>Esto es lo que me has contado</h2>
+      <p>Antes de cualquier orientación, te resumo lo que he leído. Si algo no encaja, lo corregimos en consulta.</p>
+      <ul class="recap">
+        ${items.map(([k, v]) => `<li><span class="recap-k">${k}</span><span class="recap-v">${v}</span></li>`).join("")}
+      </ul>
+    </section>
+  `;
+}
+
+function renderProcedureBlock(a, reco, exit) {
+  const { primary } = reco;
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 2 — Procedimiento que más encaja</div>
+      <h2>${primary.name}</h2>
+      <p>${primary.desc}</p>
+      <p class="why"><strong>Por qué encaja contigo:</strong> ${primary.why}</p>
+      <div class="proc-card" style="background: #fdf7f1; border-color: var(--terra);">
+        <h4>Horquilla orientativa</h4>
+        <p style="margin: 0;">${primary.range}</p>
+        <p class="range" style="margin-top: .35rem;">Todo incluido · validez 3 meses tras presupuesto definitivo en consulta · no es presupuesto cerrado.</p>
+      </div>
+    </section>
+  `;
+}
+
+function renderNotNeededBlock(a) {
+  const items = [];
+  if (a.p22 === 3) items.push("Más rellenos de ácido hialurónico no van a resolver lo que ahora es estructural. Tu caso ya pasó esa frontera.");
+  if (a.p24 && (a.p24.includes(0) || a.p24.includes(1))) items.push("Hilos tensores, radiofrecuencia o ultrasonidos no levantan tejidos profundos. Sirven para mantenimiento, no para reposicionar lo que ya cayó.");
+  if (a.p23 === 2 && a.p11 && a.p11.includes(0)) items.push("La toxina botulínica relaja músculos, no resuelve descolgamiento. Puede seguir formando parte de tu mantenimiento, pero no es la respuesta a lo que describes.");
+  if (!items.length) return "";
+  return `
+    <section class="panel-soft">
+      <div class="eyebrow">Bloque 3 — Lo que probablemente NO necesitas</div>
+      <p style="margin-bottom: .75rem;"><em>"Los rellenos no son malos, pero cuando el problema pasa a ser estructural, no son la solución."</em></p>
+      <ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>
+    </section>
+  `;
+}
+
+function renderAdjunctsBlock(adjuncts) {
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 4 — Procedimientos que probablemente lo acompañen</div>
+      <h2>El lifting bien hecho no se hace aislado</h2>
+      <p>Si solo se arregla una zona, las demás se ven peor en comparación. La cara funciona como un conjunto. Por lo que cuentas, es probable que tu plan incluya además:</p>
+      ${adjuncts.map(adj => `
+        <div class="proc-card">
+          <h4>${adj.name}</h4>
+          <p style="margin: 0;">${adj.desc}</p>
+        </div>
+      `).join("")}
+      <p><small>Esto no se decide hoy. Se decide en consulta valorándote en persona.</small></p>
+    </section>
+  `;
+}
+
+function renderTimingBlock(a) {
+  const loc = a.p03; // 0=Madrid, 1=Resto, 2=Internacional
+  let logistic;
+  if (loc === 0) logistic = "Estás en Madrid: la logística es simple — 1 noche en hospital, revisión presencial a la semana.";
+  else if (loc === 1) logistic = "Al vivir fuera de Madrid: planifica quedarte 48–72h adicionales aquí tras el alta, y deja organizada la revisión a la semana (presencial preferentemente).";
+  else logistic = "Como vienes desde fuera de España: planificamos videollamada previa antes de cualquier viaje, y coordinamos la estancia en Madrid en torno a la cirugía + revisión.";
+
+  const recBucket = a.p31;
+  const fitNote = recBucket === 0
+    ? "<strong style='color:var(--wine)'>Atención:</strong> has marcado menos de 1 semana de recuperación posible. Realísticamente este tipo de cirugía pide 10–14 días de discreción social. Lo veremos en consulta."
+    : recBucket === 1
+    ? "1–2 semanas encaja con vida social discreta. Deporte intenso se retoma a las 2–3 semanas."
+    : "Margen amplio — perfecto para llegar a la consulta sin la presión del calendario.";
+
+  return `
+    <section class="panel-soft">
+      <div class="eyebrow">Bloque 5 — Tiempos realistas para tu caso</div>
+      <h2>Cómo encajan los tiempos contigo</h2>
+      <ul>
+        <li><strong>1 noche</strong> en hospital.</li>
+        <li><strong>Revisión a la semana</strong> (preferentemente presencial).</li>
+        <li><strong>Vida social discreta</strong> en 10–14 días.</li>
+        <li><strong>Deporte intenso</strong>: 2–3 semanas.</li>
+        <li><strong>Resultado definitivo</strong>: a los 6 meses.</li>
+      </ul>
+      <p>${logistic}</p>
+      <p>${fitNote}</p>
+    </section>
+  `;
+}
+
+function renderRisksBlock() {
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 6 — Riesgos que tienes que conocer</div>
+      <h2>Lo que te va a contar otra gente vs. la verdad</h2>
+      <p>Si alguien te dice que "vuelves a trabajar al día siguiente", o que esta cirugía no tiene riesgos, está mintiendo. Esto es lo que asumes al decir sí:</p>
+      <ul>
+        <li><strong>Hematoma e inflamación</strong> postoperatorios — esperables, no son una complicación.</li>
+        <li><strong>Paresia transitoria</strong> de alguna rama del nervio facial — riesgo real, debe asumirse, casi siempre se recupera en semanas.</li>
+        <li><strong>Paresia permanente</strong> — poco frecuente pero existe. Tienes que conocerla.</li>
+        <li><strong>Cicatrices visibles</strong> en el periodo inicial — se diluyen con los meses, pero existen.</li>
+      </ul>
+      <p>Cómo lo manejo: una revisión sólida a la semana, las siguientes según evolución, todas incluidas. No empujo retoques si no hay razón clínica clara.</p>
+    </section>
+  `;
+}
+
+function renderMomentBlock(a, exit) {
+  const age = a.p01;
+  if (exit === "A" || age == null) return "";
+  let body;
+  if (age <= 1) body = "Actuar en fase temprana, cuando el envejecimiento aún es discreto, marca la diferencia entre rejuvenecer con elegancia y parecer operada. Tu trabajo ahora es decidir si es el momento, no si es físicamente posible.";
+  else if (age <= 3) body = "Estás en un momento óptimo desde el punto de vista de los tejidos. Tienen elasticidad suficiente para reposicionarse bien y duración real del resultado.";
+  else if (age <= 5) body = "Muy buen momento. Los resultados son sólidos y duraderos. Es la franja en la que más cirugías de este tipo se hacen, y por una razón clínica clara.";
+  else body = "Perfectamente viable. La edad no es la limitación — lo es el estado de los tejidos y la salud general. Si la salud acompaña, los resultados son sólidos.";
+
+  return `
+    <section class="panel-soft">
+      <div class="eyebrow">Bloque 7 — Tu momento</div>
+      <h2>Qué dice tu edad de cara a este tipo de cirugía</h2>
+      <p>${body}</p>
+    </section>
+  `;
+}
+
+function renderConsultBlock() {
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 8 — Lo que vendrá en consulta</div>
+      <h2>Qué pasa el día que nos veamos</h2>
+      <p>Empezamos por dónde lo dejamos aquí, no por la primera casilla. Esto es lo que haremos:</p>
+      <ul>
+        <li>Te escucho. Lo que te preocupa, lo que esperas, lo que te frena.</li>
+        <li>Valoración por zonas, no global. Cada zona tiene su discusión.</li>
+        <li>Plan individualizado, con cifras y tiempos honestos.</li>
+        <li>Sin presión. Si decides no operarte, también está bien. No me interesa operar a quien no debería.</li>
+      </ul>
+    </section>
+  `;
+}
+
+function renderFlagsBlock(a, exit) {
+  const flags = [];
+  if (a.p07 === 4) flags.push({ tag: "Tabaco activo", body: "El tabaco diario es una variable que tendremos que hablar antes de avanzar. No es un no, pero no avanzamos sin esa conversación." });
+  if (a.p06 && a.p06.includes(5)) flags.push({ tag: "Anticoagulantes", body: "Necesitaremos coordinar con tu médico la pauta antes y después de cirugía." });
+  if (a.p06 && a.p06.includes(6)) flags.push({ tag: "Antiagregantes", body: "Tendremos que hablar con tu cardiólogo o médico de referencia sobre suspensión temporal en torno a la cirugía." });
+  if (a.p22 === 2) flags.push({ tag: "Rellenos recientes", body: "Te has puesto rellenos en el último año. Probablemente tengas algo más de inflamación postoperatoria. No es un no, pero se anota." });
+  if (a.p06 && (a.p06.includes(0) || a.p06.includes(1))) flags.push({ tag: "Patología autoinmune", body: "Necesitaremos informe neurológico/reumatológico previo antes de cualquier decisión." });
+  if (a.p06 && a.p06.includes(2)) flags.push({ tag: "Cardiopatía", body: "Imprescindible informe cardiológico actualizado antes de plantear cirugía." });
+  if (a.p09 === 1 || a.p09 === 2) flags.push({ tag: "Biopolímeros", body: "<strong>Bandera roja.</strong> Tu caso requiere consulta presencial sí o sí. No puedo orientar a distancia. Esto define el resto del plan." });
+  if (a.p08 === 3) flags.push({ tag: "Cirugía previa insatisfactoria", body: "No asumiré el plan que hicieron antes. Valoraremos los tejidos actuales y partimos de cero." });
+
+  if (!flags.length) return "";
+  return `
+    <section class="panel-flag">
+      <div class="eyebrow">Bloque 9 — Banderas y consideraciones específicas</div>
+      <h2>Avisos importantes según lo que me has contado</h2>
+      ${flags.map(f => `<p><strong style="color:var(--terra-dark)">${f.tag} —</strong> ${f.body}</p>`).join("")}
+    </section>
+  `;
+}
+
+function renderPhotosBlock(reco) {
+  const needsBlepharo = reco.adjuncts.some(x => x.name.includes("Blefaroplastia"));
+  return `
+    <section class="panel">
+      <div class="eyebrow">Bloque 10 — Qué fotos enviarme</div>
+      <h2>Cómo hacer las fotos</h2>
+      <p>Sin filtros, sin maquillaje, luz natural (cerca de una ventana), pelo recogido. Fondo neutro. Cámara a la altura de los ojos.</p>
+      <ul class="photo-list">
+        <li>Frontal</li>
+        <li>Perfil 3/4 derecho</li>
+        <li>Perfil 3/4 izquierdo</li>
+        <li>Perfil completo derecho</li>
+        <li>Perfil completo izquierdo</li>
+        <li>Frontal con cabeza ligeramente extendida (para cuello)</li>
+        ${needsBlepharo ? "<li>Frontal con ojos cerrados</li>" : ""}
+      </ul>
+    </section>
+  `;
+}
+
+function renderCTABlock(a, exit, code) {
+  const subject = encodeURIComponent(`Fotos pre-consulta — código ${code}`);
+  const body = encodeURIComponent(
+    `Hola,\n\nAdjunto las fotos para mi pre-consulta orientativa.\n\nCódigo: ${code}\n\nUn saludo.`
+  );
+  const mail = `mailto:info@doctorflecha.com?subject=${subject}&body=${body}`;
+  const wa = `https://wa.me/34665131485?text=${encodeURIComponent("Hola, vengo del formulario de pre-consulta. Mi código es " + code)}`;
+
+  let intro, primaryCTA, secondaryCTA;
+  if (exit === "A") {
+    intro = "Hoy no es el momento de operarte. Si más adelante notas cambios estructurales, vuelve. Mientras tanto, si quieres un contacto puntual con la consulta:";
+    primaryCTA = `<a href="${wa}" class="cta-btn">Escríbeme por WhatsApp</a>`;
+  } else if (exit === "B") {
+    intro = "Tu caso no se puede orientar a distancia con responsabilidad. Para avanzar, reserva consulta presencial. Aquí tienes las dos vías:";
+    primaryCTA = `<a href="${mail}" class="cta-btn">Email (${code})</a>`;
+    secondaryCTA = `<a href="${wa}" class="cta-btn alt">WhatsApp</a>`;
+  } else if (exit === "C") {
+    intro = "No es lo que hago. Si en el futuro tu caso evoluciona y quieres revisar, te dejo la puerta abierta:";
+    primaryCTA = `<a href="${wa}" class="cta-btn">Guardar contacto</a>`;
+  } else if (exit === "D") {
+    intro = "Para lo que buscas, lo mejor es escribir directamente a la consulta indicando el motivo:";
+    primaryCTA = `<a href="${mail}" class="cta-btn">Email con tu código</a>`;
+  } else if (exit === "E") {
+    intro = "Antes de avanzar a consulta de cirugía, una llamada o WhatsApp para hablar del plan de cese. Sin esa conversación previa, no avanzamos.";
+    primaryCTA = `<a href="${wa}" class="cta-btn">WhatsApp</a>`;
+    secondaryCTA = `<a href="${mail}" class="cta-btn alt">Email</a>`;
+  } else {
+    intro = `Envíame las fotos (lista arriba) a <strong>info@doctorflecha.com</strong> con tu código <strong>${code}</strong> en el asunto. Cuando las reciba, Victoria te contactará para cerrar consulta. Si vienes de fuera de Madrid o de España, valoraremos videollamada previa.`;
+    primaryCTA = `<a href="${mail}" class="cta-btn">Abrir email con mi código</a>`;
+    secondaryCTA = `<a href="${wa}" class="cta-btn alt">WhatsApp</a>`;
+  }
+
+  return `
+    <div class="cta-block">
+      <div class="eyebrow" style="color:rgba(255,255,255,.7)">Bloque 11 — Próximo paso</div>
+      <h3>Qué hacemos ahora</h3>
+      <p>${intro}</p>
+      ${primaryCTA}
+      ${secondaryCTA || ""}
+    </div>
+  `;
+}
+
+function renderDisclaimerBlock() {
+  return `
+    <p style="font-size:.82rem;color:var(--ink-soft);text-align:center;margin-top:2rem;border-top:1px solid var(--rule);padding-top:1.25rem;">
+      Esta orientación se basa exclusivamente en lo que nos has contado. <strong>No es un diagnóstico</strong> ni sustituye consulta presencial.
+      Las recomendaciones definitivas solo pueden establecerse tras valoración en persona.
+    </p>
+  `;
+}
+
+/* ---- doctor decoder banner ---- */
+function renderDoctorHeader(a, code) {
+  const rows = [];
+  for (const stepKey of ORDER) {
+    for (const q of SURVEY[stepKey].questions) {
+      const v = a[q.id];
+      let display = "<em>—</em>";
+      if (v != null) {
+        if (Array.isArray(v)) display = v.map(i => q.opts[i]).join(" · ");
+        else if (q.type === "scale") display = `${v + 1}/5`;
+        else display = q.opts[v];
+      }
+      rows.push(`<tr><th>${q.id.toUpperCase()} · ${q.label}</th><td>${display}</td></tr>`);
+    }
+  }
+  const exit = classify(a);
+  return `
+    <div class="doc-banner" id="doc-banner">
+      <div class="doc-banner-inner">
+        <strong>VISTA DEL DOCTOR</strong> · Código <code>${code}</code> · Clasificación: <strong>${exit === "estandar" ? "Ruta estándar" : "Salida " + exit}</strong>
+        &nbsp;·&nbsp;
+        <button class="doc-toggle" onclick="document.getElementById('doc-detail').classList.toggle('hidden')">Ver/ocultar respuestas completas</button>
+        &nbsp;·&nbsp;
+        <button class="doc-toggle" onclick="(function(){sessionStorage.removeItem('df_doc_mode');location.hash='';location.reload();})()">Salir de vista doctor</button>
+        <div id="doc-detail" class="hidden" style="margin-top:.75rem;">
+          <table class="doc-table">${rows.join("")}</table>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderInvalidCode(code) {
+  document.getElementById("app").innerHTML = `
+    <section class="panel">
+      <div class="eyebrow">Código no reconocido</div>
+      <h1>Este código no es válido</h1>
+      <p>El código <code>${escapeHtml(code)}</code> no se reconoce. Puede que esté incompleto, mal copiado o sea de otro sistema.</p>
+      <p>Si has llegado aquí desde un email del paciente, revisa que el código completo (incluido el prefijo <code>DF1-</code>) esté pegado.</p>
+      <div class="nav-row">
+        <a href="?" class="btn">Empezar pre-consulta</a>
+      </div>
+    </section>
+  `;
+}
+
+/* ---- helpers ---- */
+function findQ(qid) {
+  for (const key of ORDER) {
+    const q = SURVEY[key].questions.find(qq => qq.id === qid);
+    if (q) return q;
+  }
+  return null;
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+}
+
+/* ============================================================
+   BOOTSTRAP
+   ============================================================ */
+document.getElementById("doc-mode-toggle").addEventListener("click", (e) => {
+  e.preventDefault();
+  if (state.step === "result" || new URL(window.location).searchParams.get("codigo")) {
+    sessionStorage.setItem("df_doc_mode", "1");
+    if (!window.location.hash) window.location.hash = "doctor";
+    render();
+  } else {
+    alert("Termina la pre-consulta o pega un código en la URL (?codigo=DF1-…) para activar la vista del doctor.");
+  }
+});
+window.addEventListener("DOMContentLoaded", render);
+</script>
+</body>
+</html>
